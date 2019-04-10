@@ -1,0 +1,126 @@
+
+{% extends "layoutAdmin.html.twig" %}
+{% block stylesheet %}
+  <!--Vue Js-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link href="/assets/lib/animate.css/animate.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="cards">
+      <div class="row">
+        <!-- VUEJS element -->
+        <div id="calendrier">
+          <div class="col s12 m6">
+            <div class="card white">
+              <div class="card-content">
+
+                <app-date-comp 
+                  :dateoutput="dateOutput" 
+                  @dateplusun="dateplusun" 
+                  @datemoinsun="datemoinsun"
+                  @today="today">
+                </app-date-comp>
+
+                <!-- chambres1-->
+                <div class="row">
+                  <div class="col s12">
+                    <div class="card white">
+                      <div class="card-content">
+                        <span class="card-title c-c1">Chambre 1</span>
+                        <div class="client">
+                          <p>SOME One</p>
+                        </div>
+                        <div class="date-reservation-title"><span>A reservé le : </span><span
+                            class="date-reservation-content">2 decembre 2018</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- chambre 2-->
+                  <div class="col s12">
+                    <div class="card white">
+                      <div class="card-content">
+                        <span class="card-title c-c2">Chambre 2</span>
+                        <div class="client">
+                          <p>SOME One</p>
+                        </div>
+                        <div class="date-reservation-title"><span>A reservé le : </span><span
+                            class="date-reservation-content">2 decembre 2018</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- chambre 2-->
+                  <div class="col s12">
+                    <div class="card white">
+                      <div class="card-content">
+                        <span class="card-title c-c3">Chambre 3</span>
+                        <div class="client">
+                          <p>SOME One</p>
+                        </div>
+                        <div class="date-reservation-title"><span>A reservé le : </span><span
+                            class="date-reservation-content">2 decembre 2018</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- chambre 2-->
+                  <div class="col s12">
+                    <div class="card white">
+                      <div class="card-content">
+                        <span class="card-title c-c4">Chambre 4</span>
+                        <div class="client">
+                          <p>SOME One</p>
+                        </div>
+                        <div>
+                          <p>A reservé le : <span>2 decembre 2018</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END VUEJS element -->
+        <!-- END CARDS COL 1-->
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="container" style="width: 95%;">
+              <div class="row">
+                <br>
+                <br>
+                <canvas id="myChart"></canvas>
+              </div>
+              <div class="col s12">
+                  <div class="divider"></div>
+                </div>
+              <div class="row ">
+                <div class="col s12">
+                  <canvas id="myChart2"></canvas>
+                  <br>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <!-- Cards Graf 1 -->
+          </div>
+        </div>
+
+        <!-- END CARDS COL 2-->
+      </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script type="text/javascript" src="/assets/lib/textillate/jquery.textillate.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.js"></script>
+  <script type="text/javascript" src="/assets/lib/jquery.lettering-0.6.1.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/assets/js/Admin/components.js"></script>
+  <script type="text/javascript" src="/assets/js/Admin/vue.js"></script>
+  <script type="text/javascript" src="/assets/js/Admin/script.js"></script>
+{% endblock %}
