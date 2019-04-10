@@ -18,12 +18,66 @@
 </head>
 
 <body>
+    <header>
+        <nav>
+            <div
+                class="nav-wrapper">
+                <!--
+                                                                <img src="https://imgur.com/a/uFWiY6E" alt="">
+                                                                find a way to host the img            
+                                                            -->
+                <a class="brand-logo" href="#!">
+                    <i class="material-icons">house</i>BnB around the world</a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a class="waves-effect waves-light grey darken-3 btn">Book a room</a>
+                    </li>
+                </ul>
 
-    {% block content %}{% endblock %}
+            </div>
+        </nav>
+    </header>
+    <div class="container" id="main-body">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <a class="waves-effect waves-light btn modal-trigger right grey darken-3" href="#modal1">Modal</a>
+    <div class="modal bottom-sheet" id="modal1">
+            <footer class="page-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Awesome Footer</h5>
+                            <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        © 2014 Copyright Text
+                        <div class="right">
+                            facebook twitter google+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+    </div>
+
     {% block javascript %}{% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        let h = ($(window).height() / 10) + "vh";
+        $('#main-body').css("min-height", h);
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.modal').modal();
+        });
+    </script>
 </body>
 
 </html>
