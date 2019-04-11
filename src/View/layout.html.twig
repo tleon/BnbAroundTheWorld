@@ -21,8 +21,8 @@
     <header>
         <nav class="bg-light-green">
             <div class="nav-wrapper">
-                <img class="img-logo" src="assets/images/logo.png" alt="">
-                <ul class="right hide-on-med-and-down">
+                <img class="img-logo" src="/assets/images/logo.png" alt="">
+                <ul class="right">
                     <li>
                         <a class="waves-effect waves-light btn modal-trigger bg-dark-blue" href="#modal1">Connexion</a>
                     </li>
@@ -48,9 +48,9 @@
                                 </div>
                             </form>
                         </div>
-                            <div class="right-align">
-                                <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue white-text">Connexion</a>
-                            </div>
+                    </div>
+                    <div class="right btn-modal">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue text-color">Connexion</a>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
     {% block video %}
     {% endblock %}
 
-    {% block indexForm %}{% endblock %}
+    {% block desc %}{% endblock %}
 
     {% block parallax %}
     {% endblock %}
@@ -108,7 +108,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    © 2014 Copyright Text
+                    © 2019 Bnb Around The World, Inc, All right reserved.
                 </div>
             </div>
         </footer>
@@ -124,7 +124,7 @@
             $("#modalBtn").css('display', 'block') :
             $("#modalBtn").css('display', 'none');
         }
-        $('#main-body').css("min-height", $(window).height() + "px");
+        //$('#main-body').css("min-height", $(window).height() + "px");
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});
@@ -138,3 +138,5 @@
 </body>
 
 </html>
+
+

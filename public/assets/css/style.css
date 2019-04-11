@@ -26,7 +26,6 @@
     color: #FFFFFF;
 }
 
-/* FORM ON INDEX PAGE */
-.indexFrom {
-    background-color: red;
+.btn-modal {
+    margin: 10px;
 }
