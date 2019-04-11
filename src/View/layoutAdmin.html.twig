@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!--Vue Js and materialize app -->
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Admin - BnB Around The World{% endblock %}</title>
+
+    {% block stylesheet %}{% endblock %}
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+        <!--Materialize css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Sidebar font -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Custom css -->
+        <link rel="stylesheet" href="/assets/css/admin.css">
+
+</head>
+
+<body>
+
+    <!-- START MAIN -->
+    <div id="main">
+        <nav class="mobile-device-only light-green darken-2">
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><iclass="material-icons">menu</i></a>
+        </nav>
+        <!-- END MOBILE NAVABAR-->
+        <ul id="slide-out" class="sidenav">
+            <li><a href="#!"><i class="material-icons">home</i>Accueil</a></li>
+            <li><a href="#!"><i class="material-icons">airline_seat_individual_suite</i>Chambres</a></li>
+            <li><a href="#!"><i class="material-icons">attach_money</i>Tarifs</a></li>
+            <li><a href="#!"><i class="material-icons">view_agenda</i>Planning</a></li>
+        </ul>
+        <!-- END MOBILE SIDEBAR NAV-->
+
+        <div class="desktop-device-only">
+            <ul class="sidenav sidenav-fixed light-green darken-2">
+                <li class="logo"><a href="#" id="logo-container" class="brand-logo"></a></li>
+                <li class="bold"><a href="#!"><i class="material-icons">home</i>Accueil</a></li>
+                <li class="bold"><a href="#!"><i class="material-icons">airline_seat_individual_suite</i>Chambres</a></li>
+                <li class="bold"><a href="#!"><i class="material-icons">attach_money</i>Tarifs</a></li>
+                <li class="bold"><a href="#!"><i class="material-icons">view_agenda</i>Planning</a></li>
+            </ul>
+        </div>
+        <!-- END DESKTOP SIDEBAR NAV-->
+
+        {% block content %}
+        {% endblock %}
+    </div>
+        {% block javascript %}{% endblock %}
+</body>
+
+</html>
