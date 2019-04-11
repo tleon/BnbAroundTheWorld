@@ -1,0 +1,91 @@
+/* HERVE */
+
+@font-face {
+  font-family: "Circular";
+  src: url("../font/circular/CircularStd-Book.eot");
+  src: url("../font/circular/CircularStd-Book.eot?#iefix")
+      format("embedded-opentype"),
+    url("../font/circular/CircularStd-Book.woff") format("woff"),
+    url("../font/circular/CircularStd-Book.ttf") format("truetype"),
+    url("../font/circular/CircularStd-Book.svg#bcc26993292869431e54c666aafa8fcd")
+      format("svg");
+  font-weight: 800;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: Circular;
+  background: #e5e5e5;
+  color: #484848 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.2857142857142858em !important;
+}
+
+/******* media *******/
+@media only screen and (min-width: 992px) {
+  .mobile-device-only {
+    display: none;
+  }
+  .desktop-device-only {
+    display: inline !important;
+  }
+  .cards {
+    margin-left: 200px;
+  }
+}
+
+.desktop-device-only {
+  display: none;
+}
+
+.sidenav {
+  display: block;
+  width: 200px;
+  background-color: #80bfb7;
+  color: #484848;
+}
+.sidenav li > a,
+li > a > i {
+  color: #fff !important;
+}
+
+.bg-light-green {
+  background-color: #80bfb7;
+}
+
+.card-title {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.375em !important;
+  color: #484848 !important;
+}
+
+.card-content {
+  font-weight: normal !important;
+  font-size: 13px !important;
+  line-height: normal !important;
+  letter-spacing: 0.01em;
+  color: #707683;
+}
+
+.card-calendrier-button {
+  margin-bottom: 15px;
+}
+
+.c-c1 {
+  color: #7cb342 !important;
+}
+
+.c-c2 {
+  color: #36a2eb !important;
+}
+
+.c-c3 {
+  color: #ff6384 !important;
+}
+
+.c-c4 {
+  color: #ffcd56 !important;
+}
