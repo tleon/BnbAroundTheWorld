@@ -1,8 +1,6 @@
 /vendor/
 config/db.php
 <<<<<<< HEAD
+<<<<<<< HEAD
 .idea/
 .phpcs-cache
-=======
-
->>>>>>> 0961c6523d088f2815f3803593084f224933cbf8
