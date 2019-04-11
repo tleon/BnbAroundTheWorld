@@ -19,9 +19,9 @@
 
 <body>
     <header>
-        <nav class="bg-light-green">
+        <nav class="bg-lg-white">
             <div class="nav-wrapper">
-                <img class="img-logo" src="/assets/images/logo.png" alt="">
+                <img alt="" class="img-logo" src="/assets/images/logo.png">
                 <ul class="right">
                     <li>
                         <a class="waves-effect waves-light btn modal-trigger bg-dark-blue" href="#modal1">Connexion</a>
@@ -29,20 +29,20 @@
                 </ul>
 
                 <!-- Modal Structure -->
-                <div id="modal1" class="modal bg-lg-white">
+                <div class="modal bg-lg-white" id="modal1">
                     <div class="modal-content">
                         <h4>Connexion</h4>
                         <div class="row">
                             <form class="col s12">
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="email" type="email" class="validate">
+                                        <input class="validate" id="email" type="email">
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="password" type="password" class="validate">
+                                        <input class="validate" id="password" type="password">
                                         <label for="password">Password</label>
                                     </div>
                                 </div>
@@ -50,44 +50,47 @@
                         </div>
                     </div>
                     <div class="right btn-modal">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue text-color">Connexion</a>
+                        <a class="modal-close waves-effect waves-green btn-flat bg-dark-blue text-color" href="#!">Connexion</a>
                     </div>
                 </div>
 
             </div>
         </nav>
     </header>
-    {% block video %}
-    {% endblock %}
+
+    {% block video %}{% endblock %}
+
 
     {% block desc %}{% endblock %}
 
-    {% block parallax %}
-    {% endblock %}
+    {% block parallax %}{% endblock %}
 
     <div class="container" id="main-body">
         {% block content %}{% endblock %}
-    </div>
 
-    <div id="divBtn">
-    
 
-<div class="fixed-action-btn">
+        <div id="divBtn">
 
-    <a class="waves-effect waves-light btn-foating btn modal-trigger bg-dark-blue" href="#modal2" id="modalBtn">
 
-        <i class="fas fa-arrow-alt-circle-up"></i></a>
-</div>
-    </a>
+            <div class="fixed-action-btn">
+
+                <a class="waves-effect waves-light btn-foating btn modal-trigger bg-dark-blue" href="#modal2" id="modalBtn">
+
+                    <i class="fas fa-arrow-alt-circle-up"></i>
+                </a>
+            </div>
+        </a>
     </div>
     <div class="modal bottom-sheet" id="modal2">
-        <footer class="page-footer bg-light-green">
+        <footer class="page-footer bg-lg-white">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="color-dark-blue">Awesome Footer</h5>
-                        <p class="color-dark-blue">Lorem ipsum, dolor sit amet consectetur
-                        </p>
+                    <div class="col s10">
+                        <div class="col l6 s12">
+                            <h5 class="color-dark-blue">Awesome Footer</h5>
+                            <p class="color-dark-blue">Lorem ipsum, dolor sit amet consecteturLorem ipsum, dolor sit amet consecteturLorem ipsum, dolor sit amet consectetur
+                            </p>
+                        </div>
                     </div>
                     <div class="right">
                         <div class="row">
@@ -118,17 +121,17 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="universal-parallax.min.js"></script>
     <script>
         function scrollFunction() {
-            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ?
-            $("#modalBtn").css('display', 'block') :
-            $("#modalBtn").css('display', 'none');
+            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? $("#modalBtn").css('display', 'block') : $("#modalBtn").css('display', 'none');
         }
-        //$('#main-body').css("min-height", $(window).height() + "px");
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});
             $('.parallax').parallax();
+            $('select').formSelect();
+            $('.datepicker').datepicker();
             $('#fixed-action-btn').floatingActionButton();
             window.onscroll = function () {
                 scrollFunction()
@@ -138,5 +141,3 @@
 </body>
 
 </html>
-
-
