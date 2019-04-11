@@ -1,20 +1,19 @@
-.green-logo{
-    color: #64B99D;
-}
-
 .img-logo {
     height: 100%;
-    
 }
 
-.h-f-color {
-    background-color: #64B99D;
+.color-light-green{
+    color: #80bfb7;
 }
 
-.btn-color {
-    background-color: #2a598b;
+.bg-light-green {
+    background-color: #80bfb7;
 }
 
-.c-my-blue {
-    color: #2a598b;
+.bg-dark-blue {
+    background-color: #003b55;
+}
+
+.color-dark-blue {
+    color: #003b55;
 }
