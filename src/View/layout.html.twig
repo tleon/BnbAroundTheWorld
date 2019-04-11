@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-
     <title>
         {% block title %}{% endblock %}
     </title>
@@ -42,7 +41,7 @@
     </div>
 
 
-    <a class="waves-effect waves-light btn modal-trigger right grey darken-3" href="#modal1">Modal</a>
+    <a class="waves-effect waves-light btn modal-trigger right grey darken-3" id="modalBtn" href="#modal1">Modal</a>
     <div class="modal bottom-sheet" id="modal1">
             <footer class="page-footer">
                 <div class="container">
@@ -52,7 +51,6 @@
                             <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur
                             </p>
                         </div>
-
                     </div>
                 </div>
                 <div class="footer-copyright">
@@ -71,12 +69,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        let h = ($(window).height() / 10) + "vh";
-        $('#main-body').css("min-height", h);
+        $('#main-body').css("min-height", $(window).height() + "px");
         $(document).ready(function () {
             $('.sidenav').sidenav();
-            $('.modal').modal();
+            $('.modal').modal({
+                opacity: 0
+            });
         });
+        
+
     </script>
 </body>
 
