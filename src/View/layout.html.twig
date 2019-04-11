@@ -19,7 +19,7 @@
 
 <body>
     <header>
-        <nav>
+        <nav class="orange">
             <div
                 class="nav-wrapper">
                 <!--
@@ -27,7 +27,7 @@
                                                                                                 find a way to host the img            
                                                                                             -->
                 <a class="brand-logo" href="#!">
-                    <i class="material-icons">house</i>BnB around the world</a>
+                    <i class="material-icons grey-logo">house</i> <span class="grey-logo">BnB around the world</span></a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a class="waves-effect waves-light grey darken-3 btn">Book a room</a>
@@ -95,7 +95,7 @@
             $("#modalBtn").css('display', 'block') :
             $("#modalBtn").css('display', 'none');
         }
-        $('#main-body').css("min-height", $(window).height() + "0px");
+        $('#main-body').css("min-height", $(window).height() + "px");
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});
