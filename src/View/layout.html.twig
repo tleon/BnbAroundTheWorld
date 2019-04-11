@@ -19,20 +19,40 @@
 
 <body>
     <header>
-        <nav class="orange">
-            <div
-                class="nav-wrapper">
-                <!--
-                                                                                                <img src="https://imgur.com/a/uFWiY6E" alt="">
-                                                                                                find a way to host the img            
-                                                                                            -->
-                <a class="brand-logo" href="#!">
-                    <i class="material-icons grey-logo">house</i> <span class="grey-logo">BnB around the world</span></a>
+        <nav class="bg-light-green">
+            <div class="nav-wrapper">
+                <img class="img-logo" src="assets/images/logo.png" alt="">
                 <ul class="right hide-on-med-and-down">
                     <li>
-                        <a class="waves-effect waves-light grey darken-3 btn">Book a room</a>
+                        <a class="waves-effect waves-light btn modal-trigger bg-dark-blue" href="#modal1">Connexion</a>
                     </li>
                 </ul>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal bg-lg-white">
+                    <div class="modal-content">
+                        <h4>Connexion</h4>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue">Connexion</a>
+                    </div>
+                </div>
 
             </div>
         </nav>
@@ -45,32 +65,33 @@
     
 
 <div class="fixed-action-btn">
-  
-    <a class="waves-effect waves-light btn-foating btn modal-trigger grey darken-3" href="#modal1" id="modalBtn">
+
+    <a class="waves-effect waves-light btn-foating btn modal-trigger bg-dark-blue" href="#modal2" id="modalBtn">
+
         <i class="fas fa-arrow-alt-circle-up"></i></a>
 </div>
     </a>
     </div>
-    <div class="modal bottom-sheet" id="modal1">
-        <footer class="page-footer">
+    <div class="modal bottom-sheet" id="modal2">
+        <footer class="page-footer bg-light-green">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Awesome Footer</h5>
-                        <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur
+                        <h5 class="color-dark-blue">Awesome Footer</h5>
+                        <p class="color-dark-blue">Lorem ipsum, dolor sit amet consectetur
                         </p>
                     </div>
                     <div class="right">
                         <div class="row">
-                            <i class="fab fa-facebook">
+                            <i class="color-dark-blue fab fa-facebook">
                                 Facebook</i>
                         </div>
                         <div class="row">
-                            <i class="fab fa-twitter-square">
+                            <i class="color-dark-blue fab fa-twitter">
                                 Twitter</i>
                         </div>
                         <div class="row">
-                            <i class="fab fa-google-plus-square">
+                            <i class="color-dark-blue fab fa-google-plus">
                                 Google +</i>
                         </div>
 
