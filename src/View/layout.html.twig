@@ -57,7 +57,8 @@
             </div>
         </nav>
     </header>
-    {% block video %}{% endblock %}
+    {% block video %}
+    {% endblock %} 
     <div class="container" id="main-body">
         {% block content %}{% endblock %}
     </div>
@@ -101,7 +102,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    © 2014 Copyright Text
+                    © 2019 Bnb Around The World, Inc, All right reserved.
                 </div>
             </div>
         </footer>
@@ -118,6 +119,7 @@
             $("#modalBtn").css('display', 'none');
         }
         $('#main-body').css("min-height", $(window).height() + "px");
+        $("#video").css("width", $(window).width());
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});

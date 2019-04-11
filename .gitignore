@@ -1,5 +1,8 @@
 /vendor/
 config/db.php
+<<<<<<< HEAD
+<<<<<<< HEAD
+.idea/
 .phpcs-cache
 .idea
 vendor
