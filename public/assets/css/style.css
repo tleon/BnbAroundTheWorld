@@ -25,3 +25,8 @@
 .text-color{
     color: #FFFFFF;
 }
+
+/* FORM ON INDEX PAGE */
+.indexFrom {
+    background-color: red;
+}
