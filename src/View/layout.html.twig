@@ -9,6 +9,7 @@
         {% block title %}{% endblock %}
     </title>
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
@@ -22,9 +23,9 @@
             <div
                 class="nav-wrapper">
                 <!--
-                                                                <img src="https://imgur.com/a/uFWiY6E" alt="">
-                                                                find a way to host the img            
-                                                            -->
+                                                                                                <img src="https://imgur.com/a/uFWiY6E" alt="">
+                                                                                                find a way to host the img            
+                                                                                            -->
                 <a class="brand-logo" href="#!">
                     <i class="material-icons">house</i>BnB around the world</a>
                 <ul class="right hide-on-med-and-down">
@@ -40,28 +41,48 @@
         {% block content %}{% endblock %}
     </div>
 
+    <div id="divBtn">
+    
 
-    <a class="waves-effect waves-light btn modal-trigger right grey darken-3" id="modalBtn" href="#modal1">Modal</a>
+<div class="fixed-action-btn">
+  
+    <a class="waves-effect waves-light btn-foating btn modal-trigger grey darken-3" href="#modal1" id="modalBtn">
+        <i class="fas fa-arrow-alt-circle-up"></i></a>
+</div>
+    </a>
+    </div>
     <div class="modal bottom-sheet" id="modal1">
-            <footer class="page-footer">
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Awesome Footer</h5>
+                        <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur
+                        </p>
+                    </div>
+                    <div class="right">
+                        <div class="row">
+                            <i class="fab fa-facebook">
+                                Facebook</i>
+                        </div>
+                        <div class="row">
+                            <i class="fab fa-twitter-square">
+                                Twitter</i>
+                        </div>
+                        <div class="row">
+                            <i class="fab fa-google-plus-square">
+                                Google +</i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
                 <div class="container">
-                    <div class="row">
-                        <div class="col l6 s12">
-                            <h5 class="white-text">Awesome Footer</h5>
-                            <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur
-                            </p>
-                        </div>
-                    </div>
+                    © 2014 Copyright Text
                 </div>
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2014 Copyright Text
-                        <div class="right">
-                            facebook twitter google+
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            </div>
+        </footer>
     </div>
 
     {% block javascript %}{% endblock %}
@@ -69,15 +90,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        $('#main-body').css("min-height", $(window).height() + "px");
+        function scrollFunction() {
+            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ?
+            $("#modalBtn").css('display', 'block') :
+            $("#modalBtn").css('display', 'none');
+        }
+        $('#main-body').css("min-height", $(window).height() + "0px");
         $(document).ready(function () {
             $('.sidenav').sidenav();
-            $('.modal').modal({
-                opacity: 0
-            });
+            $('.modal').modal({opacity: 0});
+            $('#fixed-action-btn').floatingActionButton();
+            window.onscroll = function () {
+                scrollFunction()
+            };
         });
-        
-
     </script>
 </body>
 
