@@ -58,7 +58,11 @@
         </nav>
     </header>
     {% block video %}
-    {% endblock %} 
+    {% endblock %}
+
+    {% block parallax %}
+    {% endblock %}
+
     <div class="container" id="main-body">
         {% block content %}{% endblock %}
     </div>
@@ -123,6 +127,7 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});
+            $('.parallax').parallax();
             $('#fixed-action-btn').floatingActionButton();
             window.onscroll = function () {
                 scrollFunction()
