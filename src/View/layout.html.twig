@@ -48,15 +48,17 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue">Connexion</a>
+                            <div class="right-align">
+                                <a href="#!" class="modal-close waves-effect waves-green btn-flat bg-dark-blue white-text">Connexion</a>
+                            </div>
                     </div>
                 </div>
 
             </div>
         </nav>
     </header>
+    {% block video %}
+    {% endblock %} 
     <div class="container" id="main-body">
         {% block content %}{% endblock %}
     </div>
@@ -117,6 +119,7 @@
             $("#modalBtn").css('display', 'none');
         }
         $('#main-body').css("min-height", $(window).height() + "px");
+        $("#video").css("width", $(window).width());
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.modal').modal({opacity: 0});
