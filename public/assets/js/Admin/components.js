@@ -5,9 +5,9 @@ Vue.component("app-date-comp", {
     <div class="col s12">
 
       <div class="card-calendrier-button center-align">
-        <button v-on:click="$emit('datemoinsun')" class="waves-effect waves-light btn-small bg-light-green">jour -1</button>
-        <button v-on:click="$emit('today')" class="waves-effect waves-light btn-small bg-light-green">Aujourd'hui</button>
-        <button v-on:click="$emit('dateplusun')" class="waves-effect waves-light btn-small bg-light-green">jour + 1</button>
+        <button v-on:click="$emit('datemoinsun')" class="waves-effect waves-light btn-small bg-lg-white color-dark-blue">jour -1</button>
+        <button v-on:click="$emit('today')" class="waves-effect waves-light btn-small bg-lg-white color-dark-blue">Aujourd'hui</button>
+        <button v-on:click="$emit('dateplusun')" class="waves-effect waves-light btn-small bg-lg-white color-dark-blue">jour + 1</button>
       </div>
     </div>
     <div class="col s12">
