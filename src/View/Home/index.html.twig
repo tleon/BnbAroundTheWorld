@@ -3,20 +3,63 @@
 {% block video %}
 
 
-        <video autoplay loop class="responsive-video" id="video">
+    <video autoplay class="responsive-video" id="video" loop>
         <source src="/assets/video/Vegas.mp4" type="video/mp4">
-        </video>
+    </video>
 
 {% endblock %}
 
 {% block parallax %}
     <div class="parallax-container">
-        <div class="parallax"><img src="/assets/images/paralax-photo.jpeg" alt="pouet"></div>
+        <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
     </div>
     <div class="section white">
         <div class="row container">
             <h2 class="header">Parallax</h2>
             <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="index-chambres">
+        <div class="blocktext-1 ">
+            <h3>New York</h3>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        <div class="blockImage-1">
+            <img src="/assets/images/ChambreNY.jpg">
+        </div>
+
+        <div class="blockImage-2">
+            <img height="600" src="/assets/images/ChambreThai02.jpg" width="800">
+        </div>
+
+        <div class="blocktext-2">
+            <h3>Thaïlande</h3>
+            <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+        </div>
+        <div class="blocktext-3">
+            <h3>Paris</h3>
+            <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+        </div>
+        <div class="blockImage-3">
+            <img height="600" src="/assets/images/Paris.jpg" width="800">
+        </div>
+        <div class="blockImage-4">
+            <img height="600" src="/assets/images/Asia.jpg" width="800">
+        </div>
+        <div class="blocktext-4">
+            <h3>Japon</h3>
+            <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+            </p>
+        </div>
+        <div class="blocktext-5">
+            <h3>Africa</h3>
+            <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="blockImage-5">
+            <img height="600" src="/assets/images/Africa.jpg" width="800">
         </div>
     </div>
 {% endblock %}
