@@ -1,3 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+@font-face {
+    font-family: 'Avenir-Book';
+    src:  url('Avenir-Book.woff') format('woff'), url('Avenir-Book.ttf')  format('truetype'), url('Avenir-Book.svg#Avenir-Book') format('svg');
+    src: url('Avenir-Book.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .img-logo {
     height: 100%;
 }
@@ -21,9 +35,6 @@
 .bg-lg-white{
     background-color: #ffffff;
 }
-nav {
-    box-shadow: none;
-}
 
 .text-color{
     color: #FFFFFF;
@@ -31,11 +42,6 @@ nav {
 
 .btn-modal {
     margin: 10px;
-}
-
-body {
-   transition: 1s linear;
-   transition-property: background-position;
 }
 
 #quickB {
@@ -52,10 +58,7 @@ body {
     border : none !important;
 }
 
-#video {
-    margin-top: 1%;
-    width: 100%;
-}
+
 
 @media only screen and (max-width: 992px) {
     .tom-invisible {
@@ -155,4 +158,46 @@ body {
 .appear {
     opacity: 1;
     transform: translateY(0);
+}
+
+nav {
+    position: absolute !important;
+    z-index: 5 !important;
+    background: transparent;
+    box-shadow: none;
+    height: 100vh;
+}
+
+video {
+    object-fit: cover;
+    position: absolute;
+    top:0;
+}
+
+body {
+    font-family: Avenir-Book;
+ }
+ 
+ #video {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.NavLink {
+    color: #555;
+}
+.container {
+    position: relative;
+}
+
+.img-logo {
+    margin-top: 85vh;
+}
+.gite {
+    margin-top: 10rem;
+}
+.btn {
+    background-color: #555;
+    opacity: 0.6;
 }
