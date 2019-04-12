@@ -19,7 +19,10 @@
 }
 
 .bg-lg-white{
-    background-color: #D3EBD5;
+    background-color: #ffffff;
+}
+nav {
+    box-shadow: none;
 }
 
 .text-color{
@@ -37,7 +40,7 @@ body {
 
 #quickB {
     top: 18% !important;
-    right: 8%;
+    right: 18%;
     position: absolute !important;
     background: rgba(255, 255, 255, 0.9) none repeat scroll 0% 0% !important;
     border-radius: 4px !important;
@@ -59,4 +62,97 @@ body {
         opacity: 0;
         display: none; 
     }
+}
+.index-chambres {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blocktext-1, .blocktext-2, .blocktext-3, .blocktext-4, .blocktext-5 {
+    margin-top: 25px;
+    width: 50%;
+    padding-top: auto;
+    padding-bottom: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.blockImage-1, .blockImage-2, .blockImage-3, .blockImage-4, .blockImage-5 {
+    margin-top: 25px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.blockImage-1>img, .blockImage-2>img, .blockImage-3>img, .blockImage-4>img, .blockImage-5>img {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 1024px) {
+    .index-chambres {
+        display: flex;
+        flex-direction: column;
+    }
+    .index-chambres>div {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .blocktext-1 {
+        order: 1;
+    }
+    .blockImage-1 {
+        order: 2;
+    }
+    .blocktext-2 {
+        order: 3;
+    }
+    .blockImage-2 {
+        order: 4;
+    }
+    .blocktext-3 {
+        order: 5;
+    }
+    .blockImage-3 {
+        order: 6;
+    }
+    .blocktext-4 {
+        order: 7;
+    }
+    .blockImage-4 {
+        order: 8;
+    }
+    .blocktext-5 {
+        order: 9;
+    }
+    .blockImage-5 {
+        order: 10;
+    }
+    .blocktext-1, .blocktext-2, .blocktext-3, .blocktext-4, .blocktext-5 {
+        padding: 25px 0;
+        width: 100%;
+    }
+    .blockImage-1, .blockImage-2, .blockImage-3, .blockImage-4, .blockImage-5 {
+        padding: 25px 0;
+        width: 100%;
+    }
+    .blockImage-1>img, .blockImage-2>img, .blockImage-3>img, .blockImage-4>img, .blockImage-5>img {
+        width: 100%;
+    }
+}
+
+.blocktext-1, .blocktext-2, .blocktext-3, .blocktext-4, .blocktext-5 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.7s all ease-in-out;
+}
+
+
+.appear {
+    opacity: 1;
+    transform: translateY(0);
 }
