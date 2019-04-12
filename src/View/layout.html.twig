@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    {% block stylesheet %}{% endblock %}
+    <link href="/assets/images/favicon.png" rel="icon">
+</head>
+
+<body>
+    <header>
+        <nav class="bg-lg-white">
+            <div class="nav-wrapper">
+                <img alt="" class="img-logo" src="assets/images/logo.png">
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a class="waves-effect waves-light btn modal-trigger bg-dark-blue" href="#modal1">Connexion</a>
+                    </li>
+                </ul>
+
+                <!-- Modal Structure -->
+                <div class="modal bg-lg-white" id="modal1">
+                    <div class="modal-content">
+                        <h4 class="color-dark-blue">Connexion</h4>
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input class="validate" id="email" type="email">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input class="validate" id="password" type="password">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="right-align">
+                            <a class="modal-close waves-effect waves-green btn-flat bg-dark-blue white-text" href="#!">Connexion</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    {% block video %}{% endblock %}
+
+    {% block description %}
+    {% endblock %}
+
+    {% block parallax %}{% endblock %}
+
+    <div class="container" id="main-body">
+        {% block content %}{% endblock %}
+
+    <div id="divBtn">
+
+
+        <div class="fixed-action-btn">
+
+            <a class="waves-effect waves-light btn-foating btn modal-trigger bg-dark-blue" href="#modal2" id="modalBtn">
+
+                <i class="fas fa-arrow-alt-circle-up"></i>
+            </a>
+        </div>
+    </a>
+</div>
+<div class="modal bottom-sheet" id="modal2">
+    <footer class="page-footer bg-light-green">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="color-dark-blue">Awesome Footer</h5>
+                    <p class="color-dark-blue">Lorem ipsum, dolor sit amet consectetur
+                    </p>
+                </div>
+                <div class="right">
+                    <div class="row">
+                        <i class="color-dark-blue fab fa-facebook">
+                            Facebook</i>
+                    </div>
+                    <div class="row">
+                        <i class="color-dark-blue fab fa-twitter">
+                            Twitter</i>
+                    </div>
+                    <div class="row">
+                        <i class="color-dark-blue fab fa-google-plus">
+                            Google +</i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2019 Bnb Around The World, Inc, All right reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% block javascript %}{% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="universal-parallax.min.js"></script>
+    <script>
+        function scrollFunction() {
+            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? $("#modalBtn").css('display', 'block') : $("#modalBtn").css('display', 'none');
+        }
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.modal').modal({opacity: 0});
+            $('.parallax').parallax();
+            $('select').formSelect();
+            $('.datepicker').datepicker();
+            $('#fixed-action-btn').floatingActionButton();
+            window.onscroll = function () {
+                scrollFunction()
+            };
+        });
+    </script>
+</body>
+
+</html>
