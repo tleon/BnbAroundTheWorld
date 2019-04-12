@@ -21,7 +21,7 @@
 }
 
 .bg-light-green {
-    background-color: #80bfb7;
+    background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);;
 }
 
 .bg-dark-blue {
@@ -46,7 +46,7 @@
 
 #quickB {
     top: 18% !important;
-    right: 8%;
+    right: 18%;
     position: absolute !important;
     background: rgba(255, 255, 255, 0.9) none repeat scroll 0% 0% !important;
     border-radius: 4px !important;
