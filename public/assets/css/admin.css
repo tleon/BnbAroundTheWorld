@@ -48,7 +48,7 @@ body {
 }
 .sidenav li > a,
 li > a > i {
-  color: #003b55 !important;
+  color: #fff !important;
 }
 
 .bg-light-green {
@@ -88,10 +88,4 @@ li > a > i {
 
 .c-c4 {
   color: #ffcd56 !important;
-}
-.bg-lg-white{
-  background-color: #D3EBD5;
-}
-.color-dark-blue {
-  color:  #003b55 !important;
 }
