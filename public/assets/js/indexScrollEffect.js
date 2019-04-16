@@ -11,7 +11,7 @@ function scrollAppear1() {
     var PositionBlock4 = block4.getBoundingClientRect().top;
     var PositionBlock5 = block5.getBoundingClientRect().top;
     
-    var screenPosition = window.innerHeight / 1.55;
+    var screenPosition = window.innerHeight / 1.3;
     
     if (PositionBlock1 < screenPosition) {
         block1.classList.add("appear");
