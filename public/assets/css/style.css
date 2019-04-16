@@ -157,44 +157,57 @@
     transform: translateY(0);
 }
 
-nav {
-    position: absolute !important;
-    z-index: 5 !important;
-    background: transparent;
-    box-shadow: none;
-    height: 100vh;
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+#fullScreenDiv{
+    /* min-height: 100%;  */
+    /* Set the height to match that of the viewport. */
+    
+    width: auto;
+    padding:0!important;
+    margin: 0!important;
+    position: relative;
+}
+#video{    
+    width: 100vw; 
+    height: auto;
+    object-fit: cover;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
 }
 
-video {
-    object-fit: cover;
-    position: absolute;
+#video{display:block;}
+
+@media (min-width:992px){
+    #messageBox{
+        position: absolute;
+        /* display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height:100%; */
+        top: 10rem;
+        right: 10rem;
+    }
+    #fullScreenDiv{
+        width:100%;
+        height: 100vh;
+    }
+}
+@media (min-width:992px){
+    .gite {
+        margin-top: 10rem;
+    }
+}
+.gite {
     top:0;
 }
 
-body {
-    font-family: Avenir-Book;
- }
- 
- #video {
-    width: 100vw;
-    height: 100vh;
-}
 
-
-.NavLink {
-    color: #555;
-}
-.container {
-    position: relative;
-}
-
-.img-logo {
-    margin-top: 85vh;
-    height: 100%;
-}
-.gite {
-    margin-top: 10rem;
-}
 .btn {
     background-color: #555;
     opacity: 0.6;

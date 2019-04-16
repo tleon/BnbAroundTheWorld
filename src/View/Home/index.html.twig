@@ -2,11 +2,16 @@
 
 {% block video %}
 
-<div class="container" id="video">
-        <video autoplay class="responsive-video" id="video" loop style="min-width:100%; min-height:auto;">
+<div id="fullScreenDiv">
+    <div id="videoDiv">
+        <video preload="preload" id="video" autoplay="autoplay" loop="loop">
             <source src="/assets/video/Vegas.mp4" type="video/mp4">
+            </source>
         </video>
-
+    </div>
+</div>
+<div id="messageBox">
+    <div>
         <div class="card tom-invisible" id="quickB">
             <div class="card-content">
                 <span class="card-title">Réserver dès maintenant</span>
@@ -32,6 +37,7 @@
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
 
@@ -40,8 +46,12 @@
     <h2>Notre Gîte</h2>
     <div class="divider"></div>
     <br>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus
+    fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae,
+    harum.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus
+    fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae,
+    harum.
     <br><br><br>
 </div>
 {% endblock %}
@@ -57,7 +67,11 @@
 <div class="index-chambres">
     <div class="blocktext-1 ">
         <h3>New York</h3>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum."</p>
     </div>
     <div class="blockImage-1">
         <img src="/assets/images/ChambreNY.jpg">
@@ -69,11 +83,19 @@
 
     <div class="blocktext-2">
         <h3>Thaïlande</h3>
-        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. "</p>
     </div>
     <div class="blocktext-3">
         <h3>Paris</h3>
-        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. "</p>
     </div>
     <div class="blockImage-3">
         <img height="600" src="/assets/images/Paris.jpg" width="800">
@@ -83,12 +105,20 @@
     </div>
     <div class="blocktext-4">
         <h3>Japon</h3>
-        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. "
         </p>
     </div>
     <div class="blocktext-5">
         <h3>Africa</h3>
-        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
     </div>
     <div class="blockImage-5">
         <img height="600" src="/assets/images/Africa.jpg" width="800">
