@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-
     <title>
         {% block title %}{% endblock %}
     </title>
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
@@ -18,12 +18,88 @@
 </head>
 
 <body>
+    <header>
+        <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
+        <a id="connect" class="waves-effect waves-light btn modal-trigger bg-lg-white color-dark-blue" href="#modal1">Connexion</a>
+    </header>
+    {% block video %}{% endblock %}
 
-    {% block content %}{% endblock %}
-    {% block javascript %}{% endblock %}
+    {% block description %}
+    {% endblock %}
+
+    {% block parallax %}{% endblock %}
+
+    <div class="container" id="main-body">
+        {% block content %}{% endblock %}
+
+    <div id="divBtn">
+
+
+        <div class="fixed-action-btn">
+
+            <a class="waves-effect waves-light btn-foating btn  bg-dark-blue" id="modalBtn">
+
+                <i class="fas fa-arrow-alt-circle-up"></i>
+            </a>
+        </div>
+    </a>
+</div>
+
+    <footer class="page-footer bg-light-green" id="footer">
+
+            <div class="row">
+                <div class="col s6">
+                    <ul class="color-dark-blue collection with-header">
+                        <li class="collection-header">Nous contacter </li>
+                        <li class="collection-item">Téléphone : 0123456789</li>
+                        <li class="collection-item">Mail : lesmeilleursdevPHP@gmail.com</li>
+                        <li class="collection-item">Adresse : 18 rue Quelque part 01234, France</li>
+                    </ul>
+                </div>
+                <div class="col s6">
+                    <ul class="color-dark-blue collection with-header">
+                        <li class="collection-header">Retrouvez nous aussi sur les réseaux sociaux</li>
+                            <li class="collection-item"><i class="color-dark-blue fab fa-facebook"> Facebook</i></li>
+                            <li class="collection-item"><i class="color-dark-blue fab fa-twitter"> Twitter</i></li>
+                            <li class="collection-item"><i class="color-dark-blue fab fa-google-plus"> Google +</i></li>
+                        </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container color-dark-blue">
+                    © 2019 Bnb Around The World, Inc, All right reserved.
+                </div>
+            </div>
+
+    </footer>
+
+
+{% block javascript %}{% endblock %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        function scrollFunction() {
+            (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? $("#modalBtn").css('display', 'block') : $("#modalBtn").css('display', 'none');
+        }
+        $('#modalBtn').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.modal').modal({opacity: 0});
+            $('.parallax').parallax();
+            $('select').formSelect();
+            $('.datepicker').datepicker();
+            $('#fixed-action-btn').floatingActionButton();
+            window.onscroll = function () {
+                scrollFunction()
+            };
+        });
+    </script>
 </body>
 
 </html>
