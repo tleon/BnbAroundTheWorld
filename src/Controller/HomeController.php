@@ -21,6 +21,19 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ((!empty($_POST['email'])) && (!empty($_POST['pass']))) {
+                if (($_POST['email'] == 'admin') && ($_POST['pass'] == 'admin')) {
+                    header('Location:/Admin/index');
+                }else {
+                    return $this->twig->render('Home/index.html.twig', [
+                        'error' => ' : Email ou mot de passe incorrect.'
+                    ]);
+                }
+            }
+        }
         return $this->twig->render('Home/index.html.twig');
     }
+
+   
 }
