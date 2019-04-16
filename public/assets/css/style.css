@@ -39,8 +39,8 @@ body {
 }
 
 #quickB {
-    top: 18% !important;
-    right: 18%;
+    top: 10% !important;
+    right: 10%;
     position: absolute !important;
     background: rgba(255, 255, 255, 0.9) none repeat scroll 0% 0% !important;
     border-radius: 4px !important;
@@ -48,13 +48,29 @@ body {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 16px 40px !important;
 }
 
+
 #test5 {
     border : none !important;
 }
 
 #video {
+    min-width: 100%;
+}
+#footer {
     margin-top: 1%;
-    width: 100%;
+    background-color: #ffffff;
+}
+
+#logo{
+    margin: 8px;
+    position: absolute;
+    max-width: 10%;
+    height: auto;
+}
+
+#connect{
+    position: absolute;
+    right: 0;
 }
 
 @media only screen and (max-width: 992px) {
