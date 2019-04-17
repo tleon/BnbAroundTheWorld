@@ -3,7 +3,7 @@
 {% block title %}Chambre{% endblock %}
 {% block stylesheet %}
     <link href="/assets/css/room.css" rel="stylesheet">
-    <link href="/assets/vanilla-calendar/src/vanillaCalendar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 {% endblock %}
 
 {% block content %}
@@ -48,6 +48,7 @@
         </div>
 
         <div class="col s12 m5">
+            <input type="text" id="date" />
 
         </div>
     </div>
@@ -74,9 +75,9 @@
             <div class="card opinion">
                 <div class="card-content">
                     <div class="stars">
-                        <img src="../public/assets/images/star.png">
-                        <img src="../public/assets/images/star.png">
-                        <img src="../public/assets/images/star.png">
+                        <img src="../assets/images/star.png">
+                        <img src="../assets/images/star.png">
+                        <img src="../assets/images/star.png">
                     </div>
                     <div class="opinion-text">
                         <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
@@ -96,4 +97,7 @@
 
 
 {% block javascript %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script> $('#date').daterangepicker(); </script>
 {% endblock %}
