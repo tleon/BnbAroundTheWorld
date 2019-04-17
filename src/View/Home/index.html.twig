@@ -9,10 +9,10 @@
         <div class="card tom-invisible" id="quickB">
             <div class="card-content">
                 <span class="card-title">Réserver dès maintenant</span>
-                <form action="/home/reserv" method="POST">
+                <form action="/reservation/reservation" method="POST">
                     <div class="input-field col s12">
-                        <select name="destination">
-                            <option disabled selected value="">Choisissez votre thème de chambre</option>
+                        <select name="roomId">
+                            <option disabled selected value="0">Choisissez votre thème de chambre</option>
                             <option value="1">USA</option>
                             <option value="2">Japon</option>
                             <option value="3">Thailand</option>
@@ -24,25 +24,24 @@
 
                         <div class="col s6">
     
-                            <label for="datepicker">Date d'arrivé
+                            <label for="beginDate">Date d'arrivé
                             </label>
-                            <input name="dateDebut" class="datepicker" id="datepicker" type="text">
+                            <input name="beginDate" class="datepicker" id="datepicker" type="text">
                         </div>
                         <div class="col s6">
-                            <label for="datepicker">Date de départ
+                            <label for="endDate">Date de départ
                             </label>
-                            <input name="dateFin" class="datepicker" id="datepicker" type="text">
+                            <input name="endDate" class="datepicker" id="datepicker" type="text">
                         </div>
                     </div>
-                    <label for="nombrePersonne">Nombre de personnes</label>
+                    <label for="nbPerson">Nombre de personnes</label>
                     <p class="range-field">
-                        <input name="nombrePersonne"" id="nombrePersonne"" max="10" min="0" type="range" />
+                        <input name="nbPerson"" id="nombrePersonne"" max="10" min="0" type="range" />
                     </p>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                     </button>
                 </form>
-                {{dump(test)}}
             </div>
         </div>
     </div>
