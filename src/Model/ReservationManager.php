@@ -28,39 +28,11 @@ class ItemManager extends AbstractManager
     public function insertReservation(array $reservation): int
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (`title`) VALUES (:title)");
-        $statement->bindValue('title', $reservation['title'], \PDO::PARAM_STR);
-
-        if ($statement->execute()) {
-            return (int)$this->pdo->lastInsertId();
-        }
-    }
-
-
-    /**
-     * @param int $id
-     */
-    public function delete(int $id): void
-    {
-        // prepared request
-        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (`begin_date`,'end_date','nb_person','room_id') VALUES (:dateDebut,:dateFin,:nombrePersonne,:destination)");
+        $statement->bindValue('dateDebut', $reservation['dateDebut'], \PDO::PARAM_STR);
+        $statement->bindValue('dateFin', $reservation['dateFin'], \PDO::PARAM_STR);
+        $statement->bindValue('nombrePersonne', $reservation['nombrePersonne'], \PDO::PARAM_STR);
+        $statement->bindValue('destination', $reservation['destination'], \PDO::PARAM_STR);
         $statement->execute();
-    }
-
-
-    /**
-     * @param array $item
-     * @return bool
-     */
-    public function update(array $item):bool
-    {
-
-        // prepared request
-        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
-        $statement->bindValue('id', $item['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
-
-        return $statement->execute();
     }
 }

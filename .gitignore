@@ -2,5 +2,5 @@
 config/db.php
 .idea/
 .phpcs-cache
-.idea
 vendor
+.vscode/

@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Model\ReservationManager;
 
 class HomeController extends AbstractController
 {
@@ -21,59 +22,76 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
-
-
-
-
-
-
-/*verification des données de reservation renvoyer par le calendrier
-*
-*
+/*        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ((!empty($_POST['email'])) && (!empty($_POST['pass']))) {
+                if (($_POST['email'] == 'admin') && ($_POST['pass'] == 'admin')) {
+                    header('Location:/Admin/index');
+                }else {
+                    return $this->twig->render('Home/index.html.twig', [
+                        'error' => ' : Email ou mot de passe incorrect.'
+                    ]);
+                }
+            }
+        }
 */
-
-
-//definition de tableau valide auquel on compare les valeurs renvoyer
-
-$validValues = array 
-(
-'country' => ["1","2","3","4","5"],
-'date' => ["date"],
-'numberGuest' => ["1","2","3","4","5","6","7","8","9","10"]
-);
-
-$error = array();
+        return $this->twig->render('Home/index.html.twig');
+    }
 
 
 
 
-function test_input($value) 
-{
-    $data = trim($value);
-    $data = stripslashes($value);
-    $data = htmlspecialchars($value);
-    return $value;
-}
+
+        /*verification des données de reservation renvoyer par le calendrier
+        *
+        *
+        */
 
 
-if ($_SERVER("REQUEST_METHOD") == "POST")
-{
-    foreach ($_POST as $key => $value)
+        //definition de tableau valide auquel on compare les valeurs renvoyer
+    public function reserv()
     {
-        if (empty($_POST[$value]) || !in_array($_POST[$value], $validValues[$value]))
+        $validValues = array 
+        (
+        'country' => ["1","2","3","4","5"],
+        'date' => ["date"],
+        'numberGuest' => ["1","2","3","4","5","6","7","8","9","10"]
+        );
+
+        $error = array();
+
+
+
+
+        function test_input($value) 
         {
-            $error[$key] = "erreur pendant la reservation, recharger la page et retentez";
+            $data = trim($value);
+            $data = stripslashes($value);
+            $data = htmlspecialchars($value);
+            return $value;
         }
-        else
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $reservation[$key] = test_input($value);
+            foreach ($_POST as $key => $value)
+            {
+                if (empty($_POST[$value])/* || !in_array($_POST[$value], $validValues[$value]) */)
+                {
+                    $error[$key] = "erreur pendant la reservation, recharger la page et retentez";
+                }
+                else
+                {
+                    $reservation[$key] = test_input($value);
+                }
+            }
+            if (empty($error))
+            {
+                /* $reservationManager = new ReservationManager();
+                $reservationManager->insertReservation($reservation);*/
+                return $this->twig->render('Home/index.html.twig',['test'=>$_POST]);
+            }
         }
     }
-    if (empty($error))
-    {
-        $reservation;
-    }
-}
-    }
+
+
 }
