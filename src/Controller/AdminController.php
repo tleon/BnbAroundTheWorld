@@ -18,12 +18,4 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/index.html.twig');
     }
 
-    /**
-     * Allow connection to admin page
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    
 }
