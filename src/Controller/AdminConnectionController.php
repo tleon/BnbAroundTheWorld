@@ -10,7 +10,6 @@ namespace App\Controller;
 
 class AdminConnectionController extends AbstractController
 {
-
     /**
      * Display home page
      *

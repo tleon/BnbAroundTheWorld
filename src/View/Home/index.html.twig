@@ -2,7 +2,7 @@
 
 {% block video %}
 
-<div class="container" id="video">
+    <div class="container" id="video">
         <video autoplay class="responsive-video" id="video" loop>
             <source src="/assets/video/Vegas.mp4" type="video/mp4">
         </video>
@@ -23,7 +23,7 @@
                     <div class="row">
 
                         <div class="col s6">
-    
+
                             <label for="datepicker">Date d'arrivé
                             </label>
                             <input class="datepicker" id="datepicker" type="text">
@@ -42,27 +42,18 @@
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
-
-{% block description %}
+</div>{% endblock %}{% block description %}
 <div class="container">
     <h2>Notre Gîte</h2>
     <div class="divider"></div>
     <br>
     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
     <br><br><br>
-</div>
-{% endblock %}
-
-{% block parallax %}
+</div>{% endblock %}{% block parallax %}
 <div class="parallax-container">
     <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
-</div>
-{% endblock %}
-
-{% block content %}
+</div>{% endblock %}{% block content %}
 <br><br>
 <div class="index-chambres">
     <div class="blocktext-1 ">
@@ -103,9 +94,5 @@
     <div class="blockImage-5">
         <img height="600" src="/assets/images/Africa.jpg" width="800">
     </div>
-</div>
-{% endblock %}
-
-{% block javascript %}
-<script src="/assets/js/indexScrollEffect.js"></script>
-{% endblock %}
+</div>{% endblock %}{% block javascript %}
+<script src="/assets/js/indexScrollEffect.js"></script>{% endblock %}
