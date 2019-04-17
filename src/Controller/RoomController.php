@@ -22,6 +22,10 @@ class RoomController extends AbstractController
         {
             $errors['date']="Dates obligatoires";
         }
+        if (!isset($data['nbPerson']) || empty($data['nbPerson']))
+        {
+            $errors['nbPerson']="Nombre de personnes obligatoire";
+        }
         return $errors;
     }
 
@@ -30,7 +34,9 @@ class RoomController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $data = [
-                'date' => $_POST['date']
+                'date' => $_POST['date'],
+                'nb_person' => $_POST['nb_person'],
+                'options' => $_POST['options'],
             ];
 
             $errors = $this->checkData($data);
@@ -42,6 +48,7 @@ class RoomController extends AbstractController
         }
         return $this->twig->render('Room/room.html.twig');
     }
+
 
 
 }
