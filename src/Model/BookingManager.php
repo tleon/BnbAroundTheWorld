@@ -25,8 +25,8 @@ class BookingManager extends AbstractManager{
 
         $statement->bindValue('begin_date', $begin_date, \PDO::PARAM_DATE);
         $statement->bindValue('end_date', $end_date, \PDO::PARAM_DATE);
-        $statement->bindValue('nb_person', $nb_person, \PDO::PARAM_INT);
-        $statement->bindValue('options', $options, \PDO::PARAM_STR);
+        $statement->bindValue('nb_person', $data['nb_person'], \PDO::PARAM_INT);
+        $statement->bindValue('options', $data['options'], \PDO::PARAM_STR);
         try{
             //execute
             $statement->execute();
