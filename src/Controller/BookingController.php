@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controller;
-use App\Model\RoomManager;
+use App\Model\BookingManager;
 
-class RoomController extends AbstractController
+class BookingController extends AbstractController
 {
     /**
      *
@@ -42,8 +42,8 @@ class RoomController extends AbstractController
             $errors = $this->checkData($data);
             if (empty($errors))
             {
-                $roomManager = new RoomManager();
-                $roomManager->insert($data);
+                $BookingManager = new BookingManager();
+                $BookingManager->insert($data);
             }
         }
         return $this->twig->render('Room/room.html.twig');
