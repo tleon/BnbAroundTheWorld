@@ -12,7 +12,7 @@ namespace App\Model;
 /**
  *
  */
-class Users extends AbstractManager
+class UsersManager extends AbstractManager
 {
     /**
      *
@@ -37,26 +37,41 @@ class Users extends AbstractManager
         return password_hash($pass, PASSWORD_DEFAULT);
     }
 
+
+    /**
+     * checks user credentials : verify pass against hash from db.
+     * @param string $login
+     * @param string $pass
+     * @return bool 
+     * 
+     */
     public function checkUser($login, $pass){
         $statement = $this->pdo->prepare("SELECT pass FROM $this->table WHERE username=:username");
         $statement->bindValue('username', $login, \PDO::PARAM_STR);
         $statement->execute();
 
-        $bddHashPass = $statement->fetch();
-
-        return password_verify($pass, $bddHashPass);
-
+        try{
+            $bddHashPass = $statement->fetch();
+            return password_verify($pass, $bddHashPass['pass']);
+            
+        }catch(PDOException $e) {
+            return $e;
+        }
+           
     }
+
+
     /**
      * @param array $item
-     * @return int
+     * @return mixed true if insert went ok else PDOexception.
+     * 
      */
-    public function insert(array $item): int
+    public function insert(array $item)
     {
         // prepared request 
         $statement = $this->pdo->prepare("INSERT INTO $this->table (username, pass, mail, status) VALUES (:username, :pass, :mail, :status)");
         $statement->bindValue('username', $item['username'], \PDO::PARAM_STR);
-        $statement->bindValue('pass', $item['pass'], \PDO::PARAM_STR);
+        $statement->bindValue('pass', $this->handlePass($item['pass']), \PDO::PARAM_STR);
         $statement->bindValue('mail', $item['mail'], \PDO::PARAM_STR);
         $statement->bindValue('status', $item['status'], \PDO::PARAM_STR);
 

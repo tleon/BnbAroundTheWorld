@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+Use App\Model\UsersManager;
+
 class AdminController extends AbstractController
 {
 
