@@ -1,5 +1,111 @@
 {% extends 'layout.html.twig' %}
 
+{% block video %}
+
+<div class="container" id="video">
+        <video autoplay class="responsive-video" id="video" loop>
+            <source src="/assets/video/Vegas.mp4" type="video/mp4">
+        </video>
+        <div class="card tom-invisible" id="quickB">
+            <div class="card-content">
+                <span class="card-title">Réserver dès maintenant</span>
+                <form action="">
+                    <div class="input-field col s12">
+                        <select>
+                            <option disabled selected value="">Choisissez votre destination</option>
+                            <option value="1">USA</option>
+                            <option value="2">Japan</option>
+                            <option value="3">Thailand</option>
+                            <option value="4">France</option>
+                            <option value="5">Africa</option>
+                        </select>
+                    </div>
+                    <div class="row">
+
+                        <div class="col s6">
+    
+                            <label for="datepicker">Date d'arrivé
+                            </label>
+                            <input class="datepicker" id="datepicker" type="text">
+                        </div>
+                        <div class="col s6">
+                            <label for="datepicker">Date de départ
+                            </label>
+                            <input class="datepicker" id="datepicker" type="text">
+                        </div>
+                    </div>
+                    <label for="test5">Nombre de personnes</label>
+                    <p class="range-field">
+                        <input id="test5" max="10" min="0" type="range" />
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block description %}
+<div class="container">
+    <h2>Notre Gîte</h2>
+    <div class="divider"></div>
+    <br>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
+    <br><br><br>
+</div>
+{% endblock %}
+
+{% block parallax %}
+<div class="parallax-container">
+    <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
+</div>
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
+<br><br>
+<div class="index-chambres">
+    <div class="blocktext-1 ">
+        <h3>New York</h3>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+    </div>
+    <div class="blockImage-1">
+        <img src="/assets/images/ChambreNY.jpg">
+    </div>
+
+    <div class="blockImage-2">
+        <img height="600" src="/assets/images/ChambreThai02.jpg" width="800">
+    </div>
+
+    <div class="blocktext-2">
+        <h3>Thaïlande</h3>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+    </div>
+    <div class="blocktext-3">
+        <h3>Paris</h3>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "</p>
+    </div>
+    <div class="blockImage-3">
+        <img height="600" src="/assets/images/Paris.jpg" width="800">
+    </div>
+    <div class="blockImage-4">
+        <img height="600" src="/assets/images/Asia.jpg" width="800">
+    </div>
+    <div class="blocktext-4">
+        <h3>Japon</h3>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "
+        </p>
+    </div>
+    <div class="blocktext-5">
+        <h3>Africa</h3>
+        <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="blockImage-5">
+        <img height="600" src="/assets/images/Africa.jpg" width="800">
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="/assets/js/indexScrollEffect.js"></script>
 {% endblock %}
