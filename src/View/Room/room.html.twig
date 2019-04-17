@@ -65,8 +65,33 @@
         <div class="col s12 m5">
             <div class="container-fluid">
                 <form action="#" method="post">
+
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choisir le nombre de personne</option>
+                            <option name="nbPerson" value="1">1</option>
+                            <option name="nbPerson" value="2">2</option>
+                            <option name="nbPerson" value="3">3</option>
+                            <option name="nbPerson" value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select multiple>
+                            <option value="" disabled selected>Options possibles</option>
+                            <option name="options" value="Petit déjeuner">Petit déjeuner</option>
+                            <option name="options" value="Table d'hôte">Table d'hôte</option>
+                            <optgroup label="Lit bébé">
+                                <option name="options" value="baby1">1</option>
+                                <option name="options" value="baby2">2</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
                     <input type="text" id="date" name="date" />
+
                     <button type="submit" class="waves-effect waves-light btn-large" href="#">Réserver</button>
+
                 </form>
             </div>
         </div>
