@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+Use App\Classes\Month;
+
 class AdminController extends AbstractController
 {
 
@@ -19,11 +21,19 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Allow connection to admin page
+     * Display planning page
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    
+    public function planning()
+    {
+        try {
+            $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
+        } catch (\Exception $e) {
+            $month = new Month;
+        }
+        return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
+    }
 }

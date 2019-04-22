@@ -1,0 +1,46 @@
+{% extends "layoutAdmin.html.twig" %} 
+{% block stylesheet %}
+{% endblock %} 
+{% block content %}
+{# {% set firstday = planning.getFirstDay|date_modify("last monday") %} #}
+<div class="cards">
+    <div class="row">
+        <div class="col s12">
+            <div class="card white">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="card-title center-align">{{ planning.toString }}</span>
+                        </div>
+                        <div class="col s12">
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="planning_table centered striped">
+                            {% for i in 1..planning.getNbWeeks %}
+                            {% set week = loop.index0 %}
+                                <tr>
+                                    {% for day in planning.days %}
+                                        {% set dayDate = planning.newDate(week, loop.index0) %}
+                                    <td>
+                                        <div class="planning_weekDay">
+                                            {{ day }}
+                                        </div>
+                                        <div class="planning_day">
+                                            {{ dayDate|date("d/m/Y") }}
+                                        </div>
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+{% block javascript %}
+{% endblock %}

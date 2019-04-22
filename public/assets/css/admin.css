@@ -43,17 +43,14 @@ body {
 .sidenav {
   display: block;
   width: 200px;
-  background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
-  color: #484848;
+  background-color: #555;
+  color: #fff;
 }
 .sidenav li > a,
 li > a > i {
   color: #fff !important;
 }
 
-.bg-light-green {
-  background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
-}
 
 .card-title {
   font-size: 16px !important;
@@ -88,4 +85,20 @@ li > a > i {
 
 .c-c4 {
   color: #ffcd56 !important;
+}
+
+.planning_table {
+  height: calc(100vh - 142px);
+}
+.planning_table td {
+  width: 14.29%;
+  vertical-align: 0% !important;
+}
+.planning_weekDay {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.planning_day{
+  color: #00d1b2;
+  font-size: 1.1rem;
 }
