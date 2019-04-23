@@ -6,7 +6,7 @@ class AboutUsController extends AbstractController
 {
 
     /**
-     * Display admin home page
+     * Display aboutus page
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -18,12 +18,6 @@ class AboutUsController extends AbstractController
         return $this->twig->render('AboutUs/aboutUs.html.twig');
     }
 
-    /**
-     * Allow connection to admin page
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
+
     
 }
