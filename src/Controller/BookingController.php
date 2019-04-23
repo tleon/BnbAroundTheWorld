@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controller;
-use App\Model\ReservationManager;
+use App\Model\BookingManager;
 
-class ReservationController extends AbstractController
+class BookingController extends AbstractController
 {
     public $day = "";
     public $month = "";
@@ -165,7 +165,7 @@ class ReservationController extends AbstractController
 
         
 
-        function reservation()
+        function insert()
         {
             if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
@@ -175,23 +175,12 @@ class ReservationController extends AbstractController
 
                 foreach ($_POST as $key => $value)
                 {
-                    if (empty($value)/* || !in_array($_POST[$value], $validValues[$value]) */)
-                    {
-                        echo $value;
-                        //$error[$key] = "erreur pendant la reservation, recharger la page et retentez";
-                    }
-                    else
-                    {
-                        $reservation[$key] = $this->test_input($value);
-                    }
+                        $reservation[$key] = $value;
                 }
-                if (empty($error))
-                {
-                    $reservationManager = new ReservationManager();
-                    $reservationManager->insertReservation($reservation);
-                }
+                    $BookingManager = new BookingManager();
+                    $BookingManager->insertReservation($reservation);
             }
-            return $this->twig->render('Home/index.html.twig',(isset($reservation))?['test'=>$reservation]: ['test'=>"null"]);
+            return $this->twig->render('Home/index.html.twig');
         }
 }
 ?>

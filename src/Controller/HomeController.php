@@ -36,7 +36,7 @@ class HomeController extends AbstractController
             }
         }
         */
-        return $this->twig->render('Home/index.html.twig',['test'=>$_POST]);
+        return $this->twig->render('Home/index.html.twig');
     }
 
 

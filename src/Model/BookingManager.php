@@ -5,7 +5,7 @@ namespace App\Model;
 /**
  *
  */
-class ReservationManager extends AbstractManager
+class BookingManager extends AbstractManager
 {
     /**
      *
