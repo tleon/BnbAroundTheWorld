@@ -74,10 +74,11 @@
     </footer>
 
 
-{% block javascript %}{% endblock %}
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        {% block javascript %}{% endblock %}
     <script>
         function scrollFunction() {
             (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? $("#modalBtn").css('display', 'block') : $("#modalBtn").css('display', 'none');
