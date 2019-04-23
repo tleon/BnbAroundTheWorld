@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Model\UsersManager;
 
 class HomeController extends AbstractController
 {
@@ -24,7 +25,8 @@ class HomeController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ((!empty($_POST['email'])) && (!empty($_POST['password']))) {
-                if (($_POST['email'] == 'admin') && ($_POST['password'] == 'admin')) {
+                    $credentials = new UsersManager();
+                if ($credentials->checkUser($_POST['email'], $_POST['password'])) {
                     header('Location: /Admin/index');
                 }else {
                     return $this->twig->render('Home/index.html.twig', [
@@ -38,6 +40,28 @@ class HomeController extends AbstractController
             }
         }else {
             return $this->twig->render('Home/index.html.twig', ['error' => ""]);
+        }
+    }
+
+    public function signIn() {
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if(!empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+                $account = ["username" => $_POST['username'],
+                            "pass" => $_POST['password'],
+                            "mail" => $_POST['email'],
+                            "status" => "User" ];
+                $user = new UsersManager();
+                if($user->insert($account)){
+                    return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => "Votre compte a été créé ". $_POST['username']]);
+                }else {
+                    return $this->twig->render('Home/signIn.html.twig', ['error' => "Une erreur est survenue pendant l'inscription", "success" => ""]);
+                }
+            }else {
+                return $this->twig->render('Home/signIn.html.twig', ['error' => "Tous les champs sont obligatoires", "success" => ""]);
+            }
+        }else{
+            return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => ""]);
         }
     }
 

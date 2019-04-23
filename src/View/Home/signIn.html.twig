@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link href="/assets/css/signIn.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="row signin-row ">
+        <div class="card signin-card">
+            <div class="card-image signin-img">
+                <img class="signin-logo" src="/assets/images/logo.png">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title center-align">Créer un compte !</h2>
+
+                <div class="row">
+                    <form class="col s12" method="POST">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="username" name="username" class="validate" type="text">
+                                <label for="username">Nom d'utilisateur</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="validate" id="password" name="password" type="password">
+                                <label for="password">Mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input class="validate" id="email" name="email" type="email">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 center-align">
+                                <input class="btn white color-dark-blue" type="submit" value="S'inscrire">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $(document).ready(function () {
+    let e = '{{ error }}'; 
+    let s = '{{ success }}';
+    if(e != '') {
+            M.toast({html: e, classes: 'rounded red'});
+        }
+    if(s != '') {
+            M.toast({html: s, classes: 'rounded green'});
+        }
+    });
+</script>
+{% endblock %}
