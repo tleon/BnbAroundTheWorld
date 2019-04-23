@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-Use App\Classes\Month;
+Use App\Classes\Calendar;
 
 class AdminController extends AbstractController
 {
@@ -30,9 +30,9 @@ class AdminController extends AbstractController
     public function planning()
     {
         try {
-            $month = new Month($_GET['month'] ?? null, $_GET['year'] ?? null);
+            $month = new Calendar($_GET['month'] ?? null, $_GET['year'] ?? null);
         } catch (\Exception $e) {
-            $month = new Month;
+            $month = new Calendar;
         }
         return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
     }

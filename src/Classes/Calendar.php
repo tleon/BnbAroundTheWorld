@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-class Month
+class Calendar
 {
 
     public $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
@@ -11,7 +11,7 @@ class Month
 
     private $month;
 
-    private $year;
+    public $year;
 
 
 
@@ -61,7 +61,6 @@ class Month
      */
     public function getNbWeeks() : int
     {
-        // $start = new \DateTime("{$this->year}-{$this->month}-01");
         $start = $this->getFirstDay();
         $end = (clone $start)->modify('+1 month -1 day');
         $nbWeeks = intval($end->format('W')) - intval($start->format('W')) + 1;
@@ -77,39 +76,34 @@ class Month
 
 
     /**
-     * Renvoi le premier lundi du mois.
+     * Renvoi le premier jour du mois.
      *
      * @return \DateTime
      */
     public function getFirstDay() : \DateTime
     {
-        // $firstDay = new \DateTime("{$this->year}-{$this->month}-01");
-        // $firstDay = $firstDay->modify('last monday');
-        // return intval($firstDay->format('d'));
         return new \DateTime("{$this->year}-{$this->month}-01");
     }
 
 
     /**
-     * Undocumented function
+     * Renvoi le premier jour de la premiere semaine du mois + x semaines + x jours
      *
-     * 
      * @param integer $week
      * @param integer $day
      * @return \DateTime
      */
     public function newDate(int $week, int $day) : \DateTime
     {  
-        if(date('D',strtotime(strval($this->getFirstDay()->format('Y-m-d')))) === 'Mon'){
+        if($this->getFirstDay()->format('D') === 'Mon'){
             $newDay = $this->getFirstDay()->modify("+{$week} week +{$day} day");
         } else {
             $newDay = $this->getFirstDay()->modify('last monday');
             $newDay = $newDay->modify("+{$week} week +{$day} day");
         }
+    
         return $newDay;
     }
-
-    
 
     /**
      * Renvoi true si le jour est dans le mois en cour.
@@ -120,5 +114,37 @@ class Month
     public function isInMonth(\DateTime $date) : bool
     {
         return $this->getFirstDay()->format('Y-m') === $date->format('Y-m');
+    }
+
+    /**
+     * Revoi le mois suivant
+     *
+     * @return string
+     */
+    public function nextMonth() : string
+    {
+        $month = $this->month + 1;
+        $year = $this->year;
+        if($month > 12 ){
+            $month = 1;
+            $year += 1;
+        }
+        return "http://localhost:8000/admin/planning/?month=$month&year=$year";
+    }
+
+    /**
+     * Renvoi le mois precedent
+     *
+     * @return string
+     */
+    public function previousMonth() : string
+    {
+        $month = $this->month - 1;
+        $year = $this->year;
+        if($month == 0 ){
+            $month = 12;
+            $year -= 1;
+        }
+        return "http://localhost:8000/admin/planning/?month=$month&year=$year";
     }
 }
