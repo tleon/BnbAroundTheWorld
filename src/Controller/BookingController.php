@@ -5,15 +5,14 @@ use App\Model\BookingManager;
 
 class BookingController extends AbstractController
 {
-    public $day = "";
-    public $month = "";
-    public $year = "";
 
     //definition de tableau valide auquel on compare les valeurs renvoyer
 
     const VALID_VALUES = [ 'country' => ["1","2","3","4","5"], 'date' => ["date"], 'numberGuest' => ["1","2","3","4","5","6","7","8","9","10"] ];
 
     public $error = array();
+
+
 
     /*verification des données de reservation renvoyer par le calendrier
     *
@@ -28,157 +27,174 @@ class BookingController extends AbstractController
     }
 
 
-    function Convert($date)
+
+
+    /**
+     * conversion de la date du calendrier de la homepage vers le format datetime 
+     * (exemple: "Apr 16, 2019"-->"2019-04-16")
+     */
+    function convert($date)
             {
 
-            $day = substr($date['beginDate'],4,2);
-            $month = substr($date['beginDate'],0,3);
-            $year = substr($date['beginDate'],7,5);
-                
+            $dayBegin = substr($date['beginDate'],4,2);
+            $dayEnd = substr($date['endDate'],4,2);
+
+            $monthBegin = substr($date['beginDate'],0,3);
+            $monthEnd = substr($date['endDate'],0,3);
+
+            $yearBegin = substr($date['beginDate'],7,5);
+            $yearEnd = substr($date['endDate'],7,5);                
+
+
             
-                switch($month)
-                {
-                    case "Jan":
-                    $month = "01";
-                    break;
 
-                    case "Feb":
-                    $month = "02";
-                    break;
-
-                    case "Mar":
-                    $month = "03";
-                    break;
-                    
-                    case "Apr":
-                    $month = "04";
-                    break;
-                    
-                    case "Mai":
-                    $month = "05";
-                    break;
-                    
-                    case "Jun":
-                    $month = "06";
-                    break;
-                    
-                    case "Jul":
-                    $month = "07";
-                    break;
-                    
-                    case "Aug":
-                    $month = "08";
-                    break;
-                    
-                    case "Sep":
-                    $month = "09";
-                    break;
-                    
-                    case "Oct":
-                    $month = 10;
-                    break;
-                    
-                    case "Nov":
-                    $month = 11;
-                    break;
-                    
-                    case "Dec":
-                    $month = 12;
-                    break;
-                }
-            
-            $_POST['beginDate'] = $year . "-" . $month . "-" . $day;
-
-
-
-
-
-        $this->day = substr($date['endDate'],4,2);
-        $this->month = substr($date['endDate'],0,3);
-        $this->year = substr($date['endDate'],7,5);
-
-            switch($month)
+            switch($monthBegin)
             {
                 case "Jan":
-                $month = "01";
-                break;
+                    $monthBegin = "01";
+                    break;
 
                 case "Feb":
-                $month = "02";
-                break;
+                    $monthBegin = "02";
+                    break;
 
                 case "Mar":
-                $month = "03";
-                break;
+                    $monthBegin = "03";
+                    break;
                 
                 case "Apr":
-                $month = "04";
-                break;
+                    $monthBegin = "04";
+                    break;
                 
                 case "Mai":
-                $month = "05";
-                break;
+                    $monthBegin = "05";
+                    break;
                 
                 case "Jun":
-                $month = "06";
-                break;
+                    $monthBegin = "06";
+                    break;
                 
                 case "Jul":
-                $month = "07";
-                break;
+                    $monthBegin = "07";
+                    break;
                 
                 case "Aug":
-                $month = "08";
-                break;
+                    $monthBegin = "08";
+                    break;
                 
                 case "Sep":
-                $month = "09";
-                break;
+                    $monthBegin = "09";
+                    break;
                 
                 case "Oct":
-                $month = 10;
-                break;
+                    $monthBegin = "10";
+                    break;
                 
                 case "Nov":
-                $month = 11;
-                break;
+                    $monthBegin = "11";
+                    break;
                 
                 case "Dec":
-                $month = 12;
-                break;
+                    $monthBegin = "12";
+                    break;
             }
-            $year = substr($date['endDate'],7,5);
-            $_POST['endDate']=$year . "-" . $month . "-" . $day;
+        
 
+
+            switch($monthEnd)
+            {
+                case "Jan":
+                    $monthEnd = "01";
+                    break;
+
+                case "Feb":
+                    $monthEnd = "02";
+                    break;
+
+                case "Mar":
+                    $monthEnd = "03";
+                    break;
+                
+                case "Apr":
+                    $monthEnd = "04";
+                    break;
+                
+                case "Mai":
+                    $monthEnd = "05";
+                    break;
+                
+                case "Jun":
+                    $monthEnd = "06";
+                    break;
+                
+                case "Jul":
+                    $monthEnd = "07";
+                    break;
+                
+                case "Aug":
+                    $monthEnd = "08";
+                    break;
+                
+                case "Sep":
+                    $monthEnd = "09";
+                    break;
+                
+                case "Oct":
+                    $monthv = "10";
+                    break;
+                
+                case "Nov":
+                    $monthEnd = "11";
+                    break;
+                
+                case "Dec":
+                    $monthEnd = "12";
+                    break;
+            }
+
+
+
+            $date['beginDate'] = $yearBegin . "-" . $monthBegin . "-" . $dayBegin;
+            $date['endDate']=$yearEnd . "-" . $monthEnd . "-" . $dayEnd;
+            return $date;
         }
 
+
+        /**
+         * fonction pour transferer la selection faite sur la page index vers la page chambre
+         * (inutiliser pour le moment)
+         */
         public function transfert()
-        {   $this->Convert($_POST);
-            $_SESSION['begin_date']=$_POST['beginDate'];
-            $_SESSION['end_date']=$_POST['endDate'];
-            $_SESSION['nb_person']=$_POST['nbPerson'];
-            $_SESSION['room_id']=$_POST['roomId'];
+        {   
+            $toConvert=$_POST;
+            $sessionData=$this->convert($toConvert);
+            $_SESSION['begin_date']=$sessionData['beginDate'];
+            $_SESSION['end_date']=$sessionData['endDate'];
+            $_SESSION['nb_person']=$sessionData['nbPerson'];
+            $_SESSION['room_id']=$sessionData['roomId'];
             return $this->twig->render('Home/index.html.twig');
     
         }
     
 
         
-
+        /**
+         * insertion de la réservation dans la base de donnée
+         */
         function insert()
         {
             if ($_SERVER['REQUEST_METHOD'] == 'POST')
             {
 
-                $reservation=$this->Convert($_POST);
+                $dateReadyInsert=$this->convert($_POST);
 
 
-                foreach ($_POST as $key => $value)
+                foreach ($dateReadyInsert as $key => $value)
                 {
-                        $reservation[$key] = $value;
+                    $dateToInsert[$key] = $value;
                 }
                     $BookingManager = new BookingManager();
-                    $BookingManager->insertReservation($reservation);
+                    $BookingManager->insertReservation($dateToInsert);
             }
             return $this->twig->render('Home/index.html.twig');
         }
