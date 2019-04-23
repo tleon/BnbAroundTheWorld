@@ -51,18 +51,18 @@
                                         <div class="planning_day">
                                             {{ dayDate|date("d") }}
                                         </div>
-                                       
-                                <!-- TODO if dayDate in bookings echo event.username-->
+
+                                <!-- TODO link to booking info-->
                                 {% for booking in bookings|keys %} 
                                     {% if booking|date("d/m/Y") == dayDate|date("d/m/Y") %}
                                         {% for b in bookings[booking] %}
                                         <div class="planning_booking chambre_{{ b.name }}">
-                                            {{ b.username|capitalize }}
+                                            <a href="/admin/booking/{{ b.id }}">{{ b.username|capitalize }}</a>
                                         </div>
                                         {% endfor %}
                                     {% endif %}
                                 {% endfor %}
-                                       
+
                                     </td>
                                     {% endfor %}
                                 </tr>

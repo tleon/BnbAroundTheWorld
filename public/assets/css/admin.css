@@ -143,10 +143,12 @@ li > a > i {
 
 .planning_booking{
   width: 100%;
+  height: 1.5rem;
   display: flex;
   justify-content: center;
-  margin: 0.2rem;
-  color: #fff;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  margin-right: 1rem;
 }
 
 .chambre_Tailande {
@@ -164,3 +166,9 @@ li > a > i {
 .chambre_Africa {
   background-color: #7cb342;
 }
+
+.planning_booking > a {
+  text-decoration: none;
+  color: #fff;
+}
+
