@@ -104,6 +104,7 @@ li > a > i {
 .planning_day{
   color: #00d1b2;
   font-size: 1.1em;
+  margin-bottom: 1rem;
 }
 
 .planning_other_day > .planning_day {
@@ -138,4 +139,28 @@ li > a > i {
 }
 .sans_margin_bottom {
   margin-bottom:0 !important;
+}
+
+.planning_booking{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem;
+  color: #fff;
+}
+
+.chambre_Tailande {
+  background-color: #ffcd56;
+}
+.chambre_USA {
+  background-color: #BF55EC;
+}
+.chambre_Japon {
+  background-color: #ff6384;
+}
+.chambre_France {
+  background-color: #36a2eb;
+}
+.chambre_Africa {
+  background-color: #7cb342;
 }

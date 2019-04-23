@@ -2,14 +2,20 @@
 {% block stylesheet %}
 {% endblock %} 
 {% block content %}
-{# {% set firstday = planning.getFirstDay|date_modify("last monday") %} #}
+{% set bookings = planning.getBookingInMonth %}
 <div class="cards">
     <div class="row">
         <div class="col s12">
             <div class="card white">
                 <div class="card-content">
                     <pre>
-                    {{ dump(planning.getBookingInMonth) }}
+                            {# {{ dump(bookings) }} #}
+                          {# {% for booking in bookings|keys %} 
+                            {{ booking|date("d/m/Y") }}
+                            {% for b in bookings[booking] %}
+                                {{ b.username }}
+                            {% endfor %}
+                          {% endfor %} #}
                     </pre>
                     <div class="row sans_margin_bottom">
                         <div class="col s12 planning_header">
@@ -45,6 +51,18 @@
                                         <div class="planning_day">
                                             {{ dayDate|date("d") }}
                                         </div>
+                                       
+                                <!-- TODO if dayDate in bookings echo event.username-->
+                                {% for booking in bookings|keys %} 
+                                    {% if booking|date("d/m/Y") == dayDate|date("d/m/Y") %}
+                                        {% for b in bookings[booking] %}
+                                        <div class="planning_booking chambre_{{ b.name }}">
+                                            {{ b.username|capitalize }}
+                                        </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                                       
                                     </td>
                                     {% endfor %}
                                 </tr>
