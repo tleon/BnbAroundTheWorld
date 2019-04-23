@@ -23,6 +23,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+        //bug when signin on other pages than index
+        //the index method is not executed so redirect can't happen.
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ((!empty($_POST['email'])) && (!empty($_POST['password']))) {
                     $credentials = new UsersManager();
