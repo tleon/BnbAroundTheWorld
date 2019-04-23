@@ -111,4 +111,13 @@
 
 {% block javascript %}
 <script src="/assets/js/indexScrollEffect.js"></script>
+<script>
+    $(document).ready(function() {
+        var e = '{{ error }}'; 
+        if(e != '') {
+            M.toast({html: e, classes: 'rounded red'});
+        }
+    });
+</script>
+
 {% endblock %}
