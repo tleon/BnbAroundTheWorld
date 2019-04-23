@@ -10,7 +10,7 @@ namespace App\Model;
 
 class RoomManager extends AbstractManager
 {
-    const TABLE = 'booking';
+    const TABLE = 'room';
 
     public function __construct()
     {
