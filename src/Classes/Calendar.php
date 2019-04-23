@@ -2,6 +2,8 @@
 
 namespace App\Classes;
 
+use App\Model\BookingManager;
+
 class Calendar
 {
 
@@ -80,9 +82,19 @@ class Calendar
      *
      * @return \DateTime
      */
-    public function getFirstDay() : \DateTime
+    private function getFirstDay() : \DateTime
     {
         return new \DateTime("{$this->year}-{$this->month}-01");
+    }
+
+    /**
+     * Retourne le dernier jour du mois
+     *
+     * @return \DateTime
+     */
+    private function getLastDay() : \DateTime
+    {
+        return $this->getFirstDay()->modify("+1 month -1 day");
     }
 
 
@@ -129,7 +141,7 @@ class Calendar
             $month = 1;
             $year += 1;
         }
-        return "http://localhost:8000/admin/planning/?month=$month&year=$year";
+        return "/admin/planning/?month=$month&year=$year";
     }
 
     /**
@@ -145,6 +157,37 @@ class Calendar
             $month = 12;
             $year -= 1;
         }
-        return "http://localhost:8000/admin/planning/?month=$month&year=$year";
+        return "/admin/planning/?month=$month&year=$year";
+    }
+
+
+    /**
+     * Renvoi un tableau des reservations pour le mois indexées par dates
+     *
+     * @return array
+     */
+    public function getBookingInMonth() : array
+    {
+        $bm = new BookingManager;
+        $bookings = $bm->selectByMonth($this->getFirstDay(), $this->getLastDay());
+
+        $bookingPerDay = [];
+        foreach($bookings as $booking){
+            $entree=explode(' ', $booking['begin_date'])[0];
+            $sortie=explode(' ', $booking['end_date'])[0];
+            $periods = new \DatePeriod(
+                new \DateTime($entree),
+                new \DateInterval('P1D'),
+                new \DateTime($sortie)
+            );
+            foreach ($periods as $period) {
+                if(!isset($bookingPerDay[$period->format('Y-m-d')])){
+                    $bookingPerDay[$period->format('Y-m-d')] = [$booking];
+                } else {
+                    $bookingPerDay[$period->format('Y-m-d')][] = $booking;
+                }
+            }
+        }
+        return $bookingPerDay;
     }
 }

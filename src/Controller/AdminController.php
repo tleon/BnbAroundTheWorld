@@ -34,6 +34,7 @@ class AdminController extends AbstractController
         } catch (\Exception $e) {
             $month = new Calendar;
         }
+        
         return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
     }
 }
