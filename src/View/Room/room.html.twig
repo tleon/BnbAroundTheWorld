@@ -64,27 +64,27 @@
 
         <div class="col s12 m5">
             <div class="container-fluid">
-                <form action="#" method="post">
+                <form method="post">
 
                     <div name="room_id" class="room_id" hidden></div>
                     <div class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choisir le nombre de personne</option>
-                            <option name="nb_person" value="1">1</option>
-                            <option name="nb_person" value="2">2</option>
-                            <option name="nb_person" value="3">3</option>
-                            <option name="nb_person" value="4">4</option>
+                        <select name="nb_person">
+                            <option value="" disabled selected>Choisir le nombre de personnes</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                     </div>
 
                     <div class="input-field col s12">
-                        <select multiple>
+                        <select name="options" multiple>
                             <option value="" disabled selected>Options possibles</option>
-                            <option name="options" value="Petit déjeuner">Petit déjeuner</option>
-                            <option name="options" value="Table d'hôte">Table d'hôte</option>
+                            <option  value="Petit déjeuner">Petit déjeuner</option>
+                            <option value="Table d'hôte">Table d'hôte</option>
                             <optgroup label="Lit bébé">
-                                <option name="options" value="baby1">1</option>
-                                <option name="options" value="baby2">2</option>
+                                <option value="baby1">1</option>
+                                <option value="baby2">2</option>
                             </optgroup>
                         </select>
                     </div>
