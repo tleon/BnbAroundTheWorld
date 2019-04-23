@@ -162,29 +162,39 @@ class Calendar
 
 
     /**
-     * Renvoi un tableau des reservations pour le mois indexées par dates
+     * Renvoi un tableau des reservations pour le mois indexées par dates pour lesquelles il existe une 
+     * ou plusieurs réservations.
      *
      * @return array
      */
     public function getBookingInMonth() : array
-    {
+    {   // Nouvelle instance de BookingManager
         $bm = new BookingManager;
+        // On récupere un tableau multidimensionnel en sortie de mysql
         $bookings = $bm->selectByMonth($this->getFirstDay(), $this->getLastDay());
-
+        // On creer un tableau qui sera notre sortie, comprenant toutes les dates pour lesquelles il existe une 
+        // ou plusieurs réservations.
         $bookingPerDay = [];
+        // On boucle sur toutes les reservations.
         foreach($bookings as $booking){
+            // On recupere uniquement les dates avec comme format "2019-01-21" (auparavent au format "2019-01-21 00:00:00").
             $entree=explode(' ', $booking['begin_date'])[0];
             $sortie=explode(' ', $booking['end_date'])[0];
+            // on istancie la classe DatePeriode pour recuperer toutes les dates comprises entre begin_date & end_date
+            // avec un intervalle de 1 jour.
             $periods = new \DatePeriod(
                 new \DateTime($entree),
                 new \DateInterval('P1D'),
                 new \DateTime($sortie)
             );
+            // on boucle sur toutes ces dates
             foreach ($periods as $period) {
-                if(!isset($bookingPerDay[$period->format('Y-m-d')])){
-                    $bookingPerDay[$period->format('Y-m-d')] = [$booking];
+                // on creer une clef de la date si innexistante et on push en valeur les infos de sortie mysql sur la resa
+                if(!isset($bookingPerDay[$period->format('d-m-Y')])){
+                    $bookingPerDay[$period->format('d-m-Y')] = [$booking];
+                // ici la clef existe deja, on push en valeur les infos de sortie mysql sur la resa
                 } else {
-                    $bookingPerDay[$period->format('Y-m-d')][] = $booking;
+                    $bookingPerDay[$period->format('d-m-Y')][] = $booking;
                 }
             }
         }
