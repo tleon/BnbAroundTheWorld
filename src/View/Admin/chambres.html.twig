@@ -7,11 +7,12 @@
 {% endblock %}
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                {% for room in rooms %}
 
-    {% for room in rooms %}
-        <div class="container">
-            <div class="row">
-                <div class="col s12 m6">
+
                     <div class="card">
                         <div class="card-action">
                             <a class="waves-effect grey lighten-1 btn-small" href="/admin/edit/{{ room.id }}" style="margin-left:83%;">Modifier</a>
@@ -20,10 +21,12 @@
                             <img src="/assets/images/{{ room.pic_path }}">
                         </div>
                     </div>
-                </div>
+
+
+                {% endfor %}
             </div>
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
 
 {% block javascript %}{% endblock %}
