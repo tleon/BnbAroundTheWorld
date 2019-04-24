@@ -187,13 +187,13 @@ class BookingController extends AbstractController
 
             $dateReadyInsert=$this->convert($_POST);
 
-
             foreach ($dateReadyInsert as $key => $value)
             {
                 $dateToInsert[$key] = $value;
             }
-                $BookingManager = new BookingManager();
-                $BookingManager->insertReservation($dateToInsert);
+
+            $BookingManager = new BookingManager();
+            $BookingManager->insertReservation($dateToInsert);
         }
         return $this->twig->render('Home/index.html.twig');
     }
