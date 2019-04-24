@@ -20,12 +20,22 @@
 
 <body>
     <header>
-        <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
+        <a href="/Home/index">
+            <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
+        </a>
+        {% if connected %}
+        <a id="connect" class="waves-effect waves-light btn modal-trigger bg-lg-white color-dark-blue"
+        href="/Home/logout">Déconnexion</a>        
+        {% else %}
+        
         <a id="connect" class="waves-effect waves-light btn modal-trigger bg-lg-white color-dark-blue"
             href="#modal1">Connexion</a>
+        {% endif %}
+            
     </header>
     {% block video %}{% endblock %}
 
+    
     {% block description %}
     {% endblock %}
 
@@ -78,48 +88,25 @@
             <div class="modal-content">
                 <h4 class="color-dark-blue">Connexion</h4>
                 <div class="row">
-                    <form class="col s12" method="POST">
+                    <form class="col s12" method="POST" action="/Home/index">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input class="validate" id="email" type="text" name="email">
-                                <label for="email">Email</label>
+                                <input class="validate" id="username" type="text" name="username">
+                                <label for="username">Nom d'utilisateur</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input class="validate" id="password" type="password" name="password">
-                                <label for="password">Password</label>
+                                <label for="password">Mot de passe</label>
                             </div>
                         </div>
+                   
                         <div class="right-align">
-                            <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="Connexion">
+                                <a href="/Home/SignIn" class="color-dark-blue">Inscrivez vous ! </a>
+                                <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="Connexion">
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal bg-lg-white" id="modal1">
-            <div class="modal-content">
-                <h4 class="color-dark-blue">Connexion</h4>
-                <div class="row">
-                    <form class="col s12" method="POST">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="email" type="text" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="password" type="password" name="password">
-                                <label for="password">Password</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="right-align">
-                    <a class="modal-close waves-effect waves-green btn-flat bg-dark-blue white-text"
-                        href="admin/index">Connexion</a>
                 </div>
             </div>
         </div>

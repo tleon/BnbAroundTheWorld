@@ -46,13 +46,13 @@ class UsersManager extends AbstractManager
      * 
      */
     public function checkUser($login, $pass){
-        $statement = $this->pdo->prepare("SELECT pass FROM $this->table WHERE username=:username");
+        $statement = $this->pdo->prepare("SELECT pass, status, mail FROM $this->table WHERE username=:username");
         $statement->bindValue('username', $login, \PDO::PARAM_STR);
         $statement->execute();
 
         try{
             $bddHashPass = $statement->fetch();
-            return password_verify($pass, $bddHashPass['pass']);
+            return ["logged" => password_verify($pass, $bddHashPass['pass']), "status" => $bddHashPass['status'], "email" => $bddHashPass['mail']];
             
         }catch(PDOException $e) {
             return $e;
