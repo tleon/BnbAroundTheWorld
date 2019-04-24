@@ -5,16 +5,6 @@ use App\Model\BookingManager;
 
 class BookingController extends AbstractController
 {
-    /**
-     *
-     * Display room page
-     *
-     **/
-
-    public function show()
-    {
-        return $this->twig->render("Room/room.html.twig");
-    }
 
     private function checkData($data)
     {
@@ -44,12 +34,13 @@ class BookingController extends AbstractController
             $end_date_str = $end_array[2] . "-" . $end_array[0] . "-" . $end_array[1];
             $end_date = new \DateTime($end_date_str);
 
-
             $data = [
                 'begin_date' => $begin_date,
                 'end_date' => $end_date,
                 'nb_person' => $_POST['nb_person'],
-                'options' => $_POST['options'],
+                'options' => $_POST['options'],                
+                'room_id' => 1,
+                'user_id' => 4,
                 'total_price' => 0
             ];
 
@@ -60,7 +51,8 @@ class BookingController extends AbstractController
                 $BookingManager->insert($data);
             }
         }
-        return $this->twig->render('Room/room.html.twig');
+
+        return $this->twig->render('Room/room.html.twig', ['dump'=>$end_date]);
     }
 
 

@@ -19,16 +19,15 @@ class BookingManager extends AbstractManager{
 
     public function insert($data)
     {
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (begin_date, end_date, nb_person, options,/* room_id, user_id,*/ total_price) 
-                                                    VALUES (:begin_date, :end_date, :nb_person, :options, /*:room_id, :user_id,*/ :total_price)";
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (begin_date, end_date, nb_person, options, room_id, user_id, total_price) VALUES (:begin_date, :end_date, :nb_person, :options, :room_id, :user_id, :total_price");
 
-        $statement->bindValue('begin_date', $data['begin_date']->format('Y-m-d H:i:s'));
-        $statement->bindValue('end_date', $data['end_date']->format('Y-m-d H:i:s'));
+        $statement->bindValue('begin_date', $data['begin_date']->format('Y-m-d'), \PDO::PARAM_STR);
+        $statement->bindValue('end_date', $data['end_date']->format('Y-m-d'), \PDO::PARAM_STR);
         $statement->bindValue('nb_person', $data['nb_person'], \PDO::PARAM_INT);
         $statement->bindValue('options', $data['options'], \PDO::PARAM_STR);
-       /* $statement->bindValue('room_id', $data['room_id'], \PDO::PARAM_INT);
-        $statement->bindValue('user_id', $data['user_id'], \PDO::PARAM_INT);*/
-        $statement->bindValue('total_price', $data['total_price'], \PDO::PARAM_FLOAT);
+        $statement->bindValue('room_id', $data['room_id'], \PDO::PARAM_INT);
+        $statement->bindValue('user_id', $data['user_id'], \PDO::PARAM_INT);
+        $statement->bindValue('total_price', $data['total_price'], \PDO::PARAM_INT);
 
         try{
             //execute
@@ -38,4 +37,3 @@ class BookingManager extends AbstractManager{
         }
     }
 }
-
