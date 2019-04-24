@@ -23,8 +23,6 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        //bug when signin on other pages than index
-        //the index method is not executed so redirect can't happen.
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ((!empty($_POST['email'])) && (!empty($_POST['password']))) {
                     $credentials = new UsersManager();
@@ -54,10 +52,23 @@ class HomeController extends AbstractController
                             "mail" => $_POST['email'],
                             "status" => "User" ];
                 $user = new UsersManager();
-                if($user->insert($account)){
-                    return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => "Votre compte a été créé ". $_POST['username']]);
+                //check if user already exist
+                $users = $user->selectAll();
+                $exist = false;
+                foreach($users as $u ){
+                    if(in_array($account['username'], $u)){
+                        $exist = true;
+                        break;
+                    }
+                }
+                if (!$exist){
+                    if($user->insert($account)){
+                        return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => "Votre compte a été créé ". $_POST['username'], "users" => $users]);
+                    }else {
+                        return $this->twig->render('Home/signIn.html.twig', ['error' => "Une erreur est survenue pendant l'inscription", "success" => ""]);
+                    }
                 }else {
-                    return $this->twig->render('Home/signIn.html.twig', ['error' => "Une erreur est survenue pendant l'inscription", "success" => ""]);
+                    return $this->twig->render('Home/signIn.html.twig', ['error' => "Cet utilisateur existe déjà.", "success" => ""]);
                 }
             }else {
                 return $this->twig->render('Home/signIn.html.twig', ['error' => "Tous les champs sont obligatoires", "success" => ""]);
