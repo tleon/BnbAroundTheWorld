@@ -48,7 +48,7 @@
     <div class="divider"></div>
     <br>
     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
-                                                                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
+                                                                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
     <br><br><br>
 </div>{% endblock %}{% block parallax %}
 <div class="parallax-container">
@@ -95,4 +95,12 @@
         <img height="600" src="/assets/images/africa.png" width="800">
     </div>
 </div>{% endblock %}{% block javascript %}
-<script src="/assets/js/indexScrollEffect.js"></script>{% endblock %}
+<script src="/assets/js/indexScrollEffect.js"></script>
+<script>
+    $(document).ready(function () {
+        var e = '{{ error }}';
+        if (e != '') {
+            M.toast({html: e, classes: 'rounded red'});
+        }
+    });
+</script>{% endblock %}

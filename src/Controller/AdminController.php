@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\RoomManager;
 use App\Model\AdminManager;
+use App\Model\UsersManager;
 
 class AdminController extends AbstractController
 {
