@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-Use App\Classes\Calendar;
+Use App\Services\Calendar;
+Use App\Model\BookingManager;
 
 class AdminController extends AbstractController
 {
@@ -36,5 +37,13 @@ class AdminController extends AbstractController
         }
         
         return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
+    }
+
+    public function booking($id)
+    {
+        $bookingManager = new BookingManager();
+        $bookings = $bookingManager->selectBookingById($id);
+
+        return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
 }
