@@ -50,6 +50,11 @@ class HomeController extends AbstractController
         }
     }
 
+    /**
+     * Allow the user to create his account if the username is not already taken.
+     * 
+     * 
+     */
     public function signIn() {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -84,6 +89,10 @@ class HomeController extends AbstractController
             return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => ""]);
         }
     }
+
+    /**
+     * logs out the user and destroy the session.
+     */
 
     public function logout(){
         session_destroy();
