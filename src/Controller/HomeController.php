@@ -11,7 +11,6 @@ use App\Model\UsersManager;
 
 class HomeController extends AbstractController
 {
-
     /**
      * Display home page
      *Email
@@ -24,10 +23,18 @@ class HomeController extends AbstractController
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ((!empty($_POST['email'])) && (!empty($_POST['password']))) {
+            if ((!empty($_POST['username'])) && (!empty($_POST['password']))) {
                     $credentials = new UsersManager();
-                if ($credentials->checkUser($_POST['email'], $_POST['password'])) {
-                    header('Location: /Admin/index');
+                    $userCheck = $credentials->checkUser($_POST['username'], $_POST['password']);
+                if ($userCheck['logged']) {
+                    $_SESSION['username'] = $_POST['username'];
+                    $_SESSION['email'] = $userCheck['email'];
+                    $_SESSION['status'] = $userCheck['status'];
+                    if($userCheck['status'] == "Administrator"){
+                        header('Location: /Admin/index');
+                    }else{
+                        header('Location: /Home/index');
+                    }
                 }else {
                     return $this->twig->render('Home/index.html.twig', [
                         'error' => "Email ou mot de passe incorrect."
@@ -76,6 +83,11 @@ class HomeController extends AbstractController
         }else{
             return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => ""]);
         }
+    }
+
+    public function logout(){
+        session_destroy();
+        header('Location: /Home/index');
     }
 
    
