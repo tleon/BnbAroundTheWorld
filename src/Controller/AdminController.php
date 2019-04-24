@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+
+Use App\Services\Calendar;
+Use App\Model\BookingManager;
 Use App\Model\UsersManager;
+
 
 class AdminController extends AbstractController
 {
@@ -21,11 +25,28 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Allow connection to admin page
+     * Display planning page
      * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    
+    public function planning()
+    {
+        try {
+            $month = new Calendar($_GET['month'] ?? null, $_GET['year'] ?? null);
+        } catch (\Exception $e) {
+            $month = new Calendar;
+        }
+        
+        return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
+    }
+
+    public function booking($id)
+    {
+        $bookingManager = new BookingManager();
+        $bookings = $bookingManager->selectBookingById($id);
+
+        return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
+    }
 }

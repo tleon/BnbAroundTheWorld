@@ -1,0 +1,87 @@
+{% extends "layoutAdmin.html.twig" %}
+{% block stylesheet %}
+{% endblock %}
+{% block content %}
+{% set bookings = planning.getBookingInMonth %}
+<div class="cards">
+  <div class="row">
+    <div class="col s12">
+      <div class="card white">
+        <div class="card-content">
+          <div class="row sans_margin_bottom">
+            <div class="col s12 planning_header">
+              <div class="icon_left">
+                <a href="{{planning.previousMonth}}">
+                  <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                    aria-labelledby="circleArrowLeftIconTitle circleArrowLeftIconDesc" stroke="#00d1b2" stroke-width="1"
+                    stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                    <title id="circleArrowLeftIconTitle">Arrow Left</title>
+                    <desc id="circleArrowLeftIconDesc">Icon of an arrow pointing left closed in a circle</desc>
+                    <path d="M10.5 15l-3-3 3-3" />
+                    <path d="M16.5 12H9" />
+                    <path stroke-linecap="round" d="M7.5 12H9" />
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                </a>
+              </div>
+              <div class="month">
+                <span class="card-title center-align">{{ planning.toString }}</span>
+              </div>
+              <div class="icon_right">
+                <a href="{{planning.nextMonth}}">
+                  <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                    aria-labelledby="circleArrowRightIconTitle circleArrowRightIconDesc" stroke="#00d1b2"
+                    stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                    <title id="circleArrowRightIconTitle">Arrow Right</title>
+                    <desc id="circleArrowRightIconDesc">Icon of an arrow pointing right closed in a circle</desc>
+                    <path d="M13.5 9l3 3-3 3" />
+                    <path d="M7.5 12H15" />
+                    <path stroke-linecap="round" d="M16.5 12H15" />
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            {# <div class="col s12">
+                            <div class="divider"></div>
+                        </div> #}
+          </div>
+          <div class="row sans_margin_bottom">
+            <table class="planning_table">
+              {% for i in 1..planning.getNbWeeks %}
+              {% set week = loop.index0 %}
+              <tr>
+                {% for day in planning.days %}
+                {% set dayDate = planning.newDate(week, loop.index0) %}
+                <td class="{{ planning.isInMonth(dayDate) ? "" : "planning_other_day"}}">
+                  <div class="planning_weekDay">
+                    {% if week == 0%}{{ day }}{% endif %}
+                  </div>
+                  <div class="planning_day">
+                    {{ dayDate|date("d") }}
+                  </div>
+
+                  {% for booking in bookings|keys %}
+                  {% if booking|date("d/m/Y") == dayDate|date("d/m/Y") %}
+                  {% for b in bookings[booking] %}
+                  <div class="planning_booking chambre_{{ b.name }}">
+                    <a href="/admin/booking/{{ b.id }}">{{ b.username|capitalize }}</a>
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                  {% endfor %}
+
+                </td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}
