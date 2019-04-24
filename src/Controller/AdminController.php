@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\RoomManager;
+use App\Model\AdminManager;
 
 class AdminController extends AbstractController
 {
@@ -27,24 +28,41 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);
     }
 
+
+    //Permet d'editer les données des chambres
     public function edit($id)
     {
-        if ($_SERVEUR['REQUEST_METHOD'] == 'POST') {
-            if (empty($_POST['name'])) {
-                echo "Veuillez entrer un nom";
-            }
-        } else {
-            $roomManager = new RoomManager;
-            $rooms = $roomManager-> selectOneById($id);
-            return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms]);
-        }
+        $roomManager = new RoomManager;
+        $rooms = $roomManager-> selectOneById($id);
+        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms]);
     }
 
-    /**
-     * Allow connection to admin page
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
+
+    //Permet de mettre a jour les données des chambres dans la base de données
+    public function updateRoom($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (empty($_POST['name'])) {
+                echo "Veuillez entrer un nom";
+            } else {
+                $adminManager = new AdminManager();
+                $value = $_POST;
+                $value['id'] = $id;
+                $adminManager->updateRoomSql($value);
+                $roomManager = new RoomManager;
+                $rooms = $roomManager-> selectOneById($id);
+                return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms]);
+            }
+        } else {
+            //pas de POST
+        }
+
+        /**
+         * Allow connection to admin page
+         * @return string
+         * @throws \Twig\Error\LoaderError
+         * @throws \Twig\Error\RuntimeError
+         * @throws \Twig\Error\SyntaxError
+         */
+    }
 }

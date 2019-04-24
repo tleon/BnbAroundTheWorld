@@ -3,7 +3,7 @@
 {% block content %}
     <section class="section container">
         <div class="row">
-            <form class="col s12" method="POST">
+            <form action="/admin/updateRoom/{{ rooms.id }}" class="col s12" method="POST">
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="hidden" value="{{ rooms.id }}" name="id">
