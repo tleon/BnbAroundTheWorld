@@ -63,7 +63,7 @@ class HomeController extends AbstractController
                 }
                 if (!$exist){
                     if($user->insert($account)){
-                        return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => "Votre compte a été créé ". $_POST['username'], "users" => $users]);
+                        return $this->twig->render('Home/signIn.html.twig', ['error' => "", "success" => "Votre compte a été créé ". $_POST['username']]);
                     }else {
                         return $this->twig->render('Home/signIn.html.twig', ['error' => "Une erreur est survenue pendant l'inscription", "success" => ""]);
                     }
