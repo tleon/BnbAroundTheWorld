@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-Use App\Model\UsersManager;
 
 class AdminController extends AbstractController
 {
-
     /**
      * Display admin home page
      *
@@ -16,8 +14,13 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
     public function index()
-    {
-        return $this->twig->render('Admin/index.html.twig');
+    {   
+        if(($_SESSION['status'] != 'Administrator') || empty($_SESSION)){
+            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+        }else{
+            return $this->twig->render('Admin/index.html.twig');
+        }
+
     }
 
     /**
