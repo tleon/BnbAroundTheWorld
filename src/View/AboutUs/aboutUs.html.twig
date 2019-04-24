@@ -1,0 +1,94 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link href="/assets/css/aboutus.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+
+  
+    <div class="row">
+      <h1>Se rendre au gîte</h1>
+    </div>
+    <div class="row">
+      <div class="col l6 m6 s12">
+          <div class="mapouter tom-invisible">
+              <div class="gmap_canvas">
+                <iframe width="600" 
+                  height="500" 
+                  id="gmap_canvas" 
+                  src="https://maps.google.com/maps?q=17%20rue%20delandine&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                  frameborder="0" 
+                  scrolling="no" 
+                  marginheight="0" 
+                  marginwidth="0">
+                </iframe>
+              </div>
+          </div>
+      </div>
+      <div class="col l6 m6 s12">
+        <h3>Plusieurs moyens pour nous rejoindre : </h3>
+          <ul class="collapsible">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">directions_car</i>En voiture</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">train</i>En train</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">airplanemode_active</i>En avion</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              </li>
+            </ul>
+      </div>
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="/assets/images/paralax-photo.jpeg">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">En savoir plus<i class="material-icons right">more_vert</i></span>
+              
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Bienvenue à la campagne<i class="material-icons right">close</i></span>
+              <p class="cardAboutUs">Au coeur du Parc Naturel Régional du Vercors, 
+                dans la nature et les prairies de Vassieux (D178 à 10m),<br/> 
+                on vous accueillent dans notre grande maison 
+                familiale en pierres (2 gîtes et 3 chambres hôtes).<br/> Gîte confortable, 
+                avec vue sur la chaîne du Grand Veymont.
+                <br/><br/>Au rez-de-chaussée : 
+                <ul class="collection cardAboutUs">
+                  <li class="collection-item">hall</li>
+                  <li class="collection-item">local et garage (vélos/motos)</li>
+                </ul>
+                 <br/><span class="cardAboutUs">l'étage :</span> <br/><br/> 
+                 <ul class="collection cardAboutUs">
+                   <li class="collection-item">coin cuisine, séjour, cellier</li>
+                   <li class="collection-item">4 chambres, salle d'eau avec wc</li>
+                   <li class="collection-item">Aire de jeux, parking, jardin commun</li>
+                 </ul><br/>
+                 <span class="cardAboutUs">Chauffage central granulés bois. </span>
+
+            </p>
+
+            </div>
+          </div>
+  
+    </div>
+
+  
+{% endblock %}
+
+{% block javascript %}
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+
+{% endblock %}
