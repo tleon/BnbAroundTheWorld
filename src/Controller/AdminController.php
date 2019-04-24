@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+
 Use App\Services\Calendar;
 Use App\Model\BookingManager;
+Use App\Model\UsersManager;
+
 
 class AdminController extends AbstractController
 {
