@@ -4,17 +4,23 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Admin - BnB Around The World{% endblock %}</title>
+    <title>
+        {% block title %}Admin - BnB Around The World
+        {% endblock %}
+    </title>
 
     {% block stylesheet %}{% endblock %}
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-        <!--Materialize css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <!-- Sidebar font -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Custom css -->
-        <link rel="stylesheet" href="/assets/css/admin.css">
+    <!-- Font Awesome -->
+    <link
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <!--Materialize css-->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Sidebar font -->
+    <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom css -->
+    <link href="/assets/css/admin.css" rel="stylesheet">
 
 </head>
 
@@ -23,9 +29,12 @@
     <!-- START MAIN -->
     <div id="main">
         <nav class="mobile-device-only bg-lg-white">
-            <a href="#" data-target="slide-out" class="sidenav-trigger color-dark-blue"><iclass="material-icons">menu</i></a>
+            <a class="sidenav-trigger color-dark-blue" data-target="slide-out" href="#">
+                <iclass="material-icons">menu</i>
+            </a>
         </nav>
         <!-- END MOBILE NAVABAR-->
+
         <ul id="slide-out" class="sidenav bg-lg-white">
             <li><a href="/admin/index"><i class="material-icons color-dark-blue">home</i>Accueil</a></li>
             <li><a href="#!"><i class="material-icons color-dark-blue">airline_seat_individual_suite</i>Chambres</a></li>
@@ -36,6 +45,7 @@
 
         <div class="desktop-device-only ">
             <ul class="sidenav sidenav-fixed bg-lg-white color-dark-blue">
+
                 <li class="logo"><a href="#" id="logo-container" class="brand-logo"></a></li>
                 <li class="bold"><a href="/admin/index" class="color-dark-blue"><i class="material-icons">home</i>Accueil</a></li>
                 <li class="bold"><a href="#!" class="color-dark-blue"><i class="material-icons">airline_seat_individual_suite</i>Chambres</a></li>
@@ -47,7 +57,6 @@
         {% block content %}
         {% endblock %}
     </div>
-        {% block javascript %}{% endblock %}
+    {% block javascript %}{% endblock %}
 </body>
-
 </html>
