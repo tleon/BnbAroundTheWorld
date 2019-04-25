@@ -97,16 +97,15 @@
         <div class="col s12 m12">
             <div class="card opinion">
                 <div class="card-content">
+                    {% set randFeedback = random(0, feedback|length-1) %}
                     <div class="stars">
-                        {# {% for grade in feedbacks %}
-                            <img src="/assets/images/star.png">
-                        {% endfor %}#}
+                        <img src="/assets/images/star.png">
                     </div>
                     <div class="opinion-text">
-                        <p>{{ feedback.comment }}</p>
+                        <p>{{ feedback[randFeedback].comment }}</p>
                     </div>
                     <div class="author">
-                        <span class="author-opinion">{{ user.username }}</span>
+                        <span class="author-opinion">{{ feedback[randFeedback].username }}</span>
                     </div>
                 </div>
             </div>

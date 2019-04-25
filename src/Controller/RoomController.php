@@ -18,9 +18,9 @@ class RoomController extends AbstractController
         $room = $roomManager->selectOneById($id);
 
         $feedbackManager = new FeedbackManager();
-        $feedbacks = $feedbackManager->selectFeedbackById($id);
+        $feedbacks = $feedbackManager->selectAllFeedbackByRoomId($id);
 
-        return $this->twig->render('Room/room.html.twig', ['room' => $room], ['feedback' => $feedbacks]);
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'feedback' => $feedbacks]);
     }
   
     private function checkData($data)
