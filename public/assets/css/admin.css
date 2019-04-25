@@ -190,7 +190,7 @@ li > a > i {
   display: block;
 }
 
-#prevDay, #nextDay {
+#prevDay, #nextDay, .showBooking_icon {
   cursor: pointer;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -199,4 +199,78 @@ li > a > i {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+nav {
+  background-color: #555;
+}
+
+/* On définit l'état de l'élément au début de la transition entrante. */ 
+#USA.display-enter, #Japon.display-enter, #Tailande.display-enter, #France.display-enter, #Africa.display-enter{
+  transform: translateX(-550px)
+}
+/* On définit l'état de l'élément à la fin de la transition entrante. */ 
+#USA.display-enter-to, #Japon.display-enter-to, #Tailande.display-enter-to, #France.display-enter-to, #Africa.display-enter-to {
+  transform: translateX(0)
+}
+/* On définit l'état de l'élément au début de la transition sortante. */ 
+#USA.display-leave, #Japon.display-leave, #Tailande.display-leave, #France.display-leave, #Africa.display-leave{
+  transform: translateX(0)
+}
+/* On définit l'état de l'élément à la fin de la transition sortante. */ 
+#USA.display-leave-to, #Japon.display-leave-to, #Tailande.display-leave-to, #France.display-leave-to, #Africa.display-leave-to {
+  transform: translateX(550px)
+}
+/* On définit la durée de la transition entrante. */
+#USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
+  transition: transform 1s;
+}
+/* On définit la durée de la transition sortante. */
+#USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
+  transition: transform 1s;
+}
+
+.w-full {
+  height: 98vh;
+}
+
+.showBooking {
+  display: grid;
+  grid-template-columns: 1/2 1/2;
+  grid-template-rows: 1/12 4/12 7/12 ;
+  grid-template-areas: 
+        "box1 box1"
+        "box2 box2"
+        "box3 box4";
+}
+
+.showBooking_titre {
+  grid-area: box2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.showBooking_left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 3rem;
+  grid-area: box3;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+}
+.showBooking_right {
+  grid-area: box4;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  border-left: 1px solid #707683;
+  padding-left: 3rem;
+}
+
+.showBooking_entete {
+  color: #00d1b2;
+}
+
+.showBooking_icon {
+  grid-area: box1;
 }

@@ -1,5 +1,5 @@
 var date = new Date();
-var currentURL = currentURL = document.URL;
+var currentURL = document.URL;
 let formatted_date, url, bookings;
 let rooms =['USA', 'Japon', 'Tailande', 'France', 'Africa'];
 
@@ -31,6 +31,11 @@ let nextDay = () => {
   getBooking();
 }
 
+
+function appendValues(div, value){
+  div[0].innerHTML = value;
+}
+
 const getBooking = () => {
   fetch(url).then(function(response) {
     return response.json();
@@ -43,11 +48,9 @@ const getBooking = () => {
 }
 
 let initialize = () => {
-  for (n=0; n < rooms.length; n++){
-    document.getElementById(rooms[n]).classList.remove('is-displayed')
-  };
+  let emptyArr = [];
   for (i = 0; i < Object.keys(bookings).length; i++){
-    // console.log(bookings[i].name);
+    emptyArr.push(bookings[i].name);
     let parent = document.getElementById(bookings[i].name);
     let div = parent.getElementsByClassName('user');
     let val = bookings[i].username;
@@ -60,11 +63,63 @@ let initialize = () => {
     let splt = val.split('-');
     val = splt[2] + '-' + splt[1] + '-' + splt[0];
     appendValues(div, val);
-    document.getElementById(bookings[i].name).classList.add('is-displayed');
+  };
+  for (n=0; n < rooms.length; n++){
+    let element = document.getElementById(rooms[n]);
+    // Si doit partir
+    if((element.classList.contains("is-displayed") == true) && (emptyArr.includes(rooms[n])==false)){
+      leave(element);
+    }
   }
+  for (n=0; n < rooms.length; n++){
+    let element = document.getElementById(rooms[n]);
+    // Si pas encore display on annime l'entree
+    if((element.classList.contains("is-displayed") == false) && (emptyArr.includes(rooms[n])==true)){
+      appear(element);
+    }
+  }   
 }
 
 
-function appendValues(div, value){
-div[0].innerHTML = value;
-}
+/// TRANSITIONS
+
+let leave = (element) => {
+  element.classList.remove("display-enter-to");
+  element.classList.add("display-leave");
+  
+  setTimeout(function() {
+    element.classList.add("display-leave-active");
+
+    setTimeout(function() {
+      element.classList.remove("display-leave");
+      element.classList.add("display-leave-to");
+      
+      setTimeout(function() {
+        element.classList.remove("display-leave-active");
+        element.classList.remove("is-displayed");
+      }, 1000);
+    }, 0);
+  }, 0);
+};
+
+let appear = (element) => {
+  element.classList.add("is-displayed");
+  element.classList.remove("display-leave-to");
+  element.classList.add("display-enter");
+
+  setTimeout(function() {
+      element.classList.add("display-enter-active");
+      
+      setTimeout(function() {
+          element.classList.remove("display-enter");
+          element.classList.add("display-enter-to");
+          
+          setTimeout(function() {
+              element.classList.remove("display-enter-active");
+          }, 1000);
+      }, 0);
+  }, 0);
+};
+
+
+
