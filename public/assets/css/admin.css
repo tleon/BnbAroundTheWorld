@@ -86,6 +86,9 @@ li > a > i {
 .c-c4 {
   color: #ffcd56 !important;
 }
+.c-c5 {
+  color: #BF55EC !important;
+}
 
 .planning_table {
   height: calc(100vh - 9rem);
@@ -177,3 +180,11 @@ li > a > i {
   align-items: center;
   justify-content: center;
 }
+
+/* .fetch_data {
+  display: none;
+}
+
+.fetch_data.is-displayed {
+  display: block;
+} */

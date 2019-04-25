@@ -10,117 +10,134 @@
       <div class="col s12 m6">
         <div class="card white">
           <div class="card-content">
-              <div class="row sans_margin_bottom">
-                  <div class="col s12 planning_header">
-                    <div class="icon_left">
-                      <a id="prevDay" onclick="previousDay()">
-                        <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
-                          aria-labelledby="circleArrowLeftIconTitle circleArrowLeftIconDesc" stroke="#00d1b2" stroke-width="1"
-                          stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
-                          <title id="circleArrowLeftIconTitle">Arrow Left</title>
-                          <desc id="circleArrowLeftIconDesc">Icon of an arrow pointing left closed in a circle</desc>
-                          <path d="M10.5 15l-3-3 3-3" />
-                          <path d="M16.5 12H9" />
-                          <path stroke-linecap="round" d="M7.5 12H9" />
-                          <circle cx="12" cy="12" r="10" />
-                        </svg>
-                      </a>
-                    </div>
-                    <div id="admin_index_date">
-                      <div id="dateJs" class="card-title center-align"></div>
-                    </div>
-                    <div class="icon_right">
-                      <div id="nextDay" onclick="nextDay()">
-                        <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
-                          aria-labelledby="circleArrowRightIconTitle circleArrowRightIconDesc" stroke="#00d1b2"
-                          stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
-                          <title id="circleArrowRightIconTitle">Arrow Right</title>
-                          <desc id="circleArrowRightIconDesc">Icon of an arrow pointing right closed in a circle</desc>
-                          <path d="M13.5 9l3 3-3 3" />
-                          <path d="M7.5 12H15" />
-                          <path stroke-linecap="round" d="M16.5 12H15" />
-                          <circle cx="12" cy="12" r="10" />
-                        </svg>
+            <div class="row sans_margin_bottom">
+              <div class="col s12 planning_header">
+                <div class="icon_left">
+                  <a id="prevDay" onclick="previousDay()">
+                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                      aria-labelledby="circleArrowLeftIconTitle circleArrowLeftIconDesc" stroke="#00d1b2"
+                      stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                      <title id="circleArrowLeftIconTitle">Arrow Left</title>
+                      <desc id="circleArrowLeftIconDesc">Icon of an arrow pointing left closed in a circle</desc>
+                      <path d="M10.5 15l-3-3 3-3" />
+                      <path d="M16.5 12H9" />
+                      <path stroke-linecap="round" d="M7.5 12H9" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </a>
+                </div>
+                <div id="admin_index_date">
+                  <div id="dateJs" class="card-title center-align"></div>
+                </div>
+                <div class="icon_right">
+                  <div id="nextDay" onclick="nextDay()">
+                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                      aria-labelledby="circleArrowRightIconTitle circleArrowRightIconDesc" stroke="#00d1b2"
+                      stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                      <title id="circleArrowRightIconTitle">Arrow Right</title>
+                      <desc id="circleArrowRightIconDesc">Icon of an arrow pointing right closed in a circle</desc>
+                      <path d="M13.5 9l3 3-3 3" />
+                      <path d="M7.5 12H15" />
+                      <path stroke-linecap="round" d="M16.5 12H15" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- chambres1-->
+            <div class="row">
+              <div id="fetch"></div>
+              <div id="USA" class="col s12">
+                <div class="card white">
+                  <div class="card-content">
+                    <div id="Africa">
+                      <div class="fetch_data">
+                        <span class="card-title c-c1">Chambre Africa</span>
+                        <span>Client : </span><span class="user">SOME One</span>
+                        <br>
+                        <span>Nombre de personnes : </span><span class="guests">2</span>
+                        <br>
+                        <span>Départ le </span><span class="date-departure">01/05/2019</span>
                       </div>
                     </div>
                   </div>
                 </div>
-
-            <!-- chambres1-->
-            <div class="row">
-                <div id="fetch"></div>
-
-
-              {# <div class="col s12">
+              </div>
+              <!-- chambre 2-->
+              <div id="Japon" class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <span class="card-title c-c1">Chambre 1</span>
-                    <div class="client">
-                      <p>SOME One</p>
-                    </div>
-                    <div class="date-reservation-title">
-                      <span>A reservé le : </span
-                      ><span class="date-reservation-content"
-                        >2 decembre 2018</span
-                      >
+                    <div id="France">
+                      <div class="fetch_data">
+                        <span class="card-title c-c2">Chambre France</span>
+                        <span>Client : </span><span class="user">SOME One</span>
+                        <br>
+                        <span>Nombre de personnes : </span><span class="guests">2</span>
+                        <br>
+                        <span>Départ le </span><span class="date-departure">01/05/2019</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- chambre 2-->
-              <div class="col s12">
+              <!-- chambre 3-->
+              <div id="Tailande" class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <span class="card-title c-c2">Chambre 2</span>
-                    <div class="client">
-                      <p>SOME One</p>
-                    </div>
-                    <div class="date-reservation-title">
-                      <span>A reservé le : </span
-                      ><span class="date-reservation-content"
-                        >2 decembre 2018</span
-                      >
+                    <div id="Japon">
+                      <div class="fetch_data">
+                        <span class="card-title c-c3">Chambre Japon</span>
+                        <span>Client : </span><span class="user">SOME One</span>
+                        <br>
+                        <span>Nombre de personnes : </span><span class="guests">2</span>
+                        <br>
+                        <span>Départ le </span><span class="date-departure">01/05/2019</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- chambre 2-->
-              <div class="col s12">
+              <!-- chambre 4-->
+              <div id="France" class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <span class="card-title c-c3">Chambre 3</span>
-                    <div class="client">
-                      <p>SOME One</p>
-                    </div>
-                    <div class="date-reservation-title">
-                      <span>A reservé le : </span
-                      ><span class="date-reservation-content"
-                        >2 decembre 2018</span
-                      >
+                    <div id="Tailande">
+                      <div class="fetch_data">
+                        <span class="card-title c-c4">Chambre Tailande</span>
+                        <span>Client : </span><span class="user">SOME One</span>
+                        <br>
+                        <span>Nombre de personnes : </span><span class="guests">2</span>
+                        <br>
+                        <span>Départ le </span><span class="date-departure">01/05/2019</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- chambre 2-->
-              <div class="col s12">
+              <!-- chambre 5-->
+              <div id="Africa" class="col s12">
                 <div class="card white">
                   <div class="card-content">
-                    <span class="card-title c-c4">Chambre 4</span>
-                    <div class="client">
-                      <p>SOME One</p>
-                    </div>
-                    <div>
-                      <p>A reservé le : <span>2 decembre 2018</span></p>
+                    <div id="USA">
+                      <div class="fetch_data">
+                        <span class="card-title c-c5">Chambre USA</span>
+                        <span>Client : </span><span class="user">SOME One</span>
+                        <br>
+                        <span>Nombre de personnes : </span><span class="guests">2</span>
+                        <br>
+                        <span>Départ le : </span><span class="date-departure">01/05/2019</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div> #}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- END VUEJS element -->
     <!-- END CARDS COL 1-->
     <div class="col s12 m6">
       <div class="card white">
@@ -149,26 +166,12 @@
   </div>
 </div>
 {% endblock %} {% block javascript %}
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-></script>
-<script
-  type="text/javascript"
-  src="/assets/lib/textillate/jquery.textillate.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.js"
-></script>
-<script
-  type="text/javascript"
-  src="/assets/lib/jquery.lettering-0.6.1.min.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
-></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript" src="/assets/lib/textillate/jquery.textillate.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.js"></script>
+<script type="text/javascript" src="/assets/lib/jquery.lettering-0.6.1.min.js"></script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 {# <script type="text/javascript" src="/assets/js/Admin/components.js"></script>
 <script type="text/javascript" src="/assets/js/Admin/vue.js"></script> #}
 <script type="text/javascript" src="/assets/js/Admin/script.js"></script>
