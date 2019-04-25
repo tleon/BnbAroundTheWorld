@@ -1,18 +1,48 @@
 <?php
 
-
 namespace App\Controller;
 use App\Model\RoomManager;
 
-
-
 class RoomController extends AbstractController
 {
-		public function show($id)
-		    {
-		        $roomManager = new RoomManager();
-		        $room = $roomManager->selectOneById($id);
+    /**
+     *
+     * Display room page
+     *
+     **/
 
-		        return $this->twig->render('Room/room.html.twig', ['room' => $room]);
-		    }
+		public function show($id)
+    {
+        $roomManager = new RoomManager();
+        $room = $roomManager->selectOneById($id);
+
+        return $this->twig->render('Room/room.html.twig', ['room' => $room]);
+    }
+  
+    private function checkData($data)
+    {
+        if (!isset($data['date']) || empty($data['date']))
+        {
+            $errors['date']="Dates obligatoires";
+        }
+        return $errors;
+    }
+
+    public function security()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $data = [
+                'date' => $_POST['date']
+            ];
+
+            $errors = $this->checkData($data);
+            if (empty($errors))
+            {
+                $roomManager = new RoomManager();
+                $roomManager->insert($data);
+            }
+        }
+        return $this->twig->render('Room/room.html.twig');
+    }
 }

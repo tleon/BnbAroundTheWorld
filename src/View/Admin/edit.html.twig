@@ -1,0 +1,42 @@
+{% extends "layoutAdmin.html.twig" %}
+
+{% block content %}
+    <section class="section container">
+        <div class="row">
+            <form action="/admin/updateRoom/{{ rooms.id }}" class="col s12" method="POST">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input type="hidden" value="{{ rooms.id }}" name="id">
+                        <input class="validate" id="name" name="name" type="text" value="{{ rooms.name }}">
+                    </div>
+                    <div class="input-field col s6">
+                        <input class="validate" id="description" name="description" type="text" value="{{ rooms.description }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" id="image" name="pic_path" type="text" value="{{ rooms.pic_path }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" id="location" name="location" type="text" value="{{ rooms.location }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" id="caracs" name="caracs" type="text" value="{{ rooms.caracs }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="validate" id="price" name="price" type="text" value="{{ rooms.price }}">
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit">Submit
+                </button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}{% endblock %}
