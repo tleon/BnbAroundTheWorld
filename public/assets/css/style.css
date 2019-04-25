@@ -7,7 +7,7 @@
 }
 
 .bg-light-green {
-    background-color: #80bfb7;
+    background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);;
 }
 
 .bg-dark-blue {
@@ -34,6 +34,7 @@ nav {
 }
 
 body {
+   padding: 1px;
    transition: 1s linear;
    transition-property: background-position;
 }

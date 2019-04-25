@@ -20,12 +20,22 @@
 
 <body>
     <header>
-        <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
+        <a href="/Home/index">
+            <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
+        </a>
+        {% if connected %}
+        <a id="connect" class="waves-effect waves-light btn modal-trigger bg-lg-white color-dark-blue"
+        href="/Home/logout">Déconnexion</a>        
+        {% else %}
+        
         <a id="connect" class="waves-effect waves-light btn modal-trigger bg-lg-white color-dark-blue"
             href="#modal1">Connexion</a>
+        {% endif %}
+            
     </header>
     {% block video %}{% endblock %}
 
+    
     {% block description %}
     {% endblock %}
 
@@ -44,15 +54,15 @@
                     <i class="fas fa-arrow-alt-circle-up"></i>
                 </a>
             </div>
-            </a>
         </div>
 
-        <footer class="page-footer bg-light-green" id="footer">
+        <footer class="page-footer " id="footer">
 
             <div class="row">
                 <div class="col s6">
                     <ul class="color-dark-blue collection with-header">
-                        <li class="collection-header">Nous contacter </li>
+                        <li class="collection-header">Nous contacter
+                        </li>
                         <li class="collection-item">Téléphone : 0123456789</li>
                         <li class="collection-item">Mail : lesmeilleursdevPHP@gmail.com</li>
                         <li class="collection-item">Adresse : 18 rue Quelque part 01234, France</li>
@@ -61,9 +71,18 @@
                 <div class="col s6">
                     <ul class="color-dark-blue collection with-header">
                         <li class="collection-header">Retrouvez nous aussi sur les réseaux sociaux</li>
-                        <li class="collection-item"><i class="color-dark-blue fab fa-facebook"> Facebook</i></li>
-                        <li class="collection-item"><i class="color-dark-blue fab fa-twitter"> Twitter</i></li>
-                        <li class="collection-item"><i class="color-dark-blue fab fa-google-plus"> Google +</i></li>
+                        <li class="collection-item">
+                            <i class="color-dark-blue fab fa-facebook">
+                                Facebook</i>
+                        </li>
+                        <li class="collection-item">
+                            <i class="color-dark-blue fab fa-twitter">
+                                Twitter</i>
+                        </li>
+                        <li class="collection-item">
+                            <i class="color-dark-blue fab fa-google-plus">
+                                Google +</i>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -73,59 +92,39 @@
                 </div>
             </div>
 
+
         </footer>
         <div class="modal bg-lg-white" id="modal1">
             <div class="modal-content">
                 <h4 class="color-dark-blue">Connexion</h4>
                 <div class="row">
-                    <form class="col s12" method="POST">
+                    <form class="col s12" method="POST" action="/Home/index">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input class="validate" id="email" type="text" name="email">
-                                <label for="email">Email</label>
+
+                                <input class="validate" id="username" type="text" name="username">
+                                <label for="username">Nom d'utilisateur</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
+
                                 <input class="validate" id="password" type="password" name="password">
-                                <label for="password">Password</label>
+                                <label for="password">Mot de passe</label>
                             </div>
                         </div>
+                   
                         <div class="right-align">
-                            <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="Connexion">
+
+                                <a href="/Home/SignIn" class="color-dark-blue">Inscrivez vous ! </a>
+                                <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="Connexion">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="modal bg-lg-white" id="modal1">
-            <div class="modal-content">
-                <h4 class="color-dark-blue">Connexion</h4>
-                <div class="row">
-                    <form class="col s12" method="POST">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="email" type="text" name="email">
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input class="validate" id="password" type="password" name="password">
-                                <label for="password">Password</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="right-align">
-                    <a class="modal-close waves-effect waves-green btn-flat bg-dark-blue white-text"
-                        href="admin/index">Connexion</a>
-                </div>
-            </div>
-        </div>
 
 
-        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         {% block javascript %}{% endblock %}
@@ -141,7 +140,7 @@
             });
             $(document).ready(function () {
                 $('.sidenav').sidenav();
-                $('.modal').modal({ opacity: 0 });
+                $('.modal').modal({opacity: 0});
                 $('.parallax').parallax();
                 $('select').formSelect();
                 $('.datepicker').datepicker();
@@ -151,6 +150,6 @@
                 };
             });
         </script>
-</body>
+    </body>
 
 </html>

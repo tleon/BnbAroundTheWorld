@@ -1,6 +1,6 @@
 /vendor/
 config/db.php
 .idea/
-.phpcs-cache
 vendor
 .vscode/
+.phpcs-cache
