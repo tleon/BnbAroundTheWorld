@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use App\Model\RoomManager;
-
+use App\Controller\BookingController;
 class RoomController extends AbstractController
 {
     /**
@@ -11,12 +11,31 @@ class RoomController extends AbstractController
      *
      **/
 
-		public function show($id)
-    {
-        $roomManager = new RoomManager();
-        $room = $roomManager->selectOneById($id);
+		public function show($id)//id is not given on form submit
+    {  
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+        /*    if (//errors)
+            {
+ 
+                //show errors
+            }
 
-        return $this->twig->render('Room/room.html.twig', ['room' => $room]);
+        }
+        else
+        {*/
+            //insert database
+            $dataToInsert['nbPerson']=$_POST['nb_person'];
+            $dataToInsert['option']=$_POST['options'];
+            $dataToInsert['roomId']=intval($_SESSION['booking']['roomId']);
+            $dataToInsert['date'] = $_POST['date'];
+            $bookingController = new BookingController();
+            $bookingController->insert($dataToInsert);
+        }
+
+        $roomManager = new RoomManager();
+        $room = $roomManager->selectOneById(intval($id));
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION]);
     }
   
     private function checkData($data)

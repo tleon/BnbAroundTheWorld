@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Model\BookingManager;
+use App\Controller\RoomController;
 
 class BookingController extends AbstractController
 {
@@ -32,129 +33,142 @@ class BookingController extends AbstractController
     /**conversion de la date du calendrier de la homepage vers le format datetime 
      * (exemple: "Apr 16, 2019"-->"2019-04-16")
      */
-    function convert($date)
+    function convert($date, $target)
     {
-
-        $dayBegin = substr($date['beginDate'],4,2);
-        $dayEnd = substr($date['endDate'],4,2);
-
-        $monthBegin = substr($date['beginDate'],0,3);
-        $monthEnd = substr($date['endDate'],0,3);
-
-        $yearBegin = substr($date['beginDate'],7,5);
-        $yearEnd = substr($date['endDate'],7,5);                
-
-
-            
-
-        switch($monthBegin)
+        if ($target=="roomPage")
         {
-            case "Jan":
-                $monthBegin = "01";
-                break;
+            $dayBegin = substr($date['beginDate'],4,2);
+            $dayEnd = substr($date['endDate'],4,2);
 
-            case "Feb":
-                $monthBegin = "02";
-                break;
+            $monthBegin = substr($date['beginDate'],0,3);
+            $monthEnd = substr($date['endDate'],0,3);
 
-            case "Mar":
-                $monthBegin = "03";
-                break;
-            
-            case "Apr":
-                $monthBegin = "04";
-                break;
-            
-            case "Mai":
-                $monthBegin = "05";
-                break;
-            
-            case "Jun":
-                $monthBegin = "06";
-                break;
-            
-            case "Jul":
-                $monthBegin = "07";
-                break;
-            
-            case "Aug":
-                $monthBegin = "08";
-                break;
-            
-            case "Sep":
-                $monthBegin = "09";
-                break;
-            
-            case "Oct":
-                $monthBegin = "10";
-                break;
-            
-            case "Nov":
-                $monthBegin = "11";
-                break;
-            
-            case "Dec":
-                $monthBegin = "12";
-                break;
+            $yearBegin = substr($date['beginDate'],7,5);
+            $yearEnd = substr($date['endDate'],7,5);                
+
+
+                
+
+            switch($monthBegin)
+            {
+                case "Jan":
+                    $monthBegin = "01";
+                    break;
+
+                case "Feb":
+                    $monthBegin = "02";
+                    break;
+
+                case "Mar":
+                    $monthBegin = "03";
+                    break;
+                
+                case "Apr":
+                    $monthBegin = "04";
+                    break;
+                
+                case "Mai":
+                    $monthBegin = "05";
+                    break;
+                
+                case "Jun":
+                    $monthBegin = "06";
+                    break;
+                
+                case "Jul":
+                    $monthBegin = "07";
+                    break;
+                
+                case "Aug":
+                    $monthBegin = "08";
+                    break;
+                
+                case "Sep":
+                    $monthBegin = "09";
+                    break;
+                
+                case "Oct":
+                    $monthBegin = "10";
+                    break;
+                
+                case "Nov":
+                    $monthBegin = "11";
+                    break;
+                
+                case "Dec":
+                    $monthBegin = "12";
+                    break;
+            }
+        
+
+
+            switch($monthEnd)
+            {
+                case "Jan":
+                    $monthEnd = "01";
+                    break;
+
+                case "Feb":
+                    $monthEnd = "02";
+                    break;
+
+                case "Mar":
+                    $monthEnd = "03";
+                    break;
+                
+                case "Apr":
+                    $monthEnd = "04";
+                    break;
+                
+                case "Mai":
+                    $monthEnd = "05";
+                    break;
+                
+                case "Jun":
+                    $monthEnd = "06";
+                    break;
+                
+                case "Jul":
+                    $monthEnd = "07";
+                    break;
+                
+                case "Aug":
+                    $monthEnd = "08";
+                    break;
+                
+                case "Sep":
+                    $monthEnd = "09";
+                    break;
+                
+                case "Oct":
+                    $monthv = "10";
+                    break;
+                
+                case "Nov":
+                    $monthEnd = "11";
+                    break;
+                
+                case "Dec":
+                    $monthEnd = "12";
+                    break;
+            }
+
+
+
+            $date['beginDate'] = $monthBegin . "/" . $dayBegin . "/" . $yearBegin;
+            $date['endDate']=$monthEnd . "/" . $dayEnd . "/" . $yearEnd;
         }
-    
-
-
-        switch($monthEnd)
+        else
         {
-            case "Jan":
-                $monthEnd = "01";
-                break;
-
-            case "Feb":
-                $monthEnd = "02";
-                break;
-
-            case "Mar":
-                $monthEnd = "03";
-                break;
-            
-            case "Apr":
-                $monthEnd = "04";
-                break;
-            
-            case "Mai":
-                $monthEnd = "05";
-                break;
-            
-            case "Jun":
-                $monthEnd = "06";
-                break;
-            
-            case "Jul":
-                $monthEnd = "07";
-                break;
-            
-            case "Aug":
-                $monthEnd = "08";
-                break;
-            
-            case "Sep":
-                $monthEnd = "09";
-                break;
-            
-            case "Oct":
-                $monthv = "10";
-                break;
-            
-            case "Nov":
-                $monthEnd = "11";
-                break;
-            
-            case "Dec":
-                $monthEnd = "12";
-                break;
+            $yearBegin = substr($date['date'],6,4);
+            $yearEnd = substr($date['date'],19,4);
+            $monthBegin = substr($date['date'],0,2);
+            $monthEnd = substr($date['date'],13,2);
+            $dayBegin = substr($date['date'],3,2);
+            $dayEnd = substr($date['date'],16,2);
+            $date['beginDate'] = $yearBegin . "-" . $monthBegin . "-" . $dayBegin;
+            $date['endDate'] = $yearEnd . "-" . $monthEnd . "-" . $dayEnd;
         }
-
-
-
-        $date['beginDate'] = $yearBegin . "-" . $monthBegin . "-" . $dayBegin;
-        $date['endDate']=$yearEnd . "-" . $monthEnd . "-" . $dayEnd;
         return $date;
     }
 
@@ -165,13 +179,66 @@ class BookingController extends AbstractController
      */
     public function transfert()
     {   
-        $toConvert=$_POST;
-        $sessionData=$this->convert($toConvert);
-        $_SESSION['begin_date']=$sessionData['beginDate'];
-        $_SESSION['end_date']=$sessionData['endDate'];
-        $_SESSION['nb_person']=$sessionData['nbPerson'];
-        $_SESSION['room_id']=$sessionData['roomId'];
-        return $this->twig->render('Home/index.html.twig');
+        $data=$this->convert($_POST, "roomPage");
+
+
+
+        if ($_POST['nbPerson']=="1")
+            {
+                $nbGuestSelected[1]="selected";
+            }
+        
+        else if ($_POST['nbPerson']!="1")
+            {
+                $nbGuestSelected[1]=" ";
+            }
+
+
+            if ($_POST['nbPerson']=="2")
+            {
+                $nbGuestSelected[2]="selected";
+            }
+        
+        else if ($_POST['nbPerson']!="2")
+            {
+                $nbGuestSelected[2]=" ";
+            }
+
+
+            if ($_POST['nbPerson']=="3")
+            {
+                $nbGuestSelected[3]="selected";
+            }
+        
+        else if ($_POST['nbPerson']!="3")
+            {
+                $nbGuestSelected[3]=" ";
+            }
+
+
+            if ($_POST['nbPerson']=="4")
+            {
+                $nbGuestSelected[4]="selected";
+            }
+        
+        else if ($_POST['nbPerson']!="4")
+            {
+                $nbGuestSelected[4]=" ";
+            }
+
+
+
+
+        $_SESSION['booking']['nbGuestSelected']= $nbGuestSelected;
+        $_SESSION['booking']['roomId'] = $data['roomId'];
+        $_SESSION['booking']['beginDate'] = $data['beginDate'];
+        $_SESSION['booking']['endDate'] = $data['endDate'];
+
+
+
+        $redirect = new RoomController;
+        header("Location: /Room/show/".$_SESSION['booking']['roomId']);
+
 
     }
     
@@ -180,22 +247,17 @@ class BookingController extends AbstractController
     /**
      * insertion de la réservation dans la base de donnée
      */
-    function insert()
+    function insert($data)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+            echo "<br/>";
+            $data=$this->convert($data,"db");
 
-            $dateReadyInsert=$this->convert($_POST);
-
-            foreach ($dateReadyInsert as $key => $value)
+            foreach ($data as $key => $value)
             {
-                $dateToInsert[$key] = $value;
+                $data[$key] = $value;
             }
-
             $BookingManager = new BookingManager();
-            $BookingManager->insertReservation($dateToInsert);
-        }
-        return $this->twig->render('Home/index.html.twig');
+            $BookingManager->insertDate($data);
     }
 
 
