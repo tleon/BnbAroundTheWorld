@@ -8,7 +8,6 @@ use App\Services\Calendar;
 use App\Model\BookingManager;
 use App\Model\UsersManager;
 
-
 class AdminController extends AbstractController
 {
     /**
@@ -20,13 +19,12 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
     public function index()
-    {   
-        if(($_SESSION['status'] != 'Administrator') || empty($_SESSION)){
+    {
+        if (($_SESSION['status'] != 'Administrator') || empty($_SESSION)) {
             return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
-        }else{
+        } else {
             return $this->twig->render('Admin/index.html.twig');
         }
-
     }
 
     public function chambres()
@@ -51,20 +49,27 @@ class AdminController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (empty($_POST['name'])) {
-                echo "Veuillez entrer un nom";
+                $error['name'] = "Veuillez entrer un nom";
+            } elseif (empty($_POST['description'])) {
+                $error['description'] = "Veuillez entrer une description";
+            } elseif (empty($_POST['pic_path'])) {
+                $error['pic_path'] = "Veuillez inserer une image";
+            } elseif (empty($_POST['location'])) {
+                $error['location'] = "Veuillez entrer une localisation";
+            } elseif (empty($_POST['caracs'])) {
+                $error['caracs'] = "Veuillez entrer des options";
+            } elseif (empty($_POST['price'])) {
+                $error['price'] = "Veuillez entrer un prix";
             } else {
                 $adminManager = new AdminManager();
                 $value = $_POST;
                 $value['id'] = $id;
                 $adminManager->updateRoomSql($value);
-                $roomManager = new RoomManager;
-                $rooms = $roomManager-> selectOneById($id);
-                return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms]);
             }
-        } else {
-            //pas de POST
         }
-
+        $roomManager = new RoomManager;
+        $rooms = $roomManager-> selectOneById($id);
+        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms, "error" => $error]);
     }
 
     /**
@@ -93,5 +98,4 @@ class AdminController extends AbstractController
 
         return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
-
 }
