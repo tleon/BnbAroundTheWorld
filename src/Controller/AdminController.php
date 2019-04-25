@@ -21,7 +21,7 @@ class AdminController extends AbstractController
      */
     public function index()
     {   
-        if(($_SESSION['status'] != 'Administrator') || empty($_SESSION)){
+        if((empty($_SESSION) || $_SESSION['status'] != 'Administrator')){
             return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
         }else{
             return $this->twig->render('Admin/index.html.twig');
