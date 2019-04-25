@@ -129,4 +129,4 @@ class AdminController extends AbstractController
         return json_encode($bookings);
         
     }
-
+}
