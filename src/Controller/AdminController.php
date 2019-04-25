@@ -65,7 +65,7 @@ class AdminController extends AbstractController
             //pas de POST
         }
 
-
+    }
 
     /**
      * Display planning page
@@ -74,6 +74,7 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
     public function planning()
     {
         try {
