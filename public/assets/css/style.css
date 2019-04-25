@@ -50,7 +50,7 @@ body {
 }
 
 
-#test5 {
+#nombrePersonne {
     border : none !important;
 }
 
@@ -69,15 +69,9 @@ body {
     height: auto;
 }
 
-.link-nav{
+#burger-menu{
     position: absolute;
-    right: 0;
-    margin-right: 150px;
-}
-
-#connect{
-    position: absolute;
-    right: 0;
+    right:0;
 }
 
 @media only screen and (max-width: 992px) {
@@ -107,6 +101,13 @@ body {
     right: auto !important;
     bottom: 10%;
     left:7%;  
+  }
+
+  .side-img{
+    display:flex; 
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
 .blockImage-1, .blockImage-2, .blockImage-3, .blockImage-4, .blockImage-5 {
