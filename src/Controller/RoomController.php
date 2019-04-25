@@ -40,4 +40,13 @@ class RoomController extends AbstractController
                 'date' => $_POST['date']
             ];
 
+            $errors = $this->checkData($data);
+            if (empty($errors))
+            {
+                $roomManager = new RoomManager();
+                $roomManager->insert($data);
+            }
+        }
+        return $this->twig->render('Room/room.html.twig');
+    }
 }
