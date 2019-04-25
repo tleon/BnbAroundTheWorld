@@ -19,7 +19,6 @@ class RoomController extends AbstractController
 
         $feedbackManager = new FeedbackManager();
         $feedbacks = $feedbackManager->selectAllFeedbackByRoomId($id);
-
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'feedback' => $feedbacks]);
     }
   

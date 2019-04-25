@@ -99,7 +99,9 @@
                 <div class="card-content">
                     {% set randFeedback = random(0, feedback|length-1) %}
                     <div class="stars">
+                        {% for i in 1..feedback[randFeedback].grade %}
                         <img src="/assets/images/star.png">
+                        {% endfor %}
                     </div>
                     <div class="opinion-text">
                         <p>{{ feedback[randFeedback].comment }}</p>
