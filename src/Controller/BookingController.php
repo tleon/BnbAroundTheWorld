@@ -30,8 +30,13 @@ class BookingController extends AbstractController
 
 
 
-    /**conversion de la date du calendrier de la homepage vers le format datetime 
-     * (exemple: "Apr 16, 2019"-->"2019-04-16")
+    /**this function converts the home page's calendar date type to the room page's datepicker's type
+     * or converts the roompage datepicker's date to datetime for database insertion depending on the need
+     * (you have to specify what you need in the "target" parameter: roomPage or db)
+     * example result : 
+     * "Apr 16, 2019"-->"04/16/2019" for roomPage target
+     * or
+     * "04/16/2019"-->"2019-04-16" for db target 
      */
     function convert($date, $target)
     {
@@ -173,10 +178,8 @@ class BookingController extends AbstractController
     }
 
 
-    /**
-     * fonction pour transferer la selection faite sur la page index vers la page chambre
-     * (inutiliser pour le moment)
-     */
+
+    //function that tranfers your home page's booking selection to the room page's booking form  
     public function transfert()
     {   
         $data=$this->convert($_POST, "roomPage");
@@ -244,20 +247,15 @@ class BookingController extends AbstractController
     
 
         
-    /**
-     * insertion de la réservation dans la base de donnée
-     */
+    //inserting the booked date in the database
     function insert($data)
-    {
-            echo "<br/>";
-            $data=$this->convert($data,"db");
+    {       
+        //converting the date in the data to datetime for database insertion
+        $data=$this->convert($data,"db");
 
-            foreach ($data as $key => $value)
-            {
-                $data[$key] = $value;
-            }
-            $BookingManager = new BookingManager();
-            $BookingManager->insertDate($data);
+        //sending data to insert function
+        $BookingManager = new BookingManager();
+        $BookingManager->insertDate($data);
     }
 
 

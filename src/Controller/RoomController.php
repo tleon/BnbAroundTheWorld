@@ -13,29 +13,49 @@ class RoomController extends AbstractController
 
 		public function show($id)//id is not given on form submit
     {  
+
+        $errors = [];
+        $availableOptions=["Petit déjeuner","Table d'hôte","Lit bébé","baby1","baby2"];
+        
+        //check for unauthorized data in the booking form's submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
-        /*    if (//errors)
+
+            if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4)
             {
- 
-                //show errors
+                $errors['nb_person']="problème lors de la saisie du nombre de personne";
             }
+            if (isset($_POST['options']) && !in_array($_POST['options'],$availableOptions))
+            {
+                $errors['options']="problème lors de la saisie des options";
+            }
+        
+            //if they are no unauthorized data in the form, it's prepared for the database insertion
+            else
+            {
+                //readying the array that will be sent to the database
+                $dataToInsert['nbPerson']=$_POST['nb_person'];
+                
+                if (isset($_POST['options']))
+                {
+                    $dataToInsert['option']=$_POST['options'];
+                }
+                else
+                {
+                    $dataToInsert['option']=" ";
+                }
 
+                $dataToInsert['roomId']=intval($_SESSION['booking']['roomId']);
+                $dataToInsert['date'] = $_POST['date'];
+                $bookingController = new BookingController();
+        
+                //calling the function that set the booked date in the database
+                $bookingController->insert($dataToInsert);
+            }
         }
-        else
-        {*/
-            //insert database
-            $dataToInsert['nbPerson']=$_POST['nb_person'];
-            $dataToInsert['option']=$_POST['options'];
-            $dataToInsert['roomId']=intval($_SESSION['booking']['roomId']);
-            $dataToInsert['date'] = $_POST['date'];
-            $bookingController = new BookingController();
-            $bookingController->insert($dataToInsert);
-        }
-
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION]);
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors]);
     }
   
     private function checkData($data)
