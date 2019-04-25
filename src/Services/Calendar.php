@@ -200,4 +200,5 @@ class Calendar
         }
         return $bookingPerDay;
     }
+
 }

@@ -125,7 +125,7 @@ li > a > i {
   align-items: center;
   justify-content: flex-end; 
 }
-.month {
+.month, .admin_index_date {
   grid-area: month;
   display: flex;
   align-items: center;
@@ -172,3 +172,8 @@ li > a > i {
   color: #fff;
 }
 
+#admin_index_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

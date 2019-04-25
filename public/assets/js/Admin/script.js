@@ -57,3 +57,63 @@ var myChart2 = new Chart(ctx2, {
     labels: ["Chambre 1", "Chambre 2", "Chambre 3", "Chambre 4"]
   }
 });
+
+
+// HERVE //
+
+
+var date = new Date();
+
+
+function formatDate() {
+  let semaine = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  let mois= ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"];
+  let fr_string_formatted_date = semaine[date.getDay()] + " " + date.getDate() + " " + mois[date.getMonth()] + " " + date.getFullYear();
+  let el = document.getElementById('dateJs');
+  el.innerHTML = fr_string_formatted_date;
+};
+
+function previousDay(){
+  date.setDate(date.getDate() - 1);
+  formatDate();
+}
+
+function nextDay(){
+  date.setDate(date.getDate() + 1);
+  formatDate();
+}
+
+formatDate();
+
+formatted_date = date.toISOString().split('T')[0]
+
+let currentURL = document.URL
+let url = currentURL.replace('index', 'fetch')  + '/' + formatted_date; ;
+
+let bookings;
+// const getBooking = () => {
+//   return fetch(url)
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data)
+//   })
+//   .catch(error => console.error(error))
+// }
+
+const getBooking = () => {
+  fetch(url).then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    bookings = json;
+    initialize();
+  }).catch(function(err) {
+    console.log('Fetch problem: ' + err.message);
+  });
+}
+
+function initialize() {
+  for (i = 0; i < Object.keys(bookings).length; i++){
+    console.log(bookings[i].name);
+  }
+  
+}

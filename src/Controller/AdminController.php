@@ -46,4 +46,13 @@ class AdminController extends AbstractController
 
         return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
+
+    public function fetch(string $date)
+    {
+        $date = new \DateTime($date);
+        $bm = new bookingManager;
+        $bookings = $bm->selectByDay($date);
+        return json_encode($bookings);
+        
+    }
 }

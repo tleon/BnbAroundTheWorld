@@ -35,6 +35,15 @@ class BookingManager extends AbstractManager
         return $booking;
     }
 
+    public function selectByDay(\DateTime $day)
+    {
+        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, room.name, users.username FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id WHERE booking.begin_date <= :day AND booking.end_date >= :day");
+        $statement->bindValue('day', $day->format("Y-m-d"), \PDO::PARAM_STR);
+        $statement->execute();
+        $booking = $statement->fetchall();
+        return $booking;
+    }
+
     /**
      * Return booking info
      *
