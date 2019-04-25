@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 use App\Model\RoomManager;
+use App\Model\FeedbackManager;
 
 
 
@@ -13,6 +14,10 @@ class RoomController extends AbstractController
 		        $roomManager = new RoomManager();
 		        $room = $roomManager->selectOneById($id);
 
-		        return $this->twig->render('Room/room.html.twig', ['room' => $room]);
+		        $feedbackManager = new FeedbackManager();
+		        $feedbacks = $feedbackManager->selectFeedbackById($id);
+
+		        return $this->twig->render('Room/room.html.twig', ['room' => $room], ['feedback' => $feedbacks]);
 		    }
+
 }
