@@ -66,6 +66,7 @@ class AdminController extends AbstractController
         }
 
 
+
     /**
      * Display planning page
      * @return string
@@ -91,4 +92,5 @@ class AdminController extends AbstractController
 
         return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
+
 }

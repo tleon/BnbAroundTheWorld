@@ -11,11 +11,14 @@ class RoomController extends AbstractController
      *
      **/
 
-    public function show()
+		public function show($id)
     {
-        return $this->twig->render("Room/room.html.twig");
-    }
+        $roomManager = new RoomManager();
+        $room = $roomManager->selectOneById($id);
 
+        return $this->twig->render('Room/room.html.twig', ['room' => $room]);
+    }
+  
     private function checkData($data)
     {
         if (!isset($data['date']) || empty($data['date']))
@@ -42,6 +45,4 @@ class RoomController extends AbstractController
         }
         return $this->twig->render('Room/room.html.twig');
     }
-
-
 }

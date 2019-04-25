@@ -8,16 +8,13 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Room Title</h1>
+
+    <h1>{{ room.name }}</h1>
     <div class="row">
         <div class="col s12 m7">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://via.placeholder.com/640x360">
-                </div>
-                <div class="card-content">
-                    <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-                    </p>
+                    <img src="{{ room.pic_path }}">
                 </div>
             </div>
         </div>
@@ -28,7 +25,7 @@
                     <span>Thème de la chambre</span>
                 </div>
                 <div class="card-image">
-                    <img src="http://via.placeholder.com/200x200">
+                    <img src="{{ room.location }}">
                 </div>
             </div>
         </div>
@@ -45,8 +42,7 @@
                         <span>Description</span>
                     </div>
                     <div class="card-content">
-                        <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-                        </p>
+                        <p>{{ room.description }}</p>
                     </div>
                 </div>
 
@@ -55,8 +51,7 @@
                         <span>Caractéristiques</span>
                     </div>
                     <div class="card-content">
-                        <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-                        </p>
+                        <p>{{ room.caracs }}</p>
                     </div>
                 </div>
             </div>
@@ -64,16 +59,39 @@
 
         <div class="col s12 m5">
             <div class="container-fluid">
-                <form action="#" method="post">
+                <form method="post">
+
+                    <div name="room_id" class="room_id" hidden></div>
+                    <div class="input-field col s12">
+                        <select name="nb_person">
+                            <option value="" disabled selected>Choisir le nombre de personnes</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select name="options" multiple>
+                            <option value="" disabled selected>Options possibles</option>
+                            <option  value="Petit déjeuner">Petit déjeuner</option>
+                            <option value="Table d'hôte">Table d'hôte</option>
+                            <optgroup label="Lit bébé">
+                                <option value="baby1">1</option>
+                                <option value="baby2">2</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
                     <input type="text" id="date" name="date" />
+
                     <button type="submit" class="waves-effect waves-light btn-large" href="#">Réserver</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col s12 m12">
