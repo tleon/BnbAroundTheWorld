@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aurelwcs
- * Date: 08/04/19
- * Time: 18:40
- */
 
 namespace App\Controller;
 
-class AdminConnectionController extends AbstractController
+class AboutUsController extends AbstractController
 {
+
     /**
-     * Display home page
+     * Display aboutus page
      *
      * @return string
      * @throws \Twig\Error\LoaderError
@@ -20,6 +15,9 @@ class AdminConnectionController extends AbstractController
      */
     public function show()
     {
-        return $this->twig->render('adminConnection.html.twig');
+        return $this->twig->render('AboutUs/aboutUs.html.twig');
     }
+
+
+    
 }

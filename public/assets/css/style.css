@@ -7,7 +7,7 @@
 }
 
 .bg-light-green {
-    background-color: #80bfb7;
+    background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);;
 }
 
 .bg-dark-blue {
@@ -34,6 +34,7 @@ nav {
 }
 
 body {
+   padding: 1px;
    transition: 1s linear;
    transition-property: background-position;
 }
@@ -94,6 +95,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:7%;  
+  }
 
 .blockImage-1, .blockImage-2, .blockImage-3, .blockImage-4, .blockImage-5 {
     margin-top: 25px;

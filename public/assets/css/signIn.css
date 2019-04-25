@@ -1,0 +1,19 @@
+.signin-logo{
+  max-width: 40%;
+}
+
+.signin-row{
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+}
+
+.signin-card {
+  width: 60%;
+}
+
+.signin-img{
+  display: flex; 
+  justify-content: center;
+  padding-top: 10%;
+}
