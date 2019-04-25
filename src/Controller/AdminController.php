@@ -19,8 +19,8 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
     public function index()
-    {
-        if (($_SESSION['status'] != 'Administrator') || empty($_SESSION)) {
+    {   
+        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
             return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
         } else {
             return $this->twig->render('Admin/index.html.twig');
@@ -31,7 +31,11 @@ class AdminController extends AbstractController
     {
         $roomManager = new RoomManager;
         $rooms = $roomManager->selectAll();
-        return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);
+        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+        }else{
+            return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);             
+        }
     }
 
 
@@ -87,8 +91,12 @@ class AdminController extends AbstractController
         } catch (\Exception $e) {
             $month = new Calendar;
         }
+        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+        }else{
+            return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
+        }
         
-        return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
     }
   
     /**
