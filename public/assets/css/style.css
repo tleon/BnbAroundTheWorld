@@ -95,6 +95,13 @@ body {
     align-items: center;
 }
 
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 10%;
+    left:7%;  
+  }
+
 .blockImage-1, .blockImage-2, .blockImage-3, .blockImage-4, .blockImage-5 {
     margin-top: 25px;
     width: 50%;

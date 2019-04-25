@@ -1,0 +1,22 @@
+{% extends "layoutAdmin.html.twig" %}
+{% block stylesheet %}
+{% endblock %}
+{% block content %}
+<div class="cards">
+  <div class="row">
+    <div class="col s12">
+      <div class="card white">
+        <div class="card-content">
+          <pre>
+              {{ dump(bookings)}}
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block javascript %}
+{% endblock %}
