@@ -86,6 +86,9 @@ li > a > i {
 .c-c4 {
   color: #ffcd56 !important;
 }
+.c-c5 {
+  color: #BF55EC !important;
+}
 
 .planning_table {
   height: calc(100vh - 9rem);
@@ -125,7 +128,7 @@ li > a > i {
   align-items: center;
   justify-content: flex-end; 
 }
-.month {
+.month, .admin_index_date {
   grid-area: month;
   display: flex;
   align-items: center;
@@ -172,3 +175,28 @@ li > a > i {
   color: #fff;
 }
 
+#admin_index_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#USA, #Japon, #Tailande, #France, #Africa {
+  display: none;
+}
+
+#USA.is-displayed, #Japon.is-displayed, #Tailande.is-displayed, #France.is-displayed, #Africa.is-displayed {
+  display: block;
+}
+
+#prevDay, #nextDay {
+  cursor: pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

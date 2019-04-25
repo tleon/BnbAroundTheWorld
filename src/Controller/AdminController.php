@@ -90,7 +90,14 @@ class AdminController extends AbstractController
         
         return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
     }
-
+  
+    /**
+     * Display booking page
+     *
+     * @param [type] $id
+     * @return void
+     */
+  
     public function booking($id)
     {
         $bookingManager = new BookingManager();
@@ -98,4 +105,20 @@ class AdminController extends AbstractController
 
         return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
-}
+
+    /**
+     * Handle fetch get requests
+     *
+     * @param string $date
+     * @return void
+     */
+  
+    public function fetch(string $date)
+    {
+        $date = new \DateTime($date);
+        $bm = new bookingManager;
+        $bookings = $bm->selectByDay($date);
+        return json_encode($bookings);
+        
+    }
+
