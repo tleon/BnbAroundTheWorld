@@ -1,0 +1,14 @@
+.card-title{
+    padding: 5px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.opinion-text{
+    padding: 10px;
+    margin: 10px;
+}
+
+.author{
+    padding: 10px;
+    border-top: 1px solid #CCCCCC;
+}
