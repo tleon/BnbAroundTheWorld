@@ -7,7 +7,9 @@
  */
 
 namespace App\Controller;
+use App\Model\ReservationManager;
 use App\Model\UsersManager;
+
 
 class HomeController extends AbstractController
 {
@@ -49,6 +51,7 @@ class HomeController extends AbstractController
             return $this->twig->render('Home/index.html.twig', ['error' => ""]);
         }
     }
+
 
     /**
      * Allow the user to create his account if the username is not already taken.
@@ -99,5 +102,5 @@ class HomeController extends AbstractController
         header('Location: /Home/index');
     }
 
-   
+  
 }

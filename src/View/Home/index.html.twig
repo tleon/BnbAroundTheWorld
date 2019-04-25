@@ -9,15 +9,15 @@
         <div class="card tom-invisible" id="quickB">
             <div class="card-content">
                 <span class="card-title">Réserver dès maintenant</span>
-                <form action="">
+                <form action="/booking/insert" method="POST">
                     <div class="input-field col s12">
-                        <select>
-                            <option disabled selected value="">Choisissez votre destination</option>
+                        <select name="roomId">
+                            <option disabled selected value="0">Choisissez votre thème de chambre</option>
                             <option value="1">USA</option>
-                            <option value="2">Japan</option>
+                            <option value="2">Japon</option>
                             <option value="3">Thailand</option>
                             <option value="4">France</option>
-                            <option value="5">Africa</option>
+                            <option value="5">Afrique</option>
                         </select>
                     </div>
                     <div class="row">
@@ -26,18 +26,21 @@
 
                             <label for="datepicker">Date d'arrivé
                             </label>
-                            <input class="datepicker" id="datepicker" type="text">
+                            <input name="beginDate" class="datepicker" id="datepicker" type="text">
                         </div>
                         <div class="col s6">
-                            <label for="datepicker">Date de départ
+                            <label for="endDate">Date de départ
                             </label>
-                            <input class="datepicker" id="datepicker" type="text">
+                            <input name="endDate" class="datepicker" id="datepicker" type="text">
                         </div>
                     </div>
-                    <label for="test5">Nombre de personnes</label>
+                    <label for="nbPerson">Nombre de personnes</label>
                     <p class="range-field">
-                        <input id="test5" max="10" min="0" type="range"/>
+                        <input name="nbPerson"" id="nombrePersonne"" max="10" min="0" type="range" />
                     </p>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                    </button>
                 </form>
             </div>
         </div>
@@ -89,7 +92,7 @@
         </p>
     </div>
     <div class="blocktext-5">
-        <h3>Africa</h3>
+        <h3>Afrique</h3>
         <p>" lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
     <div class="blockImage-5">
