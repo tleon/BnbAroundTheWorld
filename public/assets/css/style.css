@@ -69,6 +69,12 @@ body {
     height: auto;
 }
 
+.link-nav{
+    position: absolute;
+    right: 0;
+    margin-right: 150px;
+}
+
 #connect{
     position: absolute;
     right: 0;

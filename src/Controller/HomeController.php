@@ -32,6 +32,7 @@ class HomeController extends AbstractController
                     $_SESSION['username'] = $_POST['username'];
                     $_SESSION['email'] = $userCheck['email'];
                     $_SESSION['status'] = $userCheck['status'];
+                    $_SESSION['id'] = $userCheck['id'];
                     if($userCheck['status'] == "Administrator"){
                         header('Location: /Admin/index');
                     }else{
