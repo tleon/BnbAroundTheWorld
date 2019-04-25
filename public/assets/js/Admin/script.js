@@ -65,6 +65,7 @@ var myChart2 = new Chart(ctx2, {
 var date = new Date();
 var currentURL = currentURL = document.URL;
 let formatted_date, url, bookings;
+let rooms =['USA', 'Japon', 'Tailande', 'France', 'Africa'];
 
 document.addEventListener('DOMContentLoaded', documentReady = () => {
   formatDate();
@@ -106,6 +107,9 @@ const getBooking = () => {
 }
 
 let initialize = () => {
+  for (n=0; n < rooms.length; n++){
+    document.getElementById(rooms[n]).classList.remove('is-displayed')
+  };
   for (i = 0; i < Object.keys(bookings).length; i++){
     // console.log(bookings[i].name);
     let parent = document.getElementById(bookings[i].name);
@@ -120,7 +124,7 @@ let initialize = () => {
     let splt = val.split('-');
     val = splt[2] + '-' + splt[1] + '-' + splt[0];
     appendValues(div, val);
-    document.getElementById(bookings[i].name).getElementsByClassName('fetch_data')[0].style.display = "none";
+    document.getElementById(bookings[i].name).classList.add('is-displayed');
   }
 }
 

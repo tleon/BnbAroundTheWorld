@@ -181,10 +181,44 @@ li > a > i {
   justify-content: center;
 }
 
-/* .fetch_data {
+
+#USA, #Japon, #Tailande, #France, #Africa {
   display: none;
 }
 
-.fetch_data.is-displayed {
+#USA.is-displayed, #Japon.is-displayed, #Tailande.is-displayed, #France.is-displayed, #Africa.is-displayed {
   display: block;
-} */
+}
+
+
+/* Ici nous définissons l'état de l'élément au début */
+/* de la transition entrante. */
+#USA.display-enter, #Japon.display-enter, #Tailande.display-enter, #France.display-enter, #Africa.display-enter {
+  transform: translateY(0)
+}
+
+/* Ici nous définissons l'état de l'élément à la fin */
+/* de la transition entrante. */
+#USA.display-enter-to, #Japon.display-enter-to, #Tailande.display-enter-to, #France.display-enter-to, #Africa.display-enter-to {
+  transform: translateY(50px)
+}
+/* Ici nous définissons l'état de l'élément au début */
+/* de la transition sortante. */
+#USA.display-leave, #Japon.display-leave, #Tailande.display-leave, #France.display-leave, #Africa.display-leave {
+  transform: translateX(200px)
+}
+/* Ici nous définissons l'état de l'élément à la fin */
+/* de la transition sortante. */
+#USA.display-leave-to, #Japon.display-leave-to, #Tailande.display-leave-to, #France.display-leave-to, #Africa.display-leave-to {
+  transform: translateY(0)
+}
+/* Nous définissons ici les animations qui vont opérer */
+/* lors de la transition entrante. */
+#USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
+  transition: transform 1s;
+}
+/* Nous définissons ici les animations qui vont opérer */
+/* lors de la transition sortante. */
+#USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
+  transition: transform 4s;
+}
