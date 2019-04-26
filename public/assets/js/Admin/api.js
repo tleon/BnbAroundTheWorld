@@ -33,7 +33,7 @@ let nextDay = () => {
 
 
 function appendValues(div, value){
-  div[0].innerHTML = value;
+  div[0].innerText = value;
 }
 
 const getBooking = () => {
