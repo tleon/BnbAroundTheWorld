@@ -81,6 +81,26 @@ class BookingManager extends AbstractManager
         $bookings = $statement->fetchall();
         return $bookings;
     }
+
+    // returns booking number per month as an array
+    public function bookingPerMonth() {
+        $sql = "SELECT EXTRACT(year_month FROM begin_date) as month, COUNT(*) as reservations FROM $this->table GROUP BY month";
+        try{
+            return $this->pdo->query($sql)->fetchAll();
+        }catch(\PDOException $e){
+            return $e;
+        }
+    }
+
+    // returns total price per room as an array
+    public function pricesPerRoom() {
+        $sql = "SELECT SUM(total_price) as price, room_id FROM $this->table GROUP BY room_id";
+        try{
+            return $this->pdo->query($sql)->fetchAll();
+        }catch(\PDOException $e){
+            return $e;
+        }
+    }
 }
 
 
