@@ -20,7 +20,7 @@ class AdminController extends AbstractController
      */
     public function index()
     {   
-        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+        if( empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
             return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
         } else {
             return $this->twig->render('Admin/index.html.twig');
@@ -129,7 +129,6 @@ class AdminController extends AbstractController
         return json_encode($bookings);
         
     }
-
 
     //function to populate the booking per month chart on admin page
     public function bookingChart() {
