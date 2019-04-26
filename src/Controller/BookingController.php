@@ -182,67 +182,79 @@ class BookingController extends AbstractController
     //function that tranfers your home page's booking selection to the room page's booking form  
     public function transfert()
     {   
-        $data=$this->convert($_POST, "roomPage");
+
+        if(!isset($_SESSION['username']))
+        {
+            return $this->twig->render('Home/signIn.html.twig');
+        }
+
+        else if (!isset($_POST['roomId']))
+        {
+            $error = "veuillez choisir une chambre";
+            return $this->twig->render('Home/index.html.twig',['error' => $error]);
+        }
+        else
+        {
+            $data=$this->convert($_POST, "roomPage");
 
 
 
-        if ($_POST['nbPerson']=="1")
-            {
-                $nbGuestSelected[1]="selected";
-            }
-        
-        else if ($_POST['nbPerson']!="1")
-            {
-                $nbGuestSelected[1]=" ";
-            }
+            if ($_POST['nbPerson']=="1")
+                {
+                    $nbGuestSelected[1]="selected";
+                }
+            
+            else if ($_POST['nbPerson']!="1")
+                {
+                    $nbGuestSelected[1]=" ";
+                }
 
 
-            if ($_POST['nbPerson']=="2")
-            {
-                $nbGuestSelected[2]="selected";
-            }
-        
-        else if ($_POST['nbPerson']!="2")
-            {
-                $nbGuestSelected[2]=" ";
-            }
+                if ($_POST['nbPerson']=="2")
+                {
+                    $nbGuestSelected[2]="selected";
+                }
+            
+            else if ($_POST['nbPerson']!="2")
+                {
+                    $nbGuestSelected[2]=" ";
+                }
 
 
-            if ($_POST['nbPerson']=="3")
-            {
-                $nbGuestSelected[3]="selected";
-            }
-        
-        else if ($_POST['nbPerson']!="3")
-            {
-                $nbGuestSelected[3]=" ";
-            }
+                if ($_POST['nbPerson']=="3")
+                {
+                    $nbGuestSelected[3]="selected";
+                }
+            
+            else if ($_POST['nbPerson']!="3")
+                {
+                    $nbGuestSelected[3]=" ";
+                }
 
 
-            if ($_POST['nbPerson']=="4")
-            {
-                $nbGuestSelected[4]="selected";
-            }
-        
-        else if ($_POST['nbPerson']!="4")
-            {
-                $nbGuestSelected[4]=" ";
-            }
-
-
-
-
-        $_SESSION['booking']['nbGuestSelected']= $nbGuestSelected;
-        $_SESSION['booking']['roomId'] = $data['roomId'];
-        $_SESSION['booking']['beginDate'] = $data['beginDate'];
-        $_SESSION['booking']['endDate'] = $data['endDate'];
+                if ($_POST['nbPerson']=="4")
+                {
+                    $nbGuestSelected[4]="selected";
+                }
+            
+            else if ($_POST['nbPerson']!="4")
+                {
+                    $nbGuestSelected[4]=" ";
+                }
 
 
 
-        $redirect = new RoomController;
-        header("Location: /Room/show/".$_SESSION['booking']['roomId']);
+
+            $_SESSION['booking']['nbGuestSelected']= $nbGuestSelected;
+            $_SESSION['booking']['roomId'] = $data['roomId'];
+            $_SESSION['booking']['beginDate'] = $data['beginDate'];
+            $_SESSION['booking']['endDate'] = $data['endDate'];
 
 
+
+            $redirect = new RoomController;
+            header("Location: /Room/show/".$_SESSION['booking']['roomId']);
+        }
     }
     
 
