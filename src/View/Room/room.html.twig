@@ -123,7 +123,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script> $('#date').daterangepicker({
-    startDate: "{{session.booking.beginDate}}",
-    endDate: "{{session.booking.endDate}}"
+    startDate: "{{session.booking.beginDate}}" || "01/01/2019",
+    endDate: "{{session.booking.endDate}}" || "01/01/2019"
 }); </script>
 {% endblock %}
