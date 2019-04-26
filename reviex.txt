@@ -12,3 +12,14 @@ Page chambre :
   mettre hr sur page chambre avant commentaire
 
   mettre card unique pour l'avis et enlever les autres
+
+
+  Admin
+
+  Mettre un tableau a la place des cards sur page Admin index
+
+  room edit
+    uploads images
+    definir un max image.
+
+  

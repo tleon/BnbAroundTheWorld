@@ -15,10 +15,31 @@
     <link href="/assets/css/style.css" rel="stylesheet">
     {% block stylesheet %}{% endblock %}
     <link href="/assets/images/favicon.png" rel="icon">
+    <script src="/assets/js/indexScrollEffect.js"></script>
   </head>
 
   <body>
-    <header>
+      <nav>
+          <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          <ul class="logo">
+            <li class="side-img"><img alt="logo" src="/assets/images/favicon.png"></li>
+          </ul>
+          <ul class="nav-links">
+            <li><a href="#">Contact</a></li>
+            {% if connected %}
+            <li><a class="modal-trigger" href="/Home/logout" id="connect">Déconnexion</a></li>
+            {% else %}
+            <li>
+              <a class="modal-trigger" href="#modal1" id="connect">Connexion</a>
+            </li>
+              {% endif %}
+          </ul>
+        </nav>
+    {# <header>
       <ul class="sidenav" id="slide-out">
         <li class="side-img"><img alt="logo" src="/assets/images/logo.png"></li>
         <li><a href="/home/index">Acceuil</a></li>
@@ -68,7 +89,7 @@
       </a>
 
 
-    </header>
+    </header> #}
     {% block video %}{% endblock %}
 
 
@@ -159,10 +180,9 @@
           </div>
         </div>
       </div>
-
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="assets/js/nav.js"></script>
       {% block javascript %}{% endblock %}
       <script>
         function scrollFunction() {

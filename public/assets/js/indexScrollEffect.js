@@ -28,6 +28,9 @@ function scrollAppear1() {
     if (PositionBlock5 < screenPosition) {
         block5.classList.add("appear");
     }
-    }
+}
     
     window.addEventListener("scroll", scrollAppear1);
+
+
+    
