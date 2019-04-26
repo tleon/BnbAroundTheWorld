@@ -26,17 +26,17 @@ class BookingManager extends AbstractManager
      * @param array $item
      * @return int
      */
-    public function insertReservation(array $reservation)
+    public function insertDate(array $data)
     {
-        // prepared request
+        // self explanatory nothing special
         $statement = $this->pdo->prepare("INSERT INTO $this->table (`begin_date`,`end_date`,`nb_person`,`options`,`room_id`,`user_id`,`total_price`) VALUES (:beginDate,:endDate,:nbPerson,:options,:roomId,:userId,:totalPrice)");
-        $statement->bindValue('beginDate', $reservation['beginDate'], \PDO::PARAM_STR);
-        $statement->bindValue('endDate', $reservation['endDate'], \PDO::PARAM_STR);
-        $statement->bindValue('nbPerson', $reservation['nbPerson'], \PDO::PARAM_STR);
-        $statement->bindValue('options', "truc", \PDO::PARAM_STR);
-        $statement->bindValue('roomId', $reservation['roomId'], \PDO::PARAM_STR);
-        $statement->bindValue('totalPrice', 12000, \PDO::PARAM_STR);
-        $statement->bindvalue('userId', 1, \PDO::PARAM_STR);
+        $statement->bindValue('beginDate', $data['beginDate'], \PDO::PARAM_STR);
+        $statement->bindValue('endDate', $data['endDate'], \PDO::PARAM_STR);
+        $statement->bindValue('nbPerson', $data['nbPerson'], \PDO::PARAM_STR);
+        $statement->bindValue('options', $data['option'], \PDO::PARAM_STR);
+        $statement->bindValue('roomId', $data['roomId'], \PDO::PARAM_STR);
+        $statement->bindValue('totalPrice', 120, \PDO::PARAM_STR);
+        $statement->bindvalue('userId', $data['userId'], \PDO::PARAM_STR);
         $statement->execute();
     }
     
@@ -75,7 +75,7 @@ class BookingManager extends AbstractManager
      */
     public function selectBookingById(int $id) : array
     {
-        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, booking.total_price, booking.nb_person, room.name, users.username, users.mail FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id WHERE booking.id=:id");
+        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, booking.total_price, booking.nb_person, booking.options, room.name, users.username, users.mail, feedback.comment FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id INNER JOIN feedback ON feedback.user_id=users.id WHERE booking.id=:id");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
         $bookings = $statement->fetchall();

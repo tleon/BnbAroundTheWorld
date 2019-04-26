@@ -64,17 +64,18 @@
                     <div name="room_id" class="room_id" hidden></div>
                     <div class="input-field col s12">
                         <select name="nb_person">
-                            <option value="" disabled selected>Choisir le nombre de personnes</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="" disabled>Choisir le nombre de personnes</option>
+                            <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+                            <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+                            <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+                            <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
                         </select>
+                    {{ errors.nb_person }}
                     </div>
 
                     <div class="input-field col s12">
                         <select name="options" multiple>
-                            <option value="" disabled selected>Options possibles</option>
+                            <option value=" " disabled selected>Options possibles</option>
                             <option  value="Petit déjeuner">Petit déjeuner</option>
                             <option value="Table d'hôte">Table d'hôte</option>
                             <optgroup label="Lit bébé">
@@ -82,6 +83,7 @@
                                 <option value="baby2">2</option>
                             </optgroup>
                         </select>
+                        {{ errors.options }}
                     </div>
 
                     <input type="text" id="date" name="date" />
@@ -120,5 +122,8 @@
 {% block javascript %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script> $('#date').daterangepicker(); </script>
+<script> $('#date').daterangepicker({
+    startDate: "{{session.booking.beginDate}}",
+    endDate: "{{session.booking.endDate}}"
+}); </script>
 {% endblock %}

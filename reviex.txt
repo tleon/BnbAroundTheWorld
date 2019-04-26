@@ -1,0 +1,14 @@
+margin top sur accordeon
+
+call to action a mettre en vert sur modat connexion
+
+aligner les bouttons sur modal connexion
+
+everywhere
+  padding sur logo
+
+Page chambre :
+
+  mettre hr sur page chambre avant commentaire
+
+  mettre card unique pour l'avis et enlever les autres
