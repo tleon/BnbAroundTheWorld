@@ -72,7 +72,7 @@ class BookingController extends AbstractController
                     $monthBegin = "04";
                     break;
                 
-                case "Mai":
+                case "May":
                     $monthBegin = "05";
                     break;
                 
@@ -125,7 +125,7 @@ class BookingController extends AbstractController
                     $monthEnd = "04";
                     break;
                 
-                case "Mai":
+                case "May":
                     $monthEnd = "05";
                     break;
                 
@@ -146,7 +146,7 @@ class BookingController extends AbstractController
                     break;
                 
                 case "Oct":
-                    $monthv = "10";
+                    $monthEnd = "10";
                     break;
                 
                 case "Nov":

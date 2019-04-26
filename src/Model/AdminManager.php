@@ -20,6 +20,15 @@ class AdminManager extends AbstractManager
     public function updateRoomSql($values)
     {
         // prepared request
+        $statement = $this->pdo->prepare("UPDATE $this->table SET name=:name WHERE id=:id");
+        $statement->bindValue('id', $values['id'], \PDO::PARAM_INT);
+        $statement->bindValue('name', $values['name'], \PDO::PARAM_STR);
+        try {
+            $statement->execute();
+        } catch (PDOException $e) {
+            return $e;
+        }
+        // prepared request
         $statement = $this->pdo->prepare("UPDATE $this->table SET description=:description WHERE id=:id");
         $statement->bindValue('id', $values['id'], \PDO::PARAM_INT);
         $statement->bindValue('description', $values['description'], \PDO::PARAM_STR);
@@ -32,6 +41,15 @@ class AdminManager extends AbstractManager
         $statement = $this->pdo->prepare("UPDATE $this->table SET pic_path=:pic_path WHERE id=:id");
         $statement->bindValue('id', $values['id'], \PDO::PARAM_INT);
         $statement->bindValue('pic_path', $values['pic_path'], \PDO::PARAM_STR);
+        try {
+            $statement->execute();
+        } catch (PDOException $e) {
+            return $e;
+        }
+        // prepared request
+        $statement = $this->pdo->prepare("UPDATE $this->table SET location=:location WHERE id=:id");
+        $statement->bindValue('id', $values['id'], \PDO::PARAM_INT);
+        $statement->bindValue('location', $values['location'], \PDO::PARAM_STR);
         try {
             $statement->execute();
         } catch (PDOException $e) {

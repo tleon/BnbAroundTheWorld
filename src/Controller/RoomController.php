@@ -47,6 +47,7 @@ class RoomController extends AbstractController
 
                 $dataToInsert['roomId']=intval($_SESSION['booking']['roomId']);
                 $dataToInsert['date'] = $_POST['date'];
+                $dataToInsert['userId'] = $_SESSION['id'];
                 $bookingController = new BookingController();
         
                 //calling the function that set the booked date in the database

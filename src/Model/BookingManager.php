@@ -35,8 +35,8 @@ class BookingManager extends AbstractManager
         $statement->bindValue('nbPerson', $data['nbPerson'], \PDO::PARAM_STR);
         $statement->bindValue('options', $data['option'], \PDO::PARAM_STR);
         $statement->bindValue('roomId', $data['roomId'], \PDO::PARAM_STR);
-        $statement->bindValue('totalPrice', 12000, \PDO::PARAM_STR);
-        $statement->bindvalue('userId', 1, \PDO::PARAM_STR);
+        $statement->bindValue('totalPrice', 120, \PDO::PARAM_STR);
+        $statement->bindvalue('userId', $data['userId'], \PDO::PARAM_STR);
         $statement->execute();
     }
     
@@ -53,6 +53,15 @@ class BookingManager extends AbstractManager
         $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, room.name, users.username FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id WHERE booking.begin_date >= :start AND booking.end_date <= :end");
         $statement->bindValue('start', $start->format("Y-m-d"), \PDO::PARAM_STR);
         $statement->bindValue('end', $end->format("Y-m-d"), \PDO::PARAM_STR);
+        $statement->execute();
+        $booking = $statement->fetchall();
+        return $booking;
+    }
+
+    public function selectByDay(\DateTime $day)
+    {
+        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, booking.nb_person, room.name, users.username FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id WHERE booking.begin_date <= :day AND booking.end_date > :day");
+        $statement->bindValue('day', $day->format("Y-m-d"), \PDO::PARAM_STR);
         $statement->execute();
         $booking = $statement->fetchall();
         return $booking;
