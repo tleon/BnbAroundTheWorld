@@ -109,7 +109,7 @@ class AdminController extends AbstractController
     public function booking($id)
     {
         $bookingManager = new BookingManager();
-        $bookings = $bookingManager->selectBookingById($id);
+        $bookings = $bookingManager->selectBookingById(intval($id));
 
         return $this->twig->render('Admin/showBooking.html.twig', ['bookings' => $bookings]);
     }
@@ -130,3 +130,27 @@ class AdminController extends AbstractController
         
     }
 
+
+    //function to populate the booking per month chart on admin page
+    public function bookingChart() {
+        $bm = new bookingManager;
+        try{
+            $results = $bm->bookingPerMonth();
+            return json_encode($results);
+        }catch(\PDOException $e) {
+            return $e;
+        }
+    }
+
+    // function to populate the price per room chart on admin page.
+    public function priceChart() {
+        $bm = new bookingManager;
+        try{
+            $results = $bm->pricesPerRoom();
+            return json_encode($results);
+        }catch(\PDOException $e) {
+            return $e;
+        }
+    }
+
+}
