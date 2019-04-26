@@ -223,11 +223,11 @@ nav {
 }
 /* On définit la durée de la transition entrante. */
 #USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
-  transition: transform 1s;
+  transition: transform 0.8s;
 }
 /* On définit la durée de la transition sortante. */
 #USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
-  transition: transform 1s;
+  transition: transform 0.8s;
 }
 
 .w-full {
@@ -273,4 +273,8 @@ nav {
 
 .showBooking_icon {
   grid-area: box1;
+}
+
+.admin_index_left, .admin_index_right {
+  min-height: 98vh;
 }
