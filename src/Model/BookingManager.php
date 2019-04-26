@@ -75,7 +75,7 @@ class BookingManager extends AbstractManager
      */
     public function selectBookingById(int $id) : array
     {
-        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, booking.total_price, booking.nb_person, room.name, users.username, users.mail FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id WHERE booking.id=:id");
+        $statement = $this->pdo->prepare("SELECT booking.id, booking.begin_date, booking.end_date, booking.total_price, booking.nb_person, booking.options, room.name, users.username, users.mail, feedback.comment FROM $this->table INNER JOIN room ON booking.room_id=room.id INNER JOIN users ON users.id=booking.user_id INNER JOIN feedback ON feedback.user_id=users.id WHERE booking.id=:id");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
         $bookings = $statement->fetchall();
