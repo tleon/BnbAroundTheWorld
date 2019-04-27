@@ -11,5 +11,12 @@ hamburger.addEventListener("click", () => {
 
 let url = document.URL ;
 if(url == "http://localhost:8000/"){
-  console.log(currenturl);
+  let node = document.getElementsByClassName('nav-links');
 }
+
+
+// function bigSize() {
+//   document.getElementById("contact_footer_mail").style.width = '500px';
+//   document.getElementById("contact_footer_text").style.width = '500px';
+//   document.getElementById("contact_footer_text").style.height = '200px';
+// }
