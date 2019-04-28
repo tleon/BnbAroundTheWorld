@@ -17,16 +17,6 @@ class RoomController extends AbstractController
     public function show($id) //id is not given on form submit
 
     {
-        // $dir = "assets/images/{$id}/";
-        // $images = scandir($dir);
-        // define("EXTENSION", ['png', 'jpg', 'gif', 'jpeg']);
-        // $img = [];
-        // foreach ($images as $image) {
-        //     if (in_array(pathinfo($image, PATHINFO_EXTENSION), EXTENSION)) {
-        //         array_push($img,$image);
-        //     }
-        // }
-
         $errors = [];
         $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
 
@@ -109,8 +99,19 @@ class RoomController extends AbstractController
             );
         }, $booking);
 
-        $defaultD = ["16.05.2019", "19.05.2019"];
+        if(!isset($_SESSION['booking']["beginDate"]) || !isset($_SESSION['booking']["beginDate"])){
+            $defaultD = [];
+        } else {
+            $defaultD = ["{$_SESSION['booking']["beginDate"]}", "{$_SESSION['booking']["endDate"]}"];
+        }
+
         $booking['dDate']=$defaultD;
         return json_encode($booking);
+
+
+
+        // print_r($defaultD);
+        // // $_SESSION = [];
+        // print_r($_SESSION);
     }
 }
