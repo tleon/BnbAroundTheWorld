@@ -276,7 +276,7 @@ nav ul a:hover {
     cursor: pointer;
     right: 5%;
     top: 2%;
-    transform: translate(-5%, 2%);
+    transform: translate(55%, 2%);
     z-index: 2;
   }
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\BookingController;
 use App\Model\RoomManager;
+use App\Model\BookingManager;
 
 class RoomController extends AbstractController
 {
@@ -16,16 +17,15 @@ class RoomController extends AbstractController
     public function show($id) //id is not given on form submit
 
     {
-        $dir = "assets/images/{$id}/";
-        $images = scandir($dir);
-        define("EXTENSION", ['png', 'jpg', 'gif', 'jpeg']);
-        $img = [];
-
-        foreach ($images as $image) {
-            if (in_array(pathinfo($image, PATHINFO_EXTENSION), EXTENSION)) {
-              array_push($img,$image);
-            }
-        }
+        // $dir = "assets/images/{$id}/";
+        // $images = scandir($dir);
+        // define("EXTENSION", ['png', 'jpg', 'gif', 'jpeg']);
+        // $img = [];
+        // foreach ($images as $image) {
+        //     if (in_array(pathinfo($image, PATHINFO_EXTENSION), EXTENSION)) {
+        //         array_push($img,$image);
+        //     }
+        // }
 
         $errors = [];
         $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
@@ -62,7 +62,7 @@ class RoomController extends AbstractController
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'images' =>$img, 'session' => $_SESSION, 'errors' => $errors]);
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION, 'errors' => $errors]);
     }
 
     private function checkData($data)
@@ -87,5 +87,30 @@ class RoomController extends AbstractController
             }
         }
         return $this->twig->render('Room/room.html.twig');
+    }
+    
+    /**
+     * get all booking from room id in flatpickr format.
+     * ex : [{"from":"01.12.2018","to":"04.12.2018"},{"from":"26.04.2019","to":"27.04.2019"}]
+     * and return default date picked on index page
+     * 
+     * @param integer $id
+     * @return json
+     */
+    public function getUnavailableDate(int $id)
+    {
+        $bm = new BookingManager();
+        $booking = $bm->selectBookingByRoom($id);
+
+        $booking = array_map(function($booking) {
+            return array(
+                'from' => date('d.m.Y', strtotime($booking['begin_date'])),
+                'to' => date('d.m.Y', strtotime($booking['end_date']))
+            );
+        }, $booking);
+
+        $defaultD = ["16.05.2019", "19.05.2019"];
+        $booking['dDate']=$defaultD;
+        return json_encode($booking);
     }
 }

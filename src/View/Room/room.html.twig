@@ -7,17 +7,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="images">
-  <img src="/assets/images/{{ room.pic_path }}">
-</div>
 
 <div class="room">
+  <div class="images">
+    <img src="/assets/images/{{ room.pic_path }}">
+  </div>
+
   <form method="get" class="formulaire">
     <div class="room_form_date_picker">
       <label class="room_form_select_label">
         <span>dates de sejour</span>
       </label>
-      <input type="text" class="flatpickr-calendar" name="date" value="">
+      <input type="text" class="flatpickr-calendar" name="date">
     </div>
 
     <div class="room_form_select1">
@@ -25,9 +26,8 @@
         <span>nombre de personnes</span>
       </label>
       <select name="nbPerson">
-        <option disabled selected value="0"></option>
         <option value="1">1 personne</option>
-        <option value="2">2 personnes</option>
+        <option value="2" selected="selected">2 personnes</option>
         <option value="3">3 personnes</option>
         <option value="4">4 personnes</option>
         <option value="5">5 personnes</option>
@@ -39,13 +39,11 @@
         <span>Options possibles</span>
       </label>
       <select name="options">
-        <option value=" " disabled selected>Options possibles</option>
         <option value="Petit déjeuner">Petit déjeuner</option>
         <option value="Table d'hôte">Table d'hôte</option>
-        <optgroup label="Lit bébé">
-          <option value="baby1">1</option>
-          <option value="baby2">2</option>
-        </optgroup>
+        <option value="baby1">1 Lit bébé</option>
+        <option value="baby2">2 Lit bébé</option>
+        <option value="none">Aucune option</option>
       </select>
     </div>
 
@@ -53,6 +51,7 @@
       <button type="submit" value="submit" class="custom_btn">Valider</button>
     </div>
   </form>
+
   <div class="description">
       <p>{{ room.name }}</p>
     <span>Description</span>
@@ -126,10 +125,28 @@
 
 
 {% block javascript %}
-
 <script>
-var disableDates = {'from' : "29.04.2019", 'to' : "30.04.2019"};
-var tesst = Array(disableDates);
+fetchUrl = url.replace('show', 'getUnavailableDate');
+
+const getBooking = () => {
+  fetch(fetchUrl).then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    bookings = json;
+    getData();
+  }).catch(function(err) {
+    console.log('Fetch problem: ' + err.message);
+  });
+}
+let getData = () => {
+  console.log(bookings);
+  let unavailableDate = [];
+  for(let i = 0;  i < Object.keys(bookings).length -1; i++){
+    // emptyArr.push(bookings);
+    unavailableDate.push(bookings[i]);
+  }
+  let dDate = bookings['dDate'];
+  console.log(dDate);
   flatpickr(".flatpickr-calendar", {
     inline: true,
     altFormat: "j F Y",
@@ -137,9 +154,12 @@ var tesst = Array(disableDates);
     minDate: "today",
     mode: "range",
     "locale": "fr",
-    disable: tesst
-    // defaultDate: ["28.04.2019", "30.04.2019"]
+    disable: unavailableDate,
+    defaultDate: dDate
   }).open();
-</script>
+}
 
+getBooking();
+</script>
+<script src="/assets/js/datePicker.js"></script>
 {% endblock %}
