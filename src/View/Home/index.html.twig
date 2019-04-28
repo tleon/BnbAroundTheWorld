@@ -18,7 +18,7 @@
           <label class="index_form_select_labet">
             <span>Chambre</span>
           </label>
-          <select name="roomId">
+          <select name="roomId" id="roomId">
               <option disabled selected value="0">Choisissez votre thème de chambre</option>
               <option value="1">USA</option>
               <option value="2">Japon</option>
@@ -184,23 +184,77 @@
 <script src="/assets/js/indexScrollEffect.js"></script>
 <script>
 
-  flatpickr("#dp1", {
+
+//     let event = document.getElementById('roomId');
+//     event.addEventListener('change', function() {
+//       let getUrl = window.location;
+//       let baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + "/room/getUnavailableDate/" + this.value;
+//       getBooking(baseUrl);
+//     }, false);
+
+    
+
+// const getBooking = (url) => {
+//   fetch(url).then(function(response) {
+//     return response.json();
+//   }).then(function(json) {
+//     bookings = json;
+//     getData();
+//   }).catch(function(err) {
+//     console.log('Fetch problem: ' + err.message);
+//   });
+// }
+// let getData = () => {
+//   console.log(bookings);
+//   let unavailableDate = [];
+//   for(let i = 0;  i < Object.keys(bookings).length -1; i++){
+//     // emptyArr.push(bookings);
+//     unavailableDate.push(bookings[i]);
+//   }
+//   flatpickr("#dp1", {
+//     inline: true,
+//     altFormat: "j F Y",
+//     dateFormat: "d.m.Y",
+//     minDate: "today",
+//     mode: "range",
+//     "locale": "fr",
+//     disable: unavailableDate
+//   });
+// }
+
+
+
+
+    flatpickr("#dp1", {
     altInput: true,
     altFormat: "j F Y",
     dateFormat: "d.m.Y",
     minDate: "today",
     mode: "range",
     "locale": "fr"
-    // onChange: function(){
-    //   data = document.getElementById("dp1").value;
-    //   let explD = data.split(data, '.');
-    //   let h = new Date(data[2] + '-' + data[1] + '-' + data[0]);
-    //   console.log(h);
-    //   setTimeout(function() {
-    //     document.getElementById("dp2").select();
-    //   }, 200);
-    // }
-  });
+    });
+
+
+
+
+
+  // flatpickr("#dp1", {
+  //   altInput: true,
+  //   altFormat: "j F Y",
+  //   dateFormat: "d.m.Y",
+  //   minDate: "today",
+  //   mode: "range",
+  //   "locale": "fr"
+  //   onChange: function(){
+  //     data = document.getElementById("dp1").value;
+  //     let explD = data.split(data, '.');
+  //     let h = new Date(data[2] + '-' + data[1] + '-' + data[0]);
+  //     console.log(h);
+  //     setTimeout(function() {
+  //       document.getElementById("dp2").select();
+  //     }, 200);
+  //   }
+  // });
 
   // flatpickr("#dp2", {
   //   dateFormat: "d.m.Y",

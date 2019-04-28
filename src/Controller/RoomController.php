@@ -108,10 +108,5 @@ class RoomController extends AbstractController
         $booking['dDate']=$defaultD;
         return json_encode($booking);
 
-
-
-        // print_r($defaultD);
-        // // $_SESSION = [];
-        // print_r($_SESSION);
     }
 }

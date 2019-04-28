@@ -22,4 +22,9 @@ Page chambre :
     uploads images
     definir un max image.
 
+  //TODO
+  Verifier si message erreur si insert booking sans etre identifié
+
+  Afficher un tarif.
   
+

@@ -13,8 +13,8 @@
     <img src="/assets/images/{{ room.pic_path }}">
   </div>
 
-  <form method="get" class="formulaire">
-      <div name="room_id" class="room_id" hidden></div>
+  <form method="post" class="formulaire">
+      <input name="room_id" class="room_id" value="{{room.id}}" hidden></input>
     <div class="room_form_date_picker">
       <label class="room_form_select_label">
         <span>dates de sejour</span>
@@ -34,6 +34,7 @@
         <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
       </select>
     </div>
+
 
     <div class="room_form_select2">
       <label class="index_form_select_labet">
@@ -127,41 +128,5 @@
 
 
 {% block javascript %}
-<script>
-fetchUrl = url.replace('show', 'getUnavailableDate');
-
-const getBooking = () => {
-  fetch(fetchUrl).then(function(response) {
-    return response.json();
-  }).then(function(json) {
-    bookings = json;
-    getData();
-  }).catch(function(err) {
-    console.log('Fetch problem: ' + err.message);
-  });
-}
-let getData = () => {
-  console.log(bookings);
-  let unavailableDate = [];
-  for(let i = 0;  i < Object.keys(bookings).length -1; i++){
-    // emptyArr.push(bookings);
-    unavailableDate.push(bookings[i]);
-  }
-  let dDate = bookings['dDate'];
-  console.log(dDate);
-  flatpickr(".flatpickr-calendar", {
-    inline: true,
-    altFormat: "j F Y",
-    dateFormat: "d.m.Y",
-    minDate: "today",
-    mode: "range",
-    "locale": "fr",
-    disable: unavailableDate,
-    defaultDate: dDate
-  }).open();
-}
-
-getBooking();
-</script>
 <script src="/assets/js/datePicker.js"></script>
 {% endblock %}
