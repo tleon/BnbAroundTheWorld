@@ -13,3 +13,116 @@
     padding: 10px;
     border-top: 1px solid #CCCCCC;
 }
+
+
+.room {
+    padding: 3rem 8rem;
+    display: grid;
+    grid-template-columns: auto 400px;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-template-areas:
+        "description form"
+        ". form"
+        "commentaire commentaire";
+}
+
+.room_titre {
+    grid-area: title;
+    height: 24px;
+}
+
+.images {
+    margin-top: 50px;
+    height: 70vh;
+    width: 58vw;
+}
+
+
+.description {
+    grid-area: description;
+}
+.caracteristique {
+    grid-area: caracteristique;
+}
+.commentaire {
+    grid-area: commentaire;
+}
+.images > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+    border-bottom-left-radius: 3px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.30)!important;
+}
+
+.formulaire {
+    grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+    min-height: 700px;
+    border-radius: 3px !important;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+    border-bottom-left-radius: 3px !important;
+    overflow: hidden !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid #e4e4e4 !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    margin: 0px !important;
+    max-width: 400px;
+    padding-bottom: 3rem;
+    background-color: #FFFFFF;
+}
+
+.select-wrapper input.select-dropdown, input[type=text]:not(.browser-default)[readonly="readonly"]{
+    margin-top: 1rem;
+}
+
+.select-wrapper {
+    width: 307.875px;
+    background-color: #FFFFFF;
+}
+.flatpickr-calendar {
+    margin-top:-50px;
+}
+
+.room_form_select_label {
+    word-wrap: break-word !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    line-height: 1.3333333333333333em !important;
+    letter-spacing: 0.08333333333333333em !important;
+    color: #484848 !important;
+    text-transform: uppercase;
+}
+
+.room_form_select1, .room_form_select2, .room_form_submit {
+    padding-top: 2rem;
+}
+.room_form_submit {
+    margin-right: auto;
+    padding-left: 1.8rem;
+}
+
+.disabled {
+    /* background-color: rgb(216, 216, 216) !important; */
+
+}
+
+.flatpickr-day {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+}
+.flatpickr-day.nextMonthDay, .flatpickr-day.prevMonthDay {
+    color: rgba(64,72,72,0.6)!important;
+}

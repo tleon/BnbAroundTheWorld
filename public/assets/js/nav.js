@@ -14,9 +14,11 @@ if(url == "http://localhost:8000/"){
   let node = document.getElementsByClassName('nav-links');
 }
 
-
-// function bigSize() {
-//   document.getElementById("contact_footer_mail").style.width = '500px';
-//   document.getElementById("contact_footer_text").style.width = '500px';
-//   document.getElementById("contact_footer_text").style.height = '200px';
-// }
+let spiltUrl = url.split('/');
+let checkUrl = spiltUrl.includes("Room")
+if(checkUrl) {
+  for(let i = 0; i < document.getElementById("navUl").querySelectorAll('a').length; i++){
+    document.getElementById("navUl").querySelectorAll('a')[i].className = 'nav_a_link_black';
+  }
+  
+};

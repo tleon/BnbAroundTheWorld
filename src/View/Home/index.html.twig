@@ -2,9 +2,6 @@
 
 {% block stylesheet %}
 
-<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
-
-
 {% endblock %}
 
 {% block video %}
@@ -13,7 +10,7 @@
       <source src="/assets/video/Vegas.mp4" type="video/mp4">
     </video>
     <div class="card tom-invisible" id="quickB">
-      <form action="" method="get">
+      <form action="/booking/transfert" method="POST">
         <div class="index_form_title">
           <p>Réserver dès maintenant.</p>
         </div>
@@ -37,7 +34,7 @@
             </label>
           </div>
             <div class="date_picker">
-              <input type="text" class="w-full" id="dp1" name="date_arrive" placeholder="JJ/MM/AAAA" data-input>
+              <input type="text" class="w-full" id="dp1" name="date" placeholder="JJ/MM/AAAA" data-input>
             </div>
           
           {# <div class="index_form_date_picker_right">
@@ -53,17 +50,17 @@
           <label class="index_form_select_labet">
             <span>nombre de personnes</span>
           </label>
-          <select name="nbPers">
+          <select name="nbPerson">
               <option disabled selected value="0"></option>
               <option value="1">1 personne</option>
               <option value="2">2 personnes</option>
               <option value="3">3 personnes</option>
               <option value="4">4 personnes</option>
-              <option value="5">4 personnes</option>
+              <option value="5">5 personnes</option>
             </select>
         </div>
         <div class="index_form_submit">
-          <button type="submit" value="submi" class="custom_btn">Submit</button>
+          <button type="submit" value="submit" class="custom_btn">Submit</button>
         </div>
       </form>
       <!-- <div class="card-content">
@@ -106,7 +103,7 @@
   </div>
 </div>{% endblock %}{% block description %}
 <div class="container">
-  <h2>Notre Gîte</h2>
+  <h2 id='notreGite'>Notre Gîte</h2>
   <div class="divider"></div>
   <br>
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
@@ -117,6 +114,7 @@
 <div class="parallax-container">
   <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
 </div>{% endblock %}{% block content %}
+<div class="container" id="main-body">
 <br><br>
 <div class="index-chambres">
   <div class="blocktext-1 ">
@@ -132,7 +130,7 @@
   </div>
 
   <div class="blockImage-2">
-    <img height="600" src="/assets/images/thailand.png" width="800">
+    <img src="/assets/images/thailand.png">
     <div class="relative">
         <button class="btn_white">Acceder à la chambre</button>
     </div>
@@ -149,13 +147,13 @@
     <!-- <a class="btn color-dark-blue white" href="/Room/show/4">Acceder à la chambre</a> -->
   </div>
   <div class="blockImage-3">
-    <img height="600" src="/assets/images/france.png" width="800">
+    <img src="/assets/images/france.png">
     <div class="relative">
         <button class="btn_white">Acceder à la chambre</button>
     </div>
   </div>
   <div class="blockImage-4">
-    <img height="600" src="/assets/images/japan.png" width="800">
+    <img src="/assets/images/japan.png">
     <div class="relative">
         <button class="btn_white">Acceder à la chambre</button>
     </div>
@@ -174,58 +172,16 @@
 
   </div>
   <div class="blockImage-5">
-    <img height="600" src="/assets/images/africa.png" width="800">
+    <img src="/assets/images/africa.png">
     <div class="relative">
         <button class="btn_white">Acceder à la chambre</button>
     </div>
   </div>
 </div>
 </div>
-<footer>
-  <div class="footer_container">
 
-    <div class="footer_box1">
-      <div class="line_black"></div>
-    </div>
-
-    <div class="footer_box2">
-        <p>contact</p>
-    </div>
-
-    <div class="footer_box3">
-      <div class="line_black"></div>
-    </div>
-
-    <div class="footer_box4">
-      <p>tel: 0123456789</p>
-      <p>lesmeilleursdevPHP@gmail.com</p>
-    </div>
-
-    <div class="footer_box5">
-      <div class="w-33"><i class="color-dark fab fa-twitter"></i></div>
-      <div class="w-33"><i class="fab fa-vuejs"></i></div>
-        {# <i class="color-dark fab fa-instagram"></i> #}
-      <div class="w-33"><i class="color-dark fab fa-php"></i></div>
-    </div>
-
-    {# <div class="footer_bar_vertical">
-        <div class="v_line_black"></div>
-    </div> #}
-
-    <div class="footer_box6">
-        <p>18 rue Quelque part</p>
-        <p>01234, France</p>
-    </div>
-
-    <div class="footer_box7">
-    </div>
-
-  </div>
-</footer>
 {% endblock %}{% block javascript %}
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-<script src="https://unpkg.com/flatpickr@4.5.7/dist/l10n/fr.js"></script>
+<script src="/assets/js/indexScrollEffect.js"></script>
 <script>
 
   flatpickr("#dp1", {
@@ -246,11 +202,11 @@
     // }
   });
 
-  flatpickr("#dp2", {
-    dateFormat: "d.m.Y",
-    minDate: new Date(),
-    mode: "range"
-  });
+  // flatpickr("#dp2", {
+  //   dateFormat: "d.m.Y",
+  //   minDate: new Date(),
+  //   mode: "range"
+  // });
 
   
 

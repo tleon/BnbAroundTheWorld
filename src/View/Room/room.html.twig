@@ -2,128 +2,144 @@
 
 {% block title %}Chambre{% endblock %}
 {% block stylesheet %}
-    <link href="/assets/css/room.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link href="/assets/css/room.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="images">
+  <img src="/assets/images/{{ room.pic_path }}">
+</div>
 
-    <h1>{{ room.name }}</h1>
-    <div class="row">
-        <div class="col s12 m7">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/assets/images/{{ room.pic_path }}">
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12 m3 offset-m1">
-            <div class="card-image">
-                <div class="card-title">
-                    <span>Thème de la chambre</span>
-                </div>
-                <div class="card-image">
-                    <img src="/assets/images/{{ room.location }}">
-                </div>
-            </div>
-        </div>
+<div class="room">
+  <form method="get" class="formulaire">
+    <div class="room_form_date_picker">
+      <label class="room_form_select_label">
+        <span>dates de sejour</span>
+      </label>
+      <input type="text" class="flatpickr-calendar" name="date" value="">
     </div>
+
+    <div class="room_form_select1">
+      <label class="index_form_select_labet">
+        <span>nombre de personnes</span>
+      </label>
+      <select name="nbPerson">
+        <option disabled selected value="0"></option>
+        <option value="1">1 personne</option>
+        <option value="2">2 personnes</option>
+        <option value="3">3 personnes</option>
+        <option value="4">4 personnes</option>
+        <option value="5">5 personnes</option>
+      </select>
+    </div>
+
+    <div class="room_form_select2">
+      <label class="index_form_select_labet">
+        <span>Options possibles</span>
+      </label>
+      <select name="options">
+        <option value=" " disabled selected>Options possibles</option>
+        <option value="Petit déjeuner">Petit déjeuner</option>
+        <option value="Table d'hôte">Table d'hôte</option>
+        <optgroup label="Lit bébé">
+          <option value="baby1">1</option>
+          <option value="baby2">2</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="room_form_submit">
+      <button type="submit" value="submit" class="custom_btn">Valider</button>
+    </div>
+  </form>
+  <div class="description">
+      <p>{{ room.name }}</p>
+    <span>Description</span>
+    <p>{{ room.description }}</p>
+    <span>Caractéristiques</span>
+    <p>{{ room.caracs }}</p>
+  </div>
+
+
+  <div class="commentaire">
+    <div class="card opinion">
+      <div class="card-content">
+        <div class="stars">
+          <img src="/assets/images/star.png">
+          <img src="/assets/images/star.png">
+          <img src="/assets/images/star.png">
+        </div>
+        <div class="opinion-text">
+          <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et
+            éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
+          </p>
+        </div>
+        <div class="author">
+          <span class="author-opinion">Toto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col s12 m7">
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-title">
-                        <span>Description</span>
-                    </div>
-                    <div class="card-content">
-                        <p>{{ room.description }}</p>
-                    </div>
-                </div>
+<!-- Fin -->
 
-                <div class="card">
-                    <div class="card-title">
-                        <span>Caractéristiques</span>
-                    </div>
-                    <div class="card-content">
-                        <p>{{ room.caracs }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col s12 m5">
-            <div class="container-fluid">
-                <form method="post">
 
-                    <div name="room_id" class="room_id" hidden></div>
-                    <div class="input-field col s12">
-                        <select name="nb_person">
-                            <option value="" disabled>Choisir le nombre de personnes</option>
-                            <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
-                            <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
-                            <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
-                            <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
-                        </select>
-                    {{ errors.nb_person }}
-                    </div>
+{# <form method="post">
 
-                    <div class="input-field col s12">
-                        <select name="options" multiple>
-                            <option value=" " disabled selected>Options possibles</option>
-                            <option  value="Petit déjeuner">Petit déjeuner</option>
-                            <option value="Table d'hôte">Table d'hôte</option>
-                            <optgroup label="Lit bébé">
-                                <option value="baby1">1</option>
-                                <option value="baby2">2</option>
-                            </optgroup>
-                        </select>
-                        {{ errors.options }}
-                    </div>
+          <div name="room_id" class="room_id" hidden></div>
+          <div class="input-field col s12">
+            <select name="nb_person">
+              <option value="" disabled>Choisir le nombre de personnes</option>
+              <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+              <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+              <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+              <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
+            </select>
+            {{ errors.nb_person }}
+          </div>
 
-                    <input type="text" id="date" name="date" />
+          <div class="input-field col s12">
+            <select name="options" multiple>
+              <option value=" " disabled selected>Options possibles</option>
+              <option value="Petit déjeuner">Petit déjeuner</option>
+              <option value="Table d'hôte">Table d'hôte</option>
+              <optgroup label="Lit bébé">
+                <option value="baby1">1</option>
+                <option value="baby2">2</option>
+              </optgroup>
+            </select>
+            {{ errors.options }}
+          </div>
 
-                    <button type="submit" class="waves-effect waves-light btn-large" href="#">Réserver</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col s12 m12">
-            <div class="card opinion">
-                <div class="card-content">
-                    <div class="stars">
-                        <img src="/assets/images/star.png">
-                        <img src="/assets/images/star.png">
-                        <img src="/assets/images/star.png">
-                    </div>
-                    <div class="opinion-text">
-                        <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-                        </p>
-                    </div>
-                    <div class="author">
-                        <span class="author-opinion">Toto</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+          <input type="text" id="date" name="date" />
+
+          <button type="submit" class="waves-effect waves-light btn-large" href="#">Réserver</button>
+        </form> #}
+
+
 {% endblock %}
 
 
 {% block javascript %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script> $('#date').daterangepicker({
-    startDate: "{{session.booking.beginDate}}",
-    endDate: "{{session.booking.endDate}}"
-}); </script>
+
+<script>
+var disableDates = {'from' : "29.04.2019", 'to' : "30.04.2019"};
+var tesst = Array(disableDates);
+  flatpickr(".flatpickr-calendar", {
+    inline: true,
+    altFormat: "j F Y",
+    dateFormat: "d.m.Y",
+    minDate: "today",
+    mode: "range",
+    "locale": "fr",
+    disable: tesst
+    // defaultDate: ["28.04.2019", "30.04.2019"]
+  }).open();
+</script>
+
 {% endblock %}

@@ -42,121 +42,121 @@ class BookingController extends AbstractController
     {
         if ($target=="roomPage")
         {
-            $dayBegin = substr($date['beginDate'],4,2);
-            $dayEnd = substr($date['endDate'],4,2);
+            $dayBegin = substr($date['date'],0, 2);
+            $dayEnd = substr($date['date'],-10,2);
 
-            $monthBegin = substr($date['beginDate'],0,3);
-            $monthEnd = substr($date['endDate'],0,3);
+            $monthBegin = substr($date['date'],-21,2);
+            $monthEnd = substr($date['date'],17,2);
 
-            $yearBegin = substr($date['beginDate'],7,5);
-            $yearEnd = substr($date['endDate'],7,5);                
+            $yearBegin = substr($date['date'],-18,4);
+            $yearEnd = substr($date['date'],20,4);                
 
 
                 
 
-            switch($monthBegin)
-            {
-                case "Jan":
-                    $monthBegin = "01";
-                    break;
+            // switch($monthBegin)
+            // {
+            //     case "Jan":
+            //         $monthBegin = "01";
+            //         break;
 
-                case "Feb":
-                    $monthBegin = "02";
-                    break;
+            //     case "Feb":
+            //         $monthBegin = "02";
+            //         break;
 
-                case "Mar":
-                    $monthBegin = "03";
-                    break;
+            //     case "Mar":
+            //         $monthBegin = "03";
+            //         break;
                 
-                case "Apr":
-                    $monthBegin = "04";
-                    break;
+            //     case "Apr":
+            //         $monthBegin = "04";
+            //         break;
                 
-                case "May":
-                    $monthBegin = "05";
-                    break;
+            //     case "May":
+            //         $monthBegin = "05";
+            //         break;
                 
-                case "Jun":
-                    $monthBegin = "06";
-                    break;
+            //     case "Jun":
+            //         $monthBegin = "06";
+            //         break;
                 
-                case "Jul":
-                    $monthBegin = "07";
-                    break;
+            //     case "Jul":
+            //         $monthBegin = "07";
+            //         break;
                 
-                case "Aug":
-                    $monthBegin = "08";
-                    break;
+            //     case "Aug":
+            //         $monthBegin = "08";
+            //         break;
                 
-                case "Sep":
-                    $monthBegin = "09";
-                    break;
+            //     case "Sep":
+            //         $monthBegin = "09";
+            //         break;
                 
-                case "Oct":
-                    $monthBegin = "10";
-                    break;
+            //     case "Oct":
+            //         $monthBegin = "10";
+            //         break;
                 
-                case "Nov":
-                    $monthBegin = "11";
-                    break;
+            //     case "Nov":
+            //         $monthBegin = "11";
+            //         break;
                 
-                case "Dec":
-                    $monthBegin = "12";
-                    break;
-            }
+            //     case "Dec":
+            //         $monthBegin = "12";
+            //         break;
+            // }
         
 
 
-            switch($monthEnd)
-            {
-                case "Jan":
-                    $monthEnd = "01";
-                    break;
+            // switch($monthEnd)
+            // {
+            //     case "Jan":
+            //         $monthEnd = "01";
+            //         break;
 
-                case "Feb":
-                    $monthEnd = "02";
-                    break;
+            //     case "Feb":
+            //         $monthEnd = "02";
+            //         break;
 
-                case "Mar":
-                    $monthEnd = "03";
-                    break;
+            //     case "Mar":
+            //         $monthEnd = "03";
+            //         break;
                 
-                case "Apr":
-                    $monthEnd = "04";
-                    break;
+            //     case "Apr":
+            //         $monthEnd = "04";
+            //         break;
                 
-                case "May":
-                    $monthEnd = "05";
-                    break;
+            //     case "May":
+            //         $monthEnd = "05";
+            //         break;
                 
-                case "Jun":
-                    $monthEnd = "06";
-                    break;
+            //     case "Jun":
+            //         $monthEnd = "06";
+            //         break;
                 
-                case "Jul":
-                    $monthEnd = "07";
-                    break;
+            //     case "Jul":
+            //         $monthEnd = "07";
+            //         break;
                 
-                case "Aug":
-                    $monthEnd = "08";
-                    break;
+            //     case "Aug":
+            //         $monthEnd = "08";
+            //         break;
                 
-                case "Sep":
-                    $monthEnd = "09";
-                    break;
+            //     case "Sep":
+            //         $monthEnd = "09";
+            //         break;
                 
-                case "Oct":
-                    $monthEnd = "10";
-                    break;
+            //     case "Oct":
+            //         $monthEnd = "10";
+            //         break;
                 
-                case "Nov":
-                    $monthEnd = "11";
-                    break;
+            //     case "Nov":
+            //         $monthEnd = "11";
+            //         break;
                 
-                case "Dec":
-                    $monthEnd = "12";
-                    break;
-            }
+            //     case "Dec":
+            //         $monthEnd = "12";
+            //         break;
+            // }
 
 
 
