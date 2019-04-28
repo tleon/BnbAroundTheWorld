@@ -33,8 +33,8 @@
               <span>dates de sejour</span>
             </label>
           </div>
-            <div class="date_picker">
-              <input type="text" class="w-full" id="dp1" name="date" placeholder="JJ/MM/AAAA" data-input>
+            <div class="date_picker" id="tooltiptest">
+              <input type="text" class="w-full" id="dp1" name="date" placeholder="SELECTIONNEZ VOS DATES" data-input hidden>
             </div>
           
           {# <div class="index_form_date_picker_right">
@@ -56,7 +56,6 @@
               <option value="2">2 personnes</option>
               <option value="3">3 personnes</option>
               <option value="4">4 personnes</option>
-              <option value="5">5 personnes</option>
             </select>
         </div>
         <div class="index_form_submit">
@@ -124,7 +123,7 @@
   <div class="blockImage-1">
     <img src="/assets/images/usa.png">
     <div class="relative">
-        <button class="btn_white">Acceder à la chambre</button>
+        <button class="btn_white" onclick="window.location.href='room/show/1'">Acceder à la chambre</button>
     </div>
     <!-- <a class="btn color-dark-blue white" href="/Room/show/1">Acceder à la chambre</a> -->
   </div>
@@ -132,7 +131,7 @@
   <div class="blockImage-2">
     <img src="/assets/images/thailand.png">
     <div class="relative">
-        <button class="btn_white">Acceder à la chambre</button>
+        <button class="btn_white" onclick="window.location.href='room/show/3'">Acceder à la chambre</button>
     </div>
   </div>
 
@@ -149,13 +148,13 @@
   <div class="blockImage-3">
     <img src="/assets/images/france.png">
     <div class="relative">
-        <button class="btn_white">Acceder à la chambre</button>
+        <button class="btn_white" onclick="window.location.href='room/show/4'">Acceder à la chambre</button>
     </div>
   </div>
   <div class="blockImage-4">
     <img src="/assets/images/japan.png">
     <div class="relative">
-        <button class="btn_white">Acceder à la chambre</button>
+        <button class="btn_white" onclick="window.location.href='room/show/2'">Acceder à la chambre</button>
     </div>
   </div>
   <div class="blocktext-4">
@@ -174,7 +173,7 @@
   <div class="blockImage-5">
     <img src="/assets/images/africa.png">
     <div class="relative">
-        <button class="btn_white">Acceder à la chambre</button>
+        <button class="btn_white" onclick="window.location.href='room/show/5'">Acceder à la chambre</button>
     </div>
   </div>
 </div>
@@ -185,86 +184,50 @@
 <script>
 
 
-//     let event = document.getElementById('roomId');
-//     event.addEventListener('change', function() {
-//       let getUrl = window.location;
-//       let baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + "/room/getUnavailableDate/" + this.value;
-//       getBooking(baseUrl);
-//     }, false);
+let event = document.getElementById('roomId');
+event.addEventListener('change', function() {
+  let getUrl = window.location;
+  let baseUrl = getUrl .protocol + "//" + getUrl.host + "/room/getUnavailableDate/" + this.value;
+  getBooking(baseUrl);
+}, false);
 
-    
+const getBooking = (url) => {
+  fetch(url).then(function(response) {
+    return response.json();
+  }).then(function(json) {
+    bookings = json;
+    getData();
+  }).catch(function(err) {
+    console.log('Fetch problem: ' + err.message);
+  });
+}
 
-// const getBooking = (url) => {
-//   fetch(url).then(function(response) {
-//     return response.json();
-//   }).then(function(json) {
-//     bookings = json;
-//     getData();
-//   }).catch(function(err) {
-//     console.log('Fetch problem: ' + err.message);
-//   });
-// }
-// let getData = () => {
-//   console.log(bookings);
-//   let unavailableDate = [];
-//   for(let i = 0;  i < Object.keys(bookings).length -1; i++){
-//     // emptyArr.push(bookings);
-//     unavailableDate.push(bookings[i]);
-//   }
-//   flatpickr("#dp1", {
-//     inline: true,
-//     altFormat: "j F Y",
-//     dateFormat: "d.m.Y",
-//     minDate: "today",
-//     mode: "range",
-//     "locale": "fr",
-//     disable: unavailableDate
-//   });
-// }
-
-
-
-
-    flatpickr("#dp1", {
-    altInput: true,
+let getData = () => {
+  let unavailableDate = [];
+  for(let i = 0;  i < Object.keys(bookings).length -1; i++){
+    unavailableDate.push(bookings[i]);
+  }
+  flatpickr("#dp1", {
+    position: "above",
     altFormat: "j F Y",
     dateFormat: "d.m.Y",
     minDate: "today",
     mode: "range",
-    "locale": "fr"
-    });
+    "locale": "fr",
+    disable: unavailableDate
+  });
+}
 
 
-
-
-
-  // flatpickr("#dp1", {
-  //   altInput: true,
-  //   altFormat: "j F Y",
-  //   dateFormat: "d.m.Y",
-  //   minDate: "today",
-  //   mode: "range",
-  //   "locale": "fr"
-  //   onChange: function(){
-  //     data = document.getElementById("dp1").value;
-  //     let explD = data.split(data, '.');
-  //     let h = new Date(data[2] + '-' + data[1] + '-' + data[0]);
-  //     console.log(h);
-  //     setTimeout(function() {
-  //       document.getElementById("dp2").select();
-  //     }, 200);
-  //   }
-  // });
-
-  // flatpickr("#dp2", {
-  //   dateFormat: "d.m.Y",
-  //   minDate: new Date(),
-  //   mode: "range"
-  // });
-
-  
-
-  
+// TODO :  Tooltip a creer
+let inputId = document.getElementById("dp1");
+let inputIdParent = document.getElementById("tooltiptest");
+inputIdParent.addEventListener("click", function () {
+  if (window.getComputedStyle(inputId).display === "none") {
+    var toastHTML = '<span class="alert_resa">Choisissez une chambre pour voir les disponibilités</span>';
+    M.toast({html: toastHTML});
+  }
+}, false);
 
 </script>
 <script>

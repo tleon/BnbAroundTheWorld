@@ -177,13 +177,3 @@
     margin-right: auto;
     padding-left: 1.8rem;
 }
-
-.flatpickr-day {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-}
-.flatpickr-day.nextMonthDay, .flatpickr-day.prevMonthDay {
-    color: #404848;
-}
-.flatpickr-day.disabled {
-    color: rgba(64,72,72,0.1)!important;
-}

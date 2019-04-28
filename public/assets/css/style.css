@@ -665,3 +665,22 @@ footer {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.99)!important;
 }
+
+.flatpickr-day {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+}
+.flatpickr-day.nextMonthDay, .flatpickr-day.prevMonthDay {
+  color: #404848;
+}
+.flatpickr-day.disabled {
+  color: rgba(64,72,72,0.1)!important;
+}
+span.alert_resa {
+  color: #bac8e0;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-decoration-style: solid;
+  text-transform: uppercase;
+  
+}
