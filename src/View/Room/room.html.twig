@@ -38,6 +38,7 @@
         <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
         <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
       </select>
+      {{ errors.nb_person }}
     </div>
 
 
@@ -76,6 +77,19 @@
     </div>
     <div id="tab2" class="col s12">
       <p>{{ room.caracs }}</p>
+      <ul>
+      {% for carac in caracs %}
+          {% if carac == 'dej' %}
+              <li>Petit Déjeuné</li>
+          {% endif %}
+          {% if carac == 'separateBed' %}
+              <li>Lits séparés</li>
+          {% endif %}
+          {% if carac == 'repas' %}
+              <li>Table d'hôte</li>
+          {% endif %}                                
+      {% endfor %}
+      </ul>
     </div>
     <div id="tab3" class="col s12">
       <span>Options</span>
