@@ -2,6 +2,7 @@
 
 {% block stylesheet %}
 <link href="/assets/css/aboutus.css" rel="stylesheet">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 {% endblock %}
 
 
@@ -69,7 +70,7 @@
                  <br/><span class="cardAboutUs color-dark-blue"><u>l'étage :</u></span> <br/><br/> 
                  <ul class="cardAboutUs">
                    <li>- coin cuisine, séjour, cellier</li>
-                   <li>- 4 chambres, salle d'eau avec wc</li>
+                   <li>- 5 chambres, salle d'eau avec wc</li>
                    <li>- Aire de jeux, parking, jardin commun</li>
                  </ul><br/>
                  <span class="cardAboutUs">Chauffage central granulés bois. </span>
@@ -78,10 +79,91 @@
 
             </div>
           </div>
-  
     </div>
 
-  
+    <form method="post">
+        <h3>Nous contacter</h3>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="lastname" type="text" class="validate">
+                        <label for="lastname">Nom</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="firstname" type="text" class="validate">
+                        <label for="firstname">Prénom</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="Message" class="materialize-textarea"></textarea>
+                        <label for="Message">Votre message</label>
+                    </div>
+                </div>
+                <input class="btn white color-dark-blue" type="submit" value="Envoyer">
+            </div>
+        </div>
+    </form>
+
+    <form method="post">
+        <h3>Laisser votre avis !</h3>
+        <div class="row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate">
+                        <label for="username">Prénom</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Votre chambre</option>
+                            <option value="Afrique">Afrique</option>
+                            <option value="France">France</option>
+                            <option value="Japon">Japon</option>
+                            <option value="Thaïlande">Thaïlande</option>
+                            <option value="USA">USA</option>
+                        </select>
+                        <label>Chambre</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s5">
+                        <div class="stars">
+                            <input class="star star-5" id="star-5" type="radio" name="star"/>
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star"/>
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star"/>
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star"/>
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star"/>
+                            <label class="star star-1" for="star-1"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="opinion" class="materialize-textarea"></textarea>
+                        <label for="opinion">Votre avis</label>
+                    </div>
+                </div>
+                <input class="btn white color-dark-blue" type="submit" value="Envoyer">
+            </div>
+        </div>
+    </form>
+
 {% endblock %}
 
 {% block javascript %}

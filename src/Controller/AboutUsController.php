@@ -17,7 +17,5 @@ class AboutUsController extends AbstractController
     {
         return $this->twig->render('AboutUs/aboutUs.html.twig');
     }
-
-
     
 }
