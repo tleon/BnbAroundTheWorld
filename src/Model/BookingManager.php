@@ -130,6 +130,32 @@ class BookingManager extends AbstractManager
         }
 
     }
+
+    //get all booked date for a specific room
+    public function getLockedBookedDates($roomId) {
+        $sql = "SELECT begin_date, end_date FROM $this->table WHERE room_id=:room_id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue('room_id', $roomId, \PDO::PARAM_INT);
+        $statement->execute();
+        try{
+            return $statement->fetchAll();
+        }catch(\PDOException $e ) { 
+            return $e;
+        }
+    }
+    
+    //get user id then select his booking for later deletion.
+    public function getUserBooking($userId) {
+        $sql = "SELECT * FROM booking WHERE user_id=:user_id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
+        $statement->execute();
+        try{
+            return $statement->fetchAll();
+        }catch(\PDOException $e){
+            return $e;
+        }
+    }
 }
 
 
