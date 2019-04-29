@@ -116,7 +116,7 @@ let appear = (element) => {
           
           setTimeout(function() {
               element.classList.remove("display-enter-active");
-          }, 800);
+          }, 1000);
       }, 0);
   }, 0);
 };
