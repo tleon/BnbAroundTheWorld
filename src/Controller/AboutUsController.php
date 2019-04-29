@@ -20,9 +20,12 @@ class AboutUsController extends AbstractController
         return $this->twig->render('AboutUs/aboutUs.html.twig');
     }
 
- /*   public function donneTonAvis()
+    public function donneTonAvis()
     {
-
-    }*/
+        $opinionData=[];
+        $opinionData['room_id']=$_POST['roomId'];
+        $opinionData['comment']=$_POST['opinion'];
+        $opinionData['grade']=$_POST['star'];
+    }
     
 }

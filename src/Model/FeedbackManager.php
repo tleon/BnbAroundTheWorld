@@ -27,10 +27,9 @@ class FeedbackManager extends AbstractManager
     }
 
 
- /*   public function insertOpinion(array $opinionData)
+    public function insertOpinion(array $opinionData)
     {
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (user_id, grade, comment, room_id) VALUES (:user_id, :grade, :comment, :room_id)");
-        $statement->bindValue('user_id', $opinionData['user_id'],\PDO::PARAM_INT);
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (grade, comment, room_id) VALUES (:grade, :comment, :room_id)");
         $statement->bindValue('grade', $opinionData['grade'], \PDO::PARAM_INT);
         $statement->bindValue('comment', $opinionData['comment'], \PDO::PARAM_TEXT);
         $statement->bindValue('room_id', $opinionData['room_id'], \PDO::PARAM_INT);
@@ -41,5 +40,5 @@ class FeedbackManager extends AbstractManager
         }catch(PDOException $e){
             return $e;
         }
-    }*/
+    }
 }

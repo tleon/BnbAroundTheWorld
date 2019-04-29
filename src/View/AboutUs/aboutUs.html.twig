@@ -120,17 +120,17 @@
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="username" type="text" class="validate">{{ session.username }}
+                        <input id="username" type="text" class="validate" value="{{ session.username }}">
                         <label for="username">Prénom</label>
                     </div>
                     <div class="input-field col s4">
-                        <select>
+                        <select name="roomId">
                             <option value="" disabled selected>Votre chambre</option>
-                            <option value="Afrique">Afrique</option>
-                            <option value="France">France</option>
-                            <option value="Japon">Japon</option>
-                            <option value="Thaïlande">Thaïlande</option>
-                            <option value="USA">USA</option>
+                            <option value="5">Afrique</option>
+                            <option value="4">France</option>
+                            <option value="2">Japon</option>
+                            <option value="3">Thaïlande</option>
+                            <option value="1">USA</option>
                         </select>
                         <label>Chambre</label>
                     </div>
@@ -155,7 +155,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="opinion" class="materialize-textarea"></textarea>
+                        <textarea id="opinion" name="opinion" class="materialize-textarea"></textarea>
                         <label for="opinion">Votre avis</label>
                     </div>
                 </div>
