@@ -27,7 +27,7 @@ class FeedbackManager extends AbstractManager
     }
 
 
-    public function insertOpinion(array $opinionData)
+ /*   public function insertOpinion(array $opinionData)
     {
         $statement = $this->pdo->prepare("INSERT INTO $this->table (user_id, grade, comment, room_id) VALUES (:user_id, :grade, :comment, :room_id)");
         $statement->bindValue('user_id', $opinionData['user_id'],\PDO::PARAM_INT);
@@ -41,5 +41,5 @@ class FeedbackManager extends AbstractManager
         }catch(PDOException $e){
             return $e;
         }
-    }
+    }*/
 }

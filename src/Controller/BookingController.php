@@ -188,7 +188,7 @@ class BookingController extends AbstractController
             return $this->twig->render('Home/signIn.html.twig');
         }
 
-        else if (!isset($_POST['roomId']))
+        elseif (!isset($_POST['roomId']))
         {
             $error = "veuillez choisir une chambre";
             return $this->twig->render('Home/index.html.twig',['error' => $error]);
@@ -204,7 +204,7 @@ class BookingController extends AbstractController
                     $nbGuestSelected[1]="selected";
                 }
             
-            else if ($_POST['nbPerson']!="1")
+            elseif ($_POST['nbPerson']!="1")
                 {
                     $nbGuestSelected[1]=" ";
                 }
@@ -215,7 +215,7 @@ class BookingController extends AbstractController
                     $nbGuestSelected[2]="selected";
                 }
             
-            else if ($_POST['nbPerson']!="2")
+            elseif ($_POST['nbPerson']!="2")
                 {
                     $nbGuestSelected[2]=" ";
                 }
