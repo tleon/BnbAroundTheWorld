@@ -19,7 +19,10 @@ class RoomController extends AbstractController
 
         $feedbackManager = new FeedbackManager();
         $feedbacks = $feedbackManager->selectAllFeedbackByRoomId($id);
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'feedback' => $feedbacks]);
+
+        $invalidDate= new InvalidDate();
+
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'feedback' => $feedbacks, 'invalidDate'=> $invalidDate]);
     }
   
     private function checkData($data)

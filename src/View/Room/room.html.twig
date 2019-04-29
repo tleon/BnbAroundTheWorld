@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container-fluid">
-
+{{ dump(allBooking) }}
     <h1>{{ room.name }}</h1>
     <div class="row">
         <div class="col s12 m7">
@@ -120,5 +120,16 @@
 {% block javascript %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script> $('#date').daterangepicker(); </script>
+<script>
+    let lastDay=new Date();
+    $('#date').daterangepicker({
+        minDate: lastDay
+    });
+
+    function invalidDate {
+        if
+
+    return ["05/19/2016","05/20/2016"].indexOf(formatted) > -1;
+}</script>
+
 {% endblock %}

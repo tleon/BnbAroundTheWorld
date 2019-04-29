@@ -72,6 +72,16 @@ class BookingManager extends AbstractManager
         $bookings = $statement->fetchall();
         return $bookings;
     }
+
+
+    public function selectAllBooking(int $id): array
+    {
+        $statement = $this->pdo->prepare("SELECT booking.begin_date, booking.end_date, room.id FROM $this->table INNER JOIN room ON room.id=booking.room_id WHERE room.id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+        $allDateReserved = $statement->fetchAll();
+        return $allDateReserved;
+    }
 }
 
 
