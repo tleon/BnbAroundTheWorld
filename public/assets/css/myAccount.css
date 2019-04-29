@@ -1,0 +1,26 @@
+.btn{
+    float:right;
+}
+.card{
+    padding-bottom: 20px;
+}
+.page-title{
+    font-weight: 300;
+    color: #003b55;
+}
+
+.booking-title{
+    font-weight: 200;
+    color: #003b55;
+}
+
+hr{ 
+    height: 1px;
+    background-color: grey;
+    border: none;
+    margin-bottom: 30px;
+  }
+
+.hr-title{
+    width:60%;
+}

@@ -82,6 +82,16 @@ class BookingManager extends AbstractManager
         return $bookings;
     }
 
+    public function selectBookingByUserId(int $id) : array
+    {
+        $statement = $this->pdo->prepare("select begin_date, end_date, nb_person, options, total_price, name from $this->table join room on room.id=room_id where user_id=:id and begin_date >= NOW() ORDER BY begin_date ASC");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+        $bookings = $statement->fetchall();
+        return $bookings;
+    }
+
+
     // returns booking number per month as an array
     public function bookingPerMonth() {
         $sql = "SELECT EXTRACT(year_month FROM begin_date) as month, COUNT(*) as reservations FROM $this->table GROUP BY month";
