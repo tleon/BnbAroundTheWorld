@@ -1,3 +1,7 @@
+.container-fluid{
+  margin-top: 100px;
+}
+
 .mapouter {
   position: relative;
   text-align: right;
