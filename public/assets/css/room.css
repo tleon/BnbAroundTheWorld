@@ -18,6 +18,9 @@ nav ul a {
     color: #484848!important;
     text-decoration: none;
 }
+.room {
+    padding-top: 2rem;
+}
 
 @media screen and (min-width: 769px) {
     nav {
