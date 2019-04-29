@@ -20,6 +20,7 @@ class AdminController extends AbstractController
      */
     public function index()
     {   
+
         if( empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
             return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
         } else {
