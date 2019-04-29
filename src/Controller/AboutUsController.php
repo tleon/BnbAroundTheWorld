@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\FeedbackManager;
+
 class AboutUsController extends AbstractController
 {
 
@@ -16,6 +18,11 @@ class AboutUsController extends AbstractController
     public function show()
     {
         return $this->twig->render('AboutUs/aboutUs.html.twig');
+    }
+
+    public function donneTonAvis()
+    {
+
     }
     
 }

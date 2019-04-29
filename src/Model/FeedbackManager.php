@@ -25,4 +25,21 @@ class FeedbackManager extends AbstractManager
         $feedback = $statement->fetchall();
         return $feedback;
     }
+
+
+    public function insertOpinion(array $opinionData)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (user_id, grade, comment, room_id) VALUES (:user_id, :grade, :comment, :room_id)");
+        $statement->bindValue('user_id', $opinionData['user_id'],\PDO::PARAM_INT);
+        $statement->bindValue('grade', $opinionData['grade'], \PDO::PARAM_INT);
+        $statement->bindValue('comment', $opinionData['comment'], \PDO::PARAM_TEXT);
+        $statement->bindValue('room_id', $opinionData['room_id'], \PDO::PARAM_INT);
+
+        try {
+            $statement->execute();
+            return true;
+        }catch(PDOException $e){
+            return $e;
+        }
+    }
 }
