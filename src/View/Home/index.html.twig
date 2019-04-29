@@ -1,25 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 
-              <label for="datepicker">Date de départ
-              </label>
-              <input class="datepicker" id="datepickerBegin" name="beginDate" type="text">
-            </div>
-            <div class="col s6">
-              <label for="endDate">Date d'arrivée
-              </label>
-              <input class="datepicker" id="datepickerEnd" name="endDate" type="text">
-            </div>
-          </div>
-          <label for="nbPerson">Nombre de personnes</label>
-          <p class="range-field">
-            <input id="nombrepersonne" max="4" min="1" name="nbPerson" type="range"/>
-          </p>
-          <button class="btn waves-effect waves-light" name="action" type="submit">Submit
-            <i class="material-icons right">send</i>
-          </button>
-        </form>
-
 {% block video %}
 <div class="container" id="video">
   <video autoplay class="responsive-video" loop>
@@ -73,7 +54,11 @@
     
   </div>
 </div>
-</div>{% endblock %}{% block description %}
+</div>{% endblock %}
+
+
+
+{% block description %}
 <div class="container">
   <h2 id='notreGite'>Notre Gîte</h2>
   <div class="divider"></div>
@@ -83,11 +68,21 @@
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat
   cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
   <br><br><br>
-</div>{% endblock %}{% block parallax %}
+</div>
+{% endblock %}
+
+
+
+{% block parallax %}
 
 <div class="parallax-container">
   <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
-</div>{% endblock %}{% block content %}
+</div>
+{% endblock %}
+
+
+
+{% block content %}
 <div class="container" id="main-body">
   <br><br>
   <div class="index-chambres">
@@ -169,7 +164,11 @@
   </div>
 </div>
 
-{% endblock %}{% block javascript %}
+{% endblock %}
+
+
+
+{% block javascript %}
 <script src="/assets/js/indexScrollEffect.js"></script>
 <script src="/assets/js/index.datePicker.js"></script>
 <script>
