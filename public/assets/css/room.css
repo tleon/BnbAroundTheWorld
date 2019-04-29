@@ -46,7 +46,7 @@ nav ul a {
         display: grid;
         grid-template-columns: 50% 50%;
         grid-template-rows: 33% auto auto auto;
-        
+        grid-column-gap: 20px;
         grid-row-gap: 20px;
         grid-template-areas:
             "images form"
@@ -74,7 +74,7 @@ nav ul a {
     .formulaire {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
+        grid-template-rows: 33% auto auto auto;
         grid-template-areas:
             "room_form_date_picker room_form_select1"
             "room_form_date_picker room_form_select2"
@@ -127,9 +127,27 @@ nav ul a {
     padding-top:0;
 }
 
+@media only screen and (max-width: 768px){
+    .images {
+        max-height: 500px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .images {
+        max-height: 500px;
+    }
+}
+
 @media only screen and (max-width: 700px){
     .room-preview img {
         display: none;
+    }
+    .images {
+        max-height: 200px;
+    }
+    .tabs {
+        width: 100%;
     }
 }
 .room-preview {
@@ -243,4 +261,3 @@ h1 {
 .tabs .indicator {
     background-color:#4f99ff;
 }
-

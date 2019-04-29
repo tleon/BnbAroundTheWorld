@@ -10,7 +10,15 @@
   height: 500px;
   width: 600px;
 }
-.cardAboutUs {
-font-size: 24px;
-font-family: Georgia, 'Times New Roman', Times, serif;
+
+.aboutus-title{
+  margin: 70px;
+}
+
+.aboutus-logo{
+  margin: 50px;
+}
+
+.aboutus-text{
+  margin-top: 60px;
 }
