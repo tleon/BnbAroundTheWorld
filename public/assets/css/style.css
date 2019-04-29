@@ -373,8 +373,6 @@ nav ul a:hover {
   border-radius: 3px !important;
   padding: 11px !important;
   padding-top: 8px !important;
-  font-size: 16px !important;
-  font-weight: 400 !important;
   line-height: normal !important;
   display: block !important;
   height: 30px !important;
@@ -385,6 +383,15 @@ nav ul a:hover {
   letter-spacing: 1.3px;
   text-decoration-style: solid;
   text-transform: uppercase;
+}
+.multiple-select-dropdown span {
+  font-size: 0.625rem !important;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+  text-decoration-style: solid;
+  text-transform: uppercase;
+  height: 30px !important;
+  color: rgba(0,0,0,0.62) !important;
 }
 
 .select-wrapper .caret {
@@ -674,13 +681,4 @@ footer {
 }
 .flatpickr-day.disabled {
   color: rgba(64,72,72,0.1)!important;
-}
-span.alert_resa {
-  color: #bac8e0;
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-decoration-style: solid;
-  text-transform: uppercase;
-  
 }

@@ -14,6 +14,11 @@
     border-top: 1px solid #CCCCCC;
 }
 
+nav ul a {
+    color: #484848!important;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 769px) {
     nav {
         background-color: #ffffff !important;

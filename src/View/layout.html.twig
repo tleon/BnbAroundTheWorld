@@ -28,7 +28,7 @@
       <div class="line"></div>
     </div>
     <ul class="logo">
-      <li class="side-img"><img alt="logo" src="/assets/images/favicon.png"></li>
+      <li class="side-img" onclick="window.location.href='/'"><img alt="logo" src="/assets/images/favicon.png"></li>
     </ul>
     <ul class="nav-links" id="navUl">
       <li><a class="modal-trigger" href="/AboutUs/show" id="connect">About</a></li>
@@ -41,57 +41,7 @@
       {% endif %}
     </ul>
   </nav>
-  {# <header>
-      <ul class="sidenav" id="slide-out">
-        <li class="side-img"><img alt="logo" src="/assets/images/logo.png"></li>
-        <li><a href="/home/index">Acceuil</a></li>
-        {% if connected %}
-          <li>
-            <a class="waves-effect waves-light modal-trigger bg-lg-white color-dark-blue" href="/Home/logout" id="connect">Déconnexion</a>
-          </li>
-        {% else %}
 
-          <li>
-            <a class="waves-effect waves-light modal-trigger bg-lg-white color-dark-blue" href="#modal1" id="connect">Connexion</a>
-          </li>
-        {% endif %}
-        <li>
-          <a class="waves-effect waves-light modal-trigger bg-lg-white color-dark-blue" href="/AboutUs/show" id="aboutus">A propos du gîte</a>
-        </li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li>
-          <a class="subheader">Chambres</a>
-        </li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li>
-          <a href="/Room/show/1">USA</a>
-        </li>
-        <li>
-          <a href="/Room/show/2">Japon</a>
-        </li>
-        <li>
-          <a href="/Room/show/3">Thailande</a>
-        </li>
-        <li>
-          <a href="/Room/show/4">France</a>
-        </li>
-        <li>
-          <a href="/Room/show/5">Afrique</a>
-        </li>
-      </ul>
-      <a class="sidenav-trigger right" data-target="slide-out" href="#" id="burger-menu">
-        <i class="medium material-icons">menu</i>
-      </a>
-      <a href="/Home/index">
-        <img alt="" class="img-logo" id="logo" src="https://files.slack.com/files-pri/T6SG2QGG2-FJ1HDMUBY/favicon.png">
-      </a>
-
-
-    </header> #}
   {% block video %}{% endblock %}
 
 
@@ -137,13 +87,9 @@
       <div class="footer_box5">
         <div class="w-33"><i class="color-dark fab fa-twitter"></i></div>
         <div class="w-33"><i class="fab fa-vuejs"></i></div>
-        {# <i class="color-dark fab fa-instagram"></i> #}
-        <div class="w-33"><i class="color-dark fab fa-php"></i></div>
+        <div class="w-33"><i class="color-dark fab fa-instagram"></i></div>
       </div>
 
-      {# <div class="footer_bar_vertical">
-              <div class="v_line_black"></div>
-          </div> #}
 
       <div class="footer_box6">
         <p>18 rue Quelque part</p>
@@ -155,45 +101,6 @@
 
     </div>
   </footer>
-
-
-  <!-- <footer class="page-footer " id="footer">
-
-        <div class="row">
-          <div class="col s6">
-            <ul class="color-dark-blue collection with-header">
-              <li class="collection-header">Nous contacter
-              </li>
-              <li class="collection-item">Téléphone : 0123456789</li>
-              <li class="collection-item">Mail : lesmeilleursdevPHP@gmail.com</li>
-              <li class="collection-item">Adresse : 18 rue Quelque part 01234, France</li>
-            </ul>
-          </div>
-          <div class="col s6">
-            <ul class="color-dark-blue collection with-header">
-              <li class="collection-header">Retrouvez nous aussi sur les réseaux sociaux</li>
-              <li class="collection-item">
-                <i class="color-dark-blue fab fa-facebook">
-                  Facebook</i>
-              </li>
-              <li class="collection-item">
-                <i class="color-dark-blue fab fa-twitter">
-                  Twitter</i>
-              </li>
-              <li class="collection-item">
-                <i class="color-dark-blue fab fa-google-plus">
-                  Google +</i>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container color-dark-blue">
-            © 2019 Bnb Around The World, Inc, All right reserved.
-          </div>
-        </div>
-      </footer> -->
-
 
   <div class="modal bg-lg-white" id="modal1">
     <div class="modal-content">
