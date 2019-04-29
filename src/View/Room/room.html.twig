@@ -25,7 +25,7 @@
                     <span>Thème de la chambre</span>
                 </div>
                 <div class="card-image">
-                    <img src="/assets/images/{{ room.location }}">
+                    <img src="/assets/flags/logo-{{ room.pic_path }}">
                 </div>
             </div>
         </div>
@@ -37,22 +37,26 @@
     <div class="row">
         <div class="col s12 m7">
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-title">
-                        <span>Description</span>
-                    </div>
-                    <div class="card-content">
+                <div class="row">
+                    <h4>Description</h4>
                         <p>{{ room.description }}</p>
-                    </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-title">
-                        <span>Caractéristiques</span>
-                    </div>
-                    <div class="card-content">
-                        <p>{{ room.caracs }}</p>
-                    </div>
+                <div class="row">
+                        <h4>Caractéristiques</h4>
+                        <ul>
+                            {% for carac in caracs %}
+                                {% if carac == 'dej' %}
+                                    <li>Petit Déjeuné</li>
+                                {% endif %}
+                                {% if carac == 'separateBed' %}
+                                    <li>Lits séparés</li>
+                                {% endif %}
+                                {% if carac == 'repas' %}
+                                    <li>Table d'hôte</li>
+                                {% endif %}                                
+                            {% endfor %}
+                        </ul>
                 </div>
             </div>
         </div>
@@ -87,8 +91,9 @@
                     </div>
 
                     <input type="text" id="date" name="date" />
-
-                    <button type="submit" class="waves-effect waves-light btn-large" href="#">Réserver</button>
+                    <div class="center-align">
+                        <button type="submit" class="waves-effect waves-light btn-large bg-dark-blue" href="#">Réserver</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -100,9 +105,9 @@
             <div class="card opinion">
                 <div class="card-content">
                     <div class="stars">
-                        <img src="/assets/images/star.png">
-                        <img src="/assets/images/star.png">
-                        <img src="/assets/images/star.png">
+                        <img class="room-grades" src="/assets/images/star.png">
+                        <img class="room-grades" src="/assets/images/star.png">
+                        <img class="room-grades" src="/assets/images/star.png">
                     </div>
                     <div class="opinion-text">
                         <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.

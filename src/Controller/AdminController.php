@@ -21,7 +21,7 @@ class AdminController extends AbstractController
     public function index()
     {   
         if( empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
-            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+            return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
         } else {
             return $this->twig->render('Admin/index.html.twig');
         }
@@ -32,7 +32,7 @@ class AdminController extends AbstractController
         $roomManager = new RoomManager;
         $rooms = $roomManager->selectAll();
         if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
-            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+            return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
         }else{
             return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);             
         }
@@ -92,7 +92,7 @@ class AdminController extends AbstractController
             $month = new Calendar;
         }
         if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
-            return $this->twig->render('Home/index.html.twig', ["error" => 'You can\'t access the admin space.']);
+            return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
         }else{
             return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
         }
@@ -133,8 +133,12 @@ class AdminController extends AbstractController
     //function to populate the booking per month chart on admin page
     public function bookingChart() {
         $bm = new bookingManager;
+        $rooms = ['usa', 'japon', 'thailand', 'france', 'africa'];
         try{
-            $results = $bm->bookingPerMonth();
+            foreach($rooms as $key => $room){
+                $results[$room] = $bm->bookingPerRoom(intval($key));
+            }
+            $results['total'] = $bm->bookingPerMonth();
             return json_encode($results);
         }catch(\PDOException $e) {
             return $e;
