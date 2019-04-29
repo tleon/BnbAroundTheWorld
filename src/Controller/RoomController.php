@@ -52,7 +52,10 @@ class RoomController extends AbstractController
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION, 'errors' => $errors]);
+
+        $caras = explode('_', $room['caracs']);
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras]);
+
     }
 
     private function checkData($data)
