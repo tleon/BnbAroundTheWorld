@@ -66,10 +66,10 @@ var myChart = new Chart(ctx, {
         fill: false
       },
       {
-        data : d1['france'],
-        label: 'France',
-        backgroundColor: "#36a2eb",
-        borderColor: "#36a2eb",
+        data : d1['usa'],
+        label: 'USA',
+        backgroundColor: "#bf55ec",
+        borderColor: "#bf55ec",
         fill: false
       },
       {
@@ -87,10 +87,10 @@ var myChart = new Chart(ctx, {
         fill: false
       },
       {
-        data : d1['usa'],
-        label: 'USA',
-        backgroundColor: "#bf55ec",
-        borderColor: "#bf55ec",
+        data : d1['france'],
+        label: 'France',
+        backgroundColor: "#36a2eb",
+        borderColor: "#36a2eb",
         fill: false
       },
       {
