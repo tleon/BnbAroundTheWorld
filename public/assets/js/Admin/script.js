@@ -5,7 +5,6 @@ $(document).ready(function() {
   chart2();
 });
 
-
 function chart1() {
   $.get("/Admin/bookingChart").done(function(r) {
     data = JSON.parse(r);
@@ -94,7 +93,7 @@ var myChart = new Chart(ctx, {
         fill: false
       },
       {
-        data : d1['africa'],
+        data : d1['africa'],          
         label: 'Afrique',
         backgroundColor: "#7cb342",
         borderColor: "#7cb342",

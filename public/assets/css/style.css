@@ -50,6 +50,12 @@ body {
   background-color: #ffffff;
 }
 
+#logo{
+    margin: 16px;
+    position: absolute;
+    max-width: 10%;
+    height: auto;
+}
 .logo {
   position: absolute;
   max-width: 10%;
