@@ -28,6 +28,29 @@ function scrollAppear1() {
     if (PositionBlock5 < screenPosition) {
         block5.classList.add("appear");
     }
-    }
+}
     
     window.addEventListener("scroll", scrollAppear1);
+
+// Change a links color
+document.addEventListener("scroll", changecolorOfNavLinks);
+const targt = document.getElementById('notreGite');
+const nav = document.getElementById("nav");
+let nav_a = nav.querySelectorAll('a');
+
+function changecolorOfNavLinks() {
+  if (targt.getBoundingClientRect().top < 0) {
+    for(let i = 0; i < nav_a.length; i++){
+      nav_a[i].className = 'nav_a_link_black';
+    }
+    document.getElementById('nav').classList.remove("bgTranparent");
+    document.getElementById('nav').classList.add("bgWhite");
+  } else {
+    for(let i = 0; i < nav_a.length; i++){
+    nav_a[i].className = 'nav_a_link_white';
+    }
+    document.getElementById('nav').classList.remove("bgWhite");
+    document.getElementById('nav').classList.add("bgTranparent");
+  }
+}
+    
