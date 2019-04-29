@@ -50,17 +50,18 @@ body {
   background-color: #ffffff;
 }
 
+#logo{
+    margin: 16px;
+    position: absolute;
+    max-width: 10%;
+    height: auto;
+}
 .logo {
-  margin: 0;
   position: absolute;
   max-width: 10%;
   height: auto;
 }
 
-#burger-menu {
-  position: absolute;
-  right: 0;
-}
 
 .tom-invisible > .card-content > form {
   padding-top: 20px;
