@@ -96,6 +96,7 @@ class BookingManager extends AbstractManager
         $statement->execute();
         $bookings = $statement->fetchall();
         return $bookings;
+    }
 
     // returns booking number per month as an array
     public function bookingPerMonth() {

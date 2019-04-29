@@ -80,7 +80,7 @@ class RoomController extends AbstractController
     }
     
     /**
-     * get all booking from room id in flatpickr format.
+     * get all booking for room id in flatpickr format.
      * ex : [{"from":"01.12.2018","to":"04.12.2018"},{"from":"26.04.2019","to":"27.04.2019"}]
      * and return default date picked on index page
      * 
