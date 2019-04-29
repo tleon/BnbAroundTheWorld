@@ -136,7 +136,7 @@ class AdminController extends AbstractController
         $rooms = ['usa', 'japon', 'thailand', 'france', 'africa'];
         try{
             foreach($rooms as $key => $room){
-                $results[$room] = $bm->bookingPerRoom(intval($key));
+                $results[$room] = $bm->bookingPerRoom(intval($key) + 1);
             }
             $results['total'] = $bm->bookingPerMonth();
             return json_encode($results);
