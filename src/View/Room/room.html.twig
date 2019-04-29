@@ -9,9 +9,15 @@
 {% block content %}
 
 <div class="room">
-  <div class="images">
-    <img src="/assets/images/{{ room.pic_path }}">
-  </div>
+    <div class="images">
+      <img class="img-hightlight" src="/assets/images/{{ room.pic_path }}" alt="room1" />
+      <div class="room-preview">
+        <img src="/assets/images/{{ room.pic_path }}" class="room-active border_radius_left" alt="" />
+        <img src="/assets/images/france.png" alt="" />
+        <img src="/assets/images/japan.png" alt="" />
+        <img src="/assets/images/paralax-photo.jpeg" alt="" class="border_radius_right"/>
+      </div>
+    </div>
 
   <form method="post" class="formulaire">
       <input name="room_id" class="room_id" value="{{room.id}}" hidden></input>
@@ -54,13 +60,34 @@
       <button type="submit" value="submit" class="custom_btn">Je reserve</button>
     </div>
   </form>
-
   <div class="description">
-      <p>{{ room.name }}</p>
-    <span>Description</span>
-    <p>{{ room.description }}</p>
-    <span>Caractéristiques</span>
-    <p>{{ room.caracs }}</p>
+    <h1>Chambre {{ room.name }}</h1>
+    <!-- Tabs -->
+
+
+    <div class="tab_parent">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#tab1">Description</a></li>
+        <li class="tab col s3"><a href="#tab2">Caractéristiques</a></li>
+        <li class="tab col s3"><a href="#tab3">Options</a></li>
+      </ul>
+    </div>
+    <div id="tab1" class="col s12">
+      <p>{{ room.description }}</p>
+    </div>
+    <div id="tab2" class="col s12">
+      <p>{{ room.caracs }}</p>
+    </div>
+    <div id="tab3" class="col s12">
+      <span>Options</span>
+    </div>
+
+
+
+    
+    
+    
+    
   </div>
 
 
@@ -91,4 +118,29 @@
 
 {% block javascript %}
 <script src="/assets/js/datePicker.js"></script>
+
+<script>
+  function imageGallery() {
+    const highlight = document.querySelector(".img-hightlight");
+    const previews = document.querySelectorAll(".room-preview img");
+
+    previews.forEach(preview => {
+      preview.addEventListener("click", function() {
+        let smallSrc = this.src;
+        let bigSrc = highlight.src;
+        highlight.src = smallSrc;
+        previews.forEach(preview => preview.classList.remove("room-active"));
+        preview.classList.add("room-active");
+      });
+    });
+  }
+  imageGallery();
+</script>
+
+<script>
+  // Tabs 
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+</script>
 {% endblock %}

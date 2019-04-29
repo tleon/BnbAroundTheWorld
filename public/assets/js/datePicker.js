@@ -1,24 +1,23 @@
 fetchUrl = url.replace('show', 'getUnavailableDate');
 
+let test;
+
 const getBooking = () => {
   fetch(fetchUrl).then(function(response) {
     return response.json();
-  }).then(function(json) {
-    bookings = json;
-    getData();
+  }).then(function(bookings) {
+    test = bookings;
+    getData(bookings);
   }).catch(function(err) {
     console.log('Fetch problem: ' + err.message);
   });
 }
-let getData = () => {
-  console.log(bookings);
+let getData = (bookings) => {
   let unavailableDate = [];
   for(let i = 0;  i < Object.keys(bookings).length -1; i++){
-    // emptyArr.push(bookings);
     unavailableDate.push(bookings[i]);
   }
   let dDate = bookings['dDate'];
-  console.log(dDate);
   flatpickr(".flatpickr-calendar", {
     inline: true,
     altFormat: "j F Y",
@@ -32,3 +31,4 @@ let getData = () => {
 }
 
 getBooking();
+

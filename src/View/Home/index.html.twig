@@ -85,14 +85,14 @@
     <div class="blockImage-1">
       <img src="/assets/images/usa.png">
       <div class="relative">
-        <button class="btn_white" onclick="window.location.href='room/show/1'">Acceder à la chambre</button>
+        <a href="/room/show/1" class="btn_white">Acceder à la chambre</a>
       </div>
     </div>
 
     <div class="blockImage-2">
       <img src="/assets/images/thailand.png">
       <div class="relative">
-        <button class="btn_white" onclick="window.location.href='room/show/3'">Acceder à la chambre</button>
+        <a href="/room/show/3" class="btn_white">Acceder à la chambre</a>
       </div>
     </div>
 
@@ -115,13 +115,13 @@
     <div class="blockImage-3">
       <img src="/assets/images/france.png">
       <div class="relative">
-        <button class="btn_white" onclick="window.location.href='room/show/4'">Acceder à la chambre</button>
+        <a href="/room/show/4" class="btn_white">Acceder à la chambre</a>
       </div>
     </div>
     <div class="blockImage-4">
       <img src="/assets/images/japan.png">
       <div class="relative">
-        <button class="btn_white" onclick="window.location.href='room/show/2'">Acceder à la chambre</button>
+        <a href="/room/show/2" class="btn_white">Acceder à la chambre</a>
       </div>
     </div>
     <div class="blocktext-4">
@@ -146,7 +146,7 @@
     <div class="blockImage-5">
       <img src="/assets/images/africa.png">
       <div class="relative">
-        <button class="btn_white" onclick="window.location.href='room/show/5'">Acceder à la chambre</button>
+        <a href="/room/show/5" class="btn_white">Acceder à la chambre</a>
       </div>
     </div>
   </div>
@@ -167,16 +167,16 @@
   const getBooking = (url) => {
     fetch(url).then(function (response) {
       return response.json();
-    }).then(function (json) {
-      bookings = json;
-      getData();
+    }).then(function (bookings) {
+      getData(bookings);
     }).catch(function (err) {
       console.log('Fetch problem: ' + err.message);
     });
   }
 
-  let getData = () => {
+  let getData = (bookings) => {
     let unavailableDate = [];
+    console.log(bookings);
     for (let i = 0; i < Object.keys(bookings).length - 1; i++) {
       unavailableDate.push(bookings[i]);
     }
