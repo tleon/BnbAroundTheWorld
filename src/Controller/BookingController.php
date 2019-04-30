@@ -3,7 +3,6 @@
 namespace App\Controller;
 use App\Model\BookingManager;
 use App\Controller\RoomController;
-use App\Model\PriceManager;
 
 class BookingController extends AbstractController
 {
@@ -210,9 +209,5 @@ class BookingController extends AbstractController
 
         return $this->twig->render('Room/room.html.twig', ['dump'=>$end_date]);
     }
-
-
-    
-
 
 }

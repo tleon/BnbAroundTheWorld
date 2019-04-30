@@ -21,7 +21,6 @@ class RoomController extends AbstractController
 
         //check for unauthorized data in the booking form's submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "problème lors de la saisie du nombre de personne";
             }
@@ -42,18 +41,29 @@ class RoomController extends AbstractController
                 $dataToInsert['date'] = $_POST['date'];
                 $dataToInsert['userId'] = $_SESSION['id'];
                 $bookingController = new BookingController();
-
                 //calling the function that set the booked date in the database
-                $bookingController->insert($dataToInsert);
+                $dates = explode(' ', $_POST['date']);
+                $d1 = new \DateTime($dates[0]);
+                $d2 = new \DateTime($dates[2]);
+                $bm = new BookingManager();
+                $interval = $d2->diff($d1);
+                $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
+                $_SESSION['price'] =  $total;
+                //TODO
+                //$bookingController->insert($dataToInsert);
             }
 
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
-
         $caras = explode('_', $room['caracs']);
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras]);
 
+    }
+
+
+    public function checkout(){
+        
     }
 
     private function checkData($data)
