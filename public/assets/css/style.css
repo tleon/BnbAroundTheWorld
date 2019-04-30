@@ -105,7 +105,8 @@ body {
 }
 
 .side-img {
-  margin-top: 0px;
+  margin: 5px;
+  padding: 0px;
 }
 
 .blockImage-1,
@@ -237,7 +238,7 @@ nav ul a {
 .nav-links {
   display: flex;
   list-style: none;
-  width: 30px;
+  width: auto;
   height: 100%;
   padding-right: 16px;
   justify-content: flex-end;

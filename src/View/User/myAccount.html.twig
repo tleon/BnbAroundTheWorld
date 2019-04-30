@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+<link href="/assets/css/myAccount.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container">
+<h3 class="page-title">Bonjour {{session.username}} !</h3>
+{% if not noBooking %}
+    <div class="cards">
+        <div class="row">
+            <div class="col s12">
+                <div class="card white w-full">
+                    <div class="card-content">
+                            <h4 class="booking-title">Info prochaine reservation</h4>
+                            <hr/>
+                            <p>Chambre : {{ bookings[0].name }}</p>
+                            <p>Date d'arrivée : {{ bookings[0].begin_date }}</p>
+                            <p> Date de départ : {{ bookings[0].end_date }}</p>
+                            <p>Nombre de personnes : {{ bookings[0].nb_person }}</p>
+                            <p>Options : {{ bookings[0].options }}</p>
+                            <p>Facturation : {{ bookings[0].total_price }}€</p>
+                            <form action="/booking/delete/{{ bookings[0].id }}">
+                                <input type="submit"  class="waves-effect waves-light btn">
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header"><h4 class="booking-title">autre reservations</h4></div>
+        <div class="collapsible-body">
+{% for booking in bookings %}
+            <h4 class="booking-title">Info Reservation chambre {{ booking.name }}</h4>
+            <hr class="hr-title"/>
+            <p>Chambre : {{ booking.name }}</p>
+            <p>Date d'arrivée : {{ booking.begin_date }}</p>
+            <p> Date de départ : {{ booking.end_date }}</p>
+            <p>Nombre de personnes : {{ booking.nb_person }}</p>
+            <p>Options : {{ booking.options }}</p>
+            <p>Facturation : {{ booking.total_price }}€</p>
+            <a href="/Booking/delete/{{ booking.id }}" class="waves-effect waves-light btn">annuler</a>
+            <br/>
+            <br/>
+{% endfor %}
+        </div>
+    </li>
+</ul>
+{% elseif noBooking %}
+<h3 class="booking-title" style="margin-top: 5em;">Vous n'avez aucune reservation</h3>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+$(document).ready(function(){
+$('.collapsible').collapsible();
+});
+</script>
+{% endblock %}
