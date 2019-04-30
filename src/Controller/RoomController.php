@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Controller;
+
 use App\Model\RoomManager;
 use App\Controller\BookingController;
+
 class RoomController extends AbstractController
 {
     /**
@@ -11,37 +13,28 @@ class RoomController extends AbstractController
      *
      **/
 
-		public function show($id)//id is not given on form submit
-    {  
-
+    public function show($id)//id is not given on form submit
+    {
         $errors = [];
         $availableOptions=["Petit déjeuner","Table d'hôte","Lit bébé","baby1","baby2"];
         
         //check for unauthorized data in the booking form's submit
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-
-            if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4)
-            {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person']="problème lors de la saisie du nombre de personne";
             }
-            if (isset($_POST['options']) && !in_array($_POST['options'],$availableOptions))
-            {
+            if (isset($_POST['options']) && !in_array($_POST['options'], $availableOptions)) {
                 $errors['options']="problème lors de la saisie des options";
             }
         
             //if they are no unauthorized data in the form, it's prepared for the database insertion
-            else
-            {
+            else {
                 //readying the array that will be sent to the database
                 $dataToInsert['nbPerson']=$_POST['nb_person'];
                 
-                if (isset($_POST['options']))
-                {
+                if (isset($_POST['options'])) {
                     $dataToInsert['option']=$_POST['options'];
-                }
-                else
-                {
+                } else {
                     $dataToInsert['option']=" ";
                 }
 
@@ -52,17 +45,39 @@ class RoomController extends AbstractController
         
                 //calling the function that set the booked date in the database
                 $bookingController->insert($dataToInsert);
+                $this->mail();
             }
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors]);
     }
+    public function mail()
+    {
+        // Create the Transport
+        $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+        ->setUsername('helyamdu38550@gmail.com')
+        ->setPassword('Ninouche38');
+
+
+        // Create the Mailer using your created Transport
+        $mailer = new \Swift_Mailer($transport);
+
+        // Create a message
+        $message = (new \Swift_Message('Confirmation de reservation'))
+        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
+        ->setTo($_SESSION["email"])
+        ->setBody("Votre reservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agreable sejours. \
+    Pour annuler votre reservation veuillez suivre ce lien : www.blabla.com* \
+    *Attention : l'annulation d'une reservation doit se fair dans les 48h avant le debut du sejour.");
+
+        // Send the message
+        return $mailer->send($message);
+    }
   
     private function checkData($data)
     {
-        if (!isset($data['date']) || empty($data['date']))
-        {
+        if (!isset($data['date']) || empty($data['date'])) {
             $errors['date']="Dates obligatoires";
         }
         return $errors;
@@ -70,15 +85,13 @@ class RoomController extends AbstractController
 
     public function security()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'date' => $_POST['date']
             ];
 
             $errors = $this->checkData($data);
-            if (empty($errors))
-            {
+            if (empty($errors)) {
                 $roomManager = new RoomManager();
                 $roomManager->insert($data);
             }
