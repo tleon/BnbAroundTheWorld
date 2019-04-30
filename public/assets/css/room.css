@@ -287,3 +287,8 @@ h1 {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+  .payment-btn{
+      display: flex;
+      justify-content: center;
+  }
