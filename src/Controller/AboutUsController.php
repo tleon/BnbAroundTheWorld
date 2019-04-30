@@ -34,7 +34,8 @@ class AboutUsController extends AbstractController
             $feedback->insertOpinion($opinionData);
         }
 
-        return $this->twig->render('AboutUs/aboutUs.html.twig', ['isconnected'=>$isconnected]);
+        return $this->twig->render('AboutUs/aboutUs.html.twig', ['session' => $_SESSION, 'isconnected'=>$isconnected]);
+
     }
     
 }

@@ -32,29 +32,31 @@
 
     </div>
 
-    <form class="formulaire" method="post">
-      <input name="room_id" class="room_id" value="{{room.id}}" hidden></input>
-    <div class="room_form_date_picker">
-      <label class="room_form_select_label">
-        <span>dates de sejour</span>
-      </label>
-      <input class="flatpickr-calendar" name="date" type="text">
-    </div>
+
+    <form method="post" class="formulaire">
+      <input name="room_id" class="room_id" value="{{room.id}}" hidden>
+      <div class="room_form_date_picker">
+        <label class="room_form_select_label">
+          <span>Dates de séjour</span>
+        </label>
+        <input type="text" class="flatpickr-calendar" name="date">
+      </div>
 
 
-    <div class="room_form_select1">
-      <label class="index_form_select_labet">
-        <span>nombre de personnes</span>
-      </label>
-      <select name="nb_person">
-        <option disabled value="">Choisir le nombre de personnes</option>
-        <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
-        <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
-        <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
-        <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
-      </select>
-      {{ errors.nb_person }}
-    </div>
+      <div class="room_form_select1">
+        <label class="index_form_select_labet">
+          <span>Nombre de personnes</span>
+        </label>
+        <select name="nb_person">
+          <option value="" disabled>Choisir le nombre de personnes</option>
+          <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+          <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+          <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+          <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
+        </select>
+        {{ errors.nb_person }}
+      </div>
+
 
 
     <div class="room_form_select2">
@@ -72,36 +74,27 @@
       {{ errors.options }}
     </div>
 
-    <div class="room_form_submit">
-      <button class="custom_btn" id="submit-btn" type="submit" value="submit">Je reserve</button>
-    </div>
-  </form>
-  <div class="description">
-    <h1>Chambre
-      {{ room.name }}</h1>
-    <!-- Tabs -->
 
+      <div class="room_form_submit">
+        <button type="submit" value="submit" class="custom_btn">Je réserve</button>
+      </div>
+    </form>
+    <div class="description">
+      <div class="tab_parent">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#tab1">Description</a></li>
+          <li class="tab col s3"><a href="#tab2">Caractéristiques</a></li>
+          <li class="tab col s3"><a href="#tab3">Options</a></li>
+        </ul>
+      </div>
+      <div id="tab1" class="col s12">
+        <p>{{ room.description }}</p>
+      </div>
+      <div id="tab2" class="col s12">
+        <p>{{ room.caracs }}</p>
+        <ul>
+          {% for carac in caracs %}
 
-    <div class="tab_parent">
-      <ul class="tabs">
-        <li class="tab col s3">
-          <a class="active" href="#tab1">Description</a>
-        </li>
-        <li class="tab col s3">
-          <a href="#tab2">Caractéristiques</a>
-        </li>
-        <li class="tab col s3">
-          <a href="#tab3">Options</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col s12" id="tab1">
-      <p>{{ room.description }}</p>
-    </div>
-    <div class="col s12" id="tab2">
-      <p>{{ room.caracs }}</p>
-      <ul>
-        {% for carac in caracs %}
           {% if carac == 'dej' %}
             <li>Petit Déjeuné</li>
           {% endif %}

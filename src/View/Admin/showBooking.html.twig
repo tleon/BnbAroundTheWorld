@@ -15,12 +15,12 @@
               <h1>{{ bookings[0].name }}</h1>
             </div>
             <div class="showBooking_left">
-              <div class="showBooking_entete">Info Reservation</div>
+              <div class="showBooking_entete">Informations Réservation</div>
               <p>Date d'arrivée : {{ bookings[0].begin_date|date('d-m-Y') }}</p>
-              <p> Date de départ : {{ bookings[0].end_date|date('d-m-Y') }}</p>
+              <p>Date de départ : {{ bookings[0].end_date|date('d-m-Y') }}</p>
               <p>Nombre de personnes : {{ bookings[0].nb_person }}</p>
               <p>Options : {{ bookings[0].options }}</p>
-              <p>Facturation : {{ bookings[0].total_price }}€</p>
+              <p>Facturation : {{ bookings[0].total_price }} €</p>
             </div>
             <div class="showBooking_right">
               <div class="showBooking_entete">Info Client</div>
