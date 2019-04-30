@@ -10,80 +10,86 @@
 {% block content %}
   <div class="container">
     <h1>{{ room.name }}</h1>
-    <div class="row">
-      <div class="col s12 m7">
+    <div class="row center-align">
+      <div class="col s6 m7">
         <div class="card">
           <div class="card-image">
             <img src="/assets/images/{{ room.pic_path }}">
           </div>
         </div>
       </div>
+    <div class="col s6 m5">
+
+      <form class="formulaire" method="post">
+        <input name="room_id" class="room_id" value="{{room.id}}" hidden>
+        <div class="room_form_date_picker">
+          <label class="room_form_select_label">
+            <span>Dates de séjour</span>
+          </label>
+          <input class="flatpickr-calendar" name="date" type="text">
+        </div>
+
+
+        <div class="room_form_select1">
+          <label class="index_form_select_labet">
+            <span>Nombre de personnes</span>
+          </label>
+          <select name="nb_person">
+            <option disabled value="">Choisir le nombre de personnes</option>
+            <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+            <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+            <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+            <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
+          </select>
+          {{ errors.nb_person }}
+        </div>
+
+
+        <div class="room_form_select2">
+          <label class="index_form_select_labet">
+            <span>Options possibles</span>
+          </label>
+          <input id="hidden" name="options" type="hidden" value="">
+          <select id="select-opt" multiple>
+            <option value="Petit déjeuner">Petit déjeuner</option>
+            <option value="Table d'hôte">Table d'hôte</option>
+            <option value="baby1">1 Lit bébé</option>
+            <option value="baby2">2 Lits bébé</option>
+            <option value="none">Aucune option</option>
+          </select>
+          {{ errors.options }}
+        </div>
+
+
+        <div class="room_form_submit">
+          <button class="custom_btn" type="submit" value="submit">Je réserve</button>
+        </div>
+      </form>
     </div>
-
-    <form method="post" class="formulaire">
-      <input name="room_id" class="room_id" value="{{room.id}}" hidden>
-      <div class="room_form_date_picker">
-        <label class="room_form_select_label">
-          <span>Dates de séjour</span>
-        </label>
-        <input type="text" class="flatpickr-calendar" name="date">
-      </div>
+  </div>
 
 
-      <div class="room_form_select1">
-        <label class="index_form_select_labet">
-          <span>Nombre de personnes</span>
-        </label>
-        <select name="nb_person">
-          <option value="" disabled>Choisir le nombre de personnes</option>
-          <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
-          <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
-          <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
-          <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
-        </select>
-        {{ errors.nb_person }}
-      </div>
-
-
-
-    <div class="room_form_select2">
-      <label class="index_form_select_labet">
-        <span>Options possibles</span>
-      </label>
-      <input id="hidden" name="options" type="hidden" value="">
-      <select id="select-opt" multiple>
-        <option value="Petit déjeuner">Petit déjeuner</option>
-        <option value="Table d'hôte">Table d'hôte</option>
-        <option value="baby1">1 Lit bébé</option>
-        <option value="baby2">2 Lit bébé</option>
-        <option value="none">Aucune option</option>
-      </select>
-      {{ errors.options }}
+  <div class="description">
+    <div class="tab_parent">
+      <ul class="tabs">
+        <li class="tab col s3">
+          <a class="active" href="#tab1">Description</a>
+        </li>
+        <li class="tab col s3">
+          <a href="#tab2">Caractéristiques</a>
+        </li>
+        <li class="tab col s3">
+          <a href="#tab3">Options</a>
+        </li>
+      </ul>
     </div>
-
-
-      <div class="room_form_submit">
-        <button type="submit" value="submit" class="custom_btn">Je réserve</button>
-      </div>
-    </form>
-</div>
+    <div class="col s12" id="tab1">
+      <p>{{ room.description }}</p>
     </div>
-
-    <div class="description">
-      <div class="tab_parent">
-        <ul class="tabs">
-          <li class="tab col s3"><a class="active" href="#tab1">Description</a></li>
-          <li class="tab col s3"><a href="#tab2">Caractéristiques</a></li>
-          <li class="tab col s3"><a href="#tab3">Options</a></li>
-        </ul>
-      </div>
-      <div id="tab1" class="col s12">
-        <p>{{ room.description }}</p>
-      </div>
-      <div id="tab2" class="col s12">
-        <p>{{ room.caracs }}</p>
-        <ul>
-          {% for carac in caracs %}
+    <div class="col s12" id="tab2">
+      <p>{{ room.caracs }}</p>
+      <ul>
+        {% for carac in caracs %}
 
           {% if carac == 'dej' %}
             <li>Petit Déjeuné</li>
@@ -106,30 +112,32 @@
 <div class="container">
 
   {% if session.price is defined %}
-  
-  <div class="row">
-    <h6>Montant à régler : {{ session.price }} €</h6>
-  </div>
 
-  <div class="row">
-    <form action="" id="payment-form" method="post">
-      <div class="form-row">
-        <label for="card-element">
-          Credit or debit card
-        </label>
-        <div
-          id="card-element"><!-- A Stripe Element will be inserted here. -->
+    <div class="row">
+      <h6>Montant à régler :
+        {{ session.price }}
+        €</h6>
+    </div>
+
+    <div class="row">
+      <form action="" id="payment-form" method="post">
+        <div class="form-row">
+          <label for="card-element">
+            Credit or debit card
+          </label>
+          <div
+            id="card-element"><!-- A Stripe Element will be inserted here. -->
+          </div>
+
+          <!-- Used to display form errors. -->
+          <div id="card-errors" role="alert"></div>
         </div>
-
-        <!-- Used to display form errors. -->
-        <div id="card-errors" role="alert"></div>
-      </div>
-      <br>
-      <div class="row payment-btn">
-        <a class="custom_btn" href="#">Régler votre chambre.</a>
-      </div>
-    </form>
-  </div>
+        <br>
+        <div class="row payment-btn">
+          <a class="custom_btn" href="#">Régler votre chambre.</a>
+        </div>
+      </form>
+    </div>
   {% endif %}
 
 </div>
@@ -155,13 +163,7 @@
       </div>
     </div>
   </div>
-</div></div></div>
-{% endblock %}
-{% block javascript %}
-<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-<script>
-  $('#date').daterangepicker({
+</div></div></div>{% endblock %}{% block javascript %}<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script><script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script><script>$('#date').daterangepicker({
   startDate: "{{session.booking.beginDate}}" || "01/01/2019",
   endDate: "{{session.booking.endDate}}" || "01/01/2019"
 });</script><script src="/assets/js/datePicker.js"></script><script src="https://js.stripe.com/v3/"></script><script>var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
@@ -278,5 +280,5 @@ $(document).ready(function () {
     }
     $('#hidden')[0].value = options;
   });
-});</script>
-{% endblock %}
+});</script>{% endblock %}
+
