@@ -362,6 +362,9 @@ nav {
   box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
   background: var(--color-buttons-primary-color, #00d1b2) !important;
   border-color: var(--color-buttons-primary-border, transparent) !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
 }
 
 input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
@@ -377,12 +380,12 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     display: block !important;
     height: 30px !important;
     color: rgba(0,0,0,0.62) !important;
-    width: 287px;
-    font-size: 0.625rem !important;
-    font-weight: 500;
-    letter-spacing: 1.3px;
-    text-decoration-style: solid;
-    text-transform: uppercase;
+    width: 287px !important;
+    font-size: 0.825rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.3px !important;
+    text-decoration-style: solid !important;
+    text-transform: uppercase !important;
 }
 
 .editroom_left {
@@ -432,7 +435,7 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   justify-content: center;
 }
 
-.editroom {
+#editroom {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -458,6 +461,14 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   align-items: center;
 }
 
+.flex_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
 .edit_room_button button {
   color: #fff;
   font-weight: 200;
@@ -473,3 +484,71 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+.edit_room_button button:hover {
+  cursor: pointer;
+}
+
+.error_msg_edit_room {
+  font-size: 0.75rem;
+  color: #ff6384;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* MODAL */
+
+#myModal {
+  height: 100%;
+}
+
+#close {
+  cursor: pointer;
+}
+
+.textar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textAr_title {
+  font-size: 1.8rem;
+  padding: 2rem;
+}
+
+#textArea {
+  width: 65vw;
+  height: 50vh;
+  padding: 11px !important;
+  padding-top: 8px !important;
+  line-height: normal !important;
+  color: rgba(0,0,0,0.62) !important;
+  font-size: 0.825rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.3px !important;
+  text-decoration-style: solid !important;
+  border: 1px solid rgb(213, 210, 210) !important;
+  border-radius: 3px !important;
+}
+
+#textArea:focus {
+  outline: 1px solid #00d1b2;
+}
+/* UPLOAD IMAGE SECTION */
+
+#img_upload_section {
+  display: none;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.gallery img {
+  width: 100%;
+}
+

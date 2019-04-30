@@ -6,7 +6,7 @@
         <div class="col s12">
             <div class="card white w-full">
                 <div class="card-content">
-                    <div class="editroom">
+                    <div id="editroom">
                         <div class="editroom_icon">
                             <a href="/admin/chambres"><svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px"
                                     height="32px" viewBox="0 0 24 24" aria-labelledby="exitIconTitle exitIconDesc"
@@ -26,81 +26,116 @@
                                     <input type="hidden" value="{{ rooms.id }}" name="id">
 
                                     <!-- a demasquer-->
-                                    <input class="validate" id="image" name="pic_path" type="hidden" value="{{ rooms.pic_path }}" >
+                                    <input class="validate" id="image" name="pic_path" type="hidden"
+                                        value="{{ rooms.pic_path }}">
 
                                     <div class="showBooking_entete">Infos</div>
-                                    <div><p>Nom de la chambre</p></div>
-                                    <div><p>Location</p></div>
-                                    <div><p>Description</p></div>
-                                    <div><p>Options</p></div>
-                                    <div><p>Prix</p></div>
+                                    <div>
+                                        <p>Nom de la chambre</p>
+                                    </div>
+                                    <div>
+                                        <p>Location</p>
+                                    </div>
+                                    <div>
+                                        <p>Description</p>
+                                    </div>
+                                    <div>
+                                        <p>Options</p>
+                                    </div>
+                                    <div>
+                                        <p>Prix</p>
+                                    </div>
                                 </div>
                                 <div class="editroom_right">
                                     <div class="showBooking_entete">Données</div>
-                                    <p>{{ error.name }}</p>
-                                    <div><input class="validate" id="name" name="name" type="text" value="{{ rooms.name }}"></div>
-                                    <p>{{ error.location }}</p>
-                                    <div><input class="validate" id="location" name="location" type="text" value="{{ rooms.location }}" ></div>
-                                    <p>{{ error.description }}</p>
-                                    <div><input class="validate" id="description" name="description" type="text" value="{{ rooms.description }}"></div>
-                                    <p>{{ error.caracs }}</p>
-                                    <div><input class="validate" id="caracs" name="caracs" type="text" value="{{ rooms.caracs }}"></div>
-                                    <p>{{ error.price }}</p>
-                                    <div><input class="validate" id="price" name="price" type="text" value="{{ rooms.price }}" ></div>
+                                    <p class="error_msg_edit_room"> {{ error.name }}</p>
+                                    <div><input class="validate" id="name" name="name" type="text"
+                                            value="{{ rooms.name }}"></div>
+                                    <p class="error_msg_edit_room">{{ error.location }}</p>
+                                    <div><input class="validate" id="location" name="location" type="text"
+                                            value="{{ rooms.location }}"></div>
+                                    <p class="error_msg_edit_room">{{ error.description }}</p>
+                                    <div><input class="validate" id="description" name="description" type="text"
+                                            value="{{ rooms.description }}"></div>
+
+                                    <p class="error_msg_edit_room"> {{ error.caracs }}</p>
+                                    <div><input class="validate" id="caracs" name="caracs" type="text"
+                                            value="{{ rooms.caracs }}"></div>
+                                    <p class="error_msg_edit_room"> {{ error.price }}</p>
+                                    <div><input class="validate" id="price" name="price" type="text"
+                                            value="{{ rooms.price }}"></div>
                                 </div>
                             </div>
                             <div class="edit_room_button">
-                                <button value="submit" type="submit">Submit</button>
+                                <div class="flex_btn">
+                                    <button value="submit" type="submit">Update</button>
+                                </div>
+                                <div id="editImg" class="flex_btn">
+                                    <button>Edit images</button>
+                                </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div id="myModal" style="display: none">
+                        <div id="close">
+                            <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px"
+                                viewBox="0 0 24 24" aria-labelledby="circleOkIconTitle circleOkIconDesc"
+                                stroke="#00d1b2" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter"
+                                fill="none" color="#00d1b2">
+                                <title id="circleOkIconTitle">OK</title>
+                                <desc id="circleOkIconDesc">Icon of a checkmark closed in a circle</desc>
+                                <polyline points="7 13 10 16 17 9" />
+                                <circle cx="12" cy="12" r="10" />
+                            </svg>
+                        </div>
+                        
+                        <div class="textar">
+                            <div class="textAr_title"><p>Editez le commentaire</p></div>
+                            <textarea name="" id="textArea"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    {# <section class="section container">
-        <div class="row">
-            <form action="/admin/updateRoom/{{ rooms.id }}" class="col s12" method="POST">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input type="hidden" value="{{ rooms.id }}" name="id">
-                        {{ error.name }}
-                        <input class="validate" id="name" name="name" type="text" value="{{ rooms.name }}" >
-                    </div>
-                    <div class="input-field col s6">
-                        {{ error.description }}
-                        <input class="validate" id="description" name="description" type="text" value="{{ rooms.description }}">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ error.pic_path }}
-                        <input class="validate" id="image" name="pic_path" type="text" value="{{ rooms.pic_path }}" >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ error.location }}
-                        <input class="validate" id="location" name="location" type="text" value="{{ rooms.location }}" >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ error.caracs }}
-                        <input class="validate" id="caracs" name="caracs" type="text" value="{{ rooms.caracs }}">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ error.price }}
-                        <input class="validate" id="price" name="price" type="text" value="{{ rooms.price }}" >
-                    </div>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit">Submit
-                </button>
-            </form>
-        </div>
-    </section> #}
 {% endblock %}
-{% block javascript %}{% endblock %}
+{% block javascript %}
+
+<script>
+    let close = document.getElementById('close');
+    let modal = document.getElementById('myModal');
+    let main = document.getElementById('editroom');
+    let textarea = document.getElementById('textArea');
+    let inputdescription = document.getElementById('description')
+
+    function editComment(Elm) {
+        close.addEventListener('click', toggleModal);
+    }
+
+    function closeEditor(Elm) {
+        close.removeEventListener('click', toggleModal);
+    }
+
+    function toggleModal() {
+        var currentState = modal.style.display;
+
+        if (currentState === 'none') {
+            modal.style.display = 'block';
+            main.style.display = 'none';
+            textarea.value = inputdescription.value;
+            editComment(close);
+        } else {
+            inputdescription.value = textarea.value;
+            modal.style.display = 'none';
+            main.style.display = 'block';
+            closeEditor(close);
+        }
+    }
+
+    inputdescription.addEventListener('click', toggleModal);
+
+</script>
+{% endblock %}
