@@ -59,7 +59,7 @@ class RoomController extends AbstractController
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras]);
     }
 
-    public function mail()
+    public function confirmMail()
     {
         // Create the Transport
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
