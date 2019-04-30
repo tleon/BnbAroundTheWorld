@@ -214,40 +214,49 @@ nav {
   background-color: #555;
 }
 
-/* On définit l'état de l'élément au début de la transition entrante. */
-
-#USA.display-enter, #Japon.display-enter, #Tailande.display-enter, #France.display-enter, #Africa.display-enter {
-  transform: translateX(-550px)
+/* On définit l'état de l'élément au début de la transition entrante. */ 
+#USA.display-enter, #Japon.display-enter, #Tailande.display-enter, #France.display-enter, #Africa.display-enter{
+  opacity: 0;
 }
 
 /* On définit l'état de l'élément à la fin de la transition entrante. */
 
 #USA.display-enter-to, #Japon.display-enter-to, #Tailande.display-enter-to, #France.display-enter-to, #Africa.display-enter-to {
-  transform: translateX(0)
+  opacity: 1;
 }
 
-/* On définit l'état de l'élément au début de la transition sortante. */
-
-#USA.display-leave, #Japon.display-leave, #Tailande.display-leave, #France.display-leave, #Africa.display-leave {
-  transform: translateX(0)
+/* On définit l'état de l'élément au début de la transition sortante. */ 
+#USA.display-leave, #Japon.display-leave, #Tailande.display-leave, #France.display-leave, #Africa.display-leave{
+  opacity: 1;
 }
 
 /* On définit l'état de l'élément à la fin de la transition sortante. */
 
 #USA.display-leave-to, #Japon.display-leave-to, #Tailande.display-leave-to, #France.display-leave-to, #Africa.display-leave-to {
-  transform: translateX(550px)
+  opacity: 0;
 }
 
 /* On définit la durée de la transition entrante. */
 
 #USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
-  transition: transform 0.8s;
+  transition: opacity 1s;
 }
 
 /* On définit la durée de la transition sortante. */
 
 #USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
-  transition: transform 0.8s;
+  transition: opacity 1s;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.fetch_data {
+  padding: 3rem;
+  min-width: 30px;;
 }
 
 .w-full {
