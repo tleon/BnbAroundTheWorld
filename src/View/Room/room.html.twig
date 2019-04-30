@@ -32,10 +32,10 @@
     </div>
 
     <form method="post" class="formulaire">
-      <input name="room_id" class="room_id" value="{{room.id}}" hidden></input>
+      <input name="room_id" class="room_id" value="{{room.id}}" hidden>
       <div class="room_form_date_picker">
         <label class="room_form_select_label">
-          <span>dates de sejour</span>
+          <span>Dates de séjour</span>
         </label>
         <input type="text" class="flatpickr-calendar" name="date">
       </div>
@@ -43,7 +43,7 @@
 
       <div class="room_form_select1">
         <label class="index_form_select_labet">
-          <span>nombre de personnes</span>
+          <span>Nombre de personnes</span>
         </label>
         <select name="nb_person">
           <option value="" disabled>Choisir le nombre de personnes</option>
@@ -71,14 +71,10 @@
       </div>
 
       <div class="room_form_submit">
-        <button type="submit" value="submit" class="custom_btn">Je reserve</button>
+        <button type="submit" value="submit" class="custom_btn">Je réserve</button>
       </div>
     </form>
     <div class="description">
-      <h1>Chambre {{ room.name }}</h1>
-      <!-- Tabs -->
-
-
       <div class="tab_parent">
         <ul class="tabs">
           <li class="tab col s3"><a class="active" href="#tab1">Description</a></li>

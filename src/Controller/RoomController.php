@@ -6,6 +6,7 @@ use App\Controller\BookingController;
 
 use App\Model\RoomManager;
 use App\Model\BookingManager;
+use App\Model\FeedbackManager;
 
 class RoomController extends AbstractController
 {
@@ -25,10 +26,10 @@ class RoomController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
-                $errors['nb_person'] = "problème lors de la saisie du nombre de personne";
+                $errors['nb_person'] = "Problème lors de la saisie du nombre de personne";
             }
             if (isset($_POST['options']) && !in_array($_POST['options'], $availableOptions)) {
-                $errors['options'] = "problème lors de la saisie des options";
+                $errors['options'] = "Problème lors de la saisie des options";
             }
 
             //if they are no unauthorized data in the form, it's prepared for the database insertion
@@ -55,8 +56,12 @@ class RoomController extends AbstractController
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
 
+        $feedbackManager = new FeedbackManager();
+        $feedback = $feedbackManager->selectAllFeedbackByRoomId($id);
+
         $caras = explode('_', $room['caracs']);
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras]);
+
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
 
     public function confirmMail()
@@ -71,12 +76,13 @@ class RoomController extends AbstractController
         $mailer = new \Swift_Mailer($transport);
 
         // Create a message
-        $message = (new \Swift_Message('Confirmation de reservation'))
-        ->setFrom(['BnBAroundWorld@gmail.com' => 'BnB Around The World'])
+        $message = (new \Swift_Message('Confirmation de réservation'))
+        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
         ->setTo($_SESSION["email"])
-        ->setBody("Votre reservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agreable sejours. \
-    Pour annuler votre reservation veuillez suivre ce lien : www.blabla.com* \
-    *Attention : l'annulation d'une reservation doit se fair dans les 48h avant le debut du sejour.");
+        ->setBody("Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
+        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
+    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
+    *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.");
 
         // Send the message
         return $mailer->send($message);
