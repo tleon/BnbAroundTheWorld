@@ -41,26 +41,23 @@ class BookingController extends AbstractController
      */
     public function convert($date, $target)
     {
-        if ($target=="roomPage")
-        {
-            $dayBegin = substr($date['date'],0, 2);
-            $dayEnd = substr($date['date'],-10,2);
-            $monthBegin = substr($date['date'],-21,2);
-            $monthEnd = substr($date['date'],17,2);
-            $yearBegin = substr($date['date'],-18,4);
-            $yearEnd = substr($date['date'],20,4);                
+        if ($target=="roomPage") {
+            $dayBegin = substr($date['date'], 0, 2);
+            $dayEnd = substr($date['date'], -10, 2);
+            $monthBegin = substr($date['date'], -21, 2);
+            $monthEnd = substr($date['date'], 17, 2);
+            $yearBegin = substr($date['date'], -18, 4);
+            $yearEnd = substr($date['date'], 20, 4);
 
             $date['beginDate'] = $dayBegin . "." .$monthBegin . "." . $yearBegin;
             $date['endDate']= $dayEnd . "." . $monthEnd . "." . $yearEnd;
-        }
-        else
-        {
-            $dayBegin = substr($date['date'],0, 2);
-            $dayEnd = substr($date['date'],-10,2);
-            $monthBegin = substr($date['date'],-21,2);
-            $monthEnd = substr($date['date'],17,2);
-            $yearBegin = substr($date['date'],-18,4);
-            $yearEnd = substr($date['date'],20,4); 
+        } else {
+            $dayBegin = substr($date['date'], 0, 2);
+            $dayEnd = substr($date['date'], -10, 2);
+            $monthBegin = substr($date['date'], -21, 2);
+            $monthEnd = substr($date['date'], 17, 2);
+            $yearBegin = substr($date['date'], -18, 4);
+            $yearEnd = substr($date['date'], 20, 4);
             $date['beginDate'] = $yearBegin . "-" . $monthBegin . "-" . $dayBegin;
             $date['endDate'] = $yearEnd . "-" . $monthEnd . "-" . $dayEnd;
         }
@@ -135,7 +132,13 @@ class BookingController extends AbstractController
         $BookingManager->insertDate($data);
     }
 
-
+    public function delete($id)
+    {
+        //sending data to insert function
+        $BookingManager = new BookingManager();
+        $BookingManager->deletBookingById($id);
+        header('location: /myAccount/show');
+    }
 
 
     private function checkData($data)

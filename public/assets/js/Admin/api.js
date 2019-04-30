@@ -55,9 +55,6 @@ let initialize = () => {
     let div = parent.getElementsByClassName('user');
     let val = bookings[i].username;
     appendValues(div, val);
-    div = parent.getElementsByClassName('guests');
-    val = bookings[i].nb_person;
-    appendValues(div, val);
     div = parent.getElementsByClassName('date-departure');
     val = bookings[i].end_date.split(' ')[0];
     let splt = val.split('-');

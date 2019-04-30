@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-
 /**
  *
  */
@@ -83,6 +82,19 @@ class BookingManager extends AbstractManager
     }
 
     /**
+     * Deelete booking info
+     *
+     * @param integer $id
+     * @return array
+     */
+    public function deletBookingById(int $id)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM booking WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    /**
      * Return all booking dates from room_id
      *
      * @param integer $id
@@ -90,7 +102,7 @@ class BookingManager extends AbstractManager
      */
     public function selectBookingByUserId(int $id) : array
     {
-        $statement = $this->pdo->prepare("select begin_date, end_date, nb_person, options, total_price, name from $this->table join room on room.id=room_id where user_id=:id and begin_date >= NOW() ORDER BY begin_date ASC");
+        $statement = $this->pdo->prepare("select booking.id, begin_date, end_date, nb_person, options, total_price, name from $this->table join room on room.id=room_id where user_id=:id and begin_date >= NOW() ORDER BY begin_date ASC");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
         $bookings = $statement->fetchall();
@@ -108,63 +120,65 @@ class BookingManager extends AbstractManager
     }
 
     // returns booking number per month as an array
-    public function bookingPerMonth() {
+    public function bookingPerMonth()
+    {
         $sql = "SELECT EXTRACT(year_month FROM begin_date) as month, COUNT(*) as reservations FROM $this->table GROUP BY month";
-        try{
+        try {
             return $this->pdo->query($sql)->fetchAll();
-        }catch(\PDOException $e){
+        } catch (\PDOException $e) {
             return $e;
         }
     }
 
-    public function bookingPerRoom($id) {
+    public function bookingPerRoom($id)
+    {
         $sql = "select extract(year_month from begin_date) as month, count(*) as reservations from booking where room_id = :room_id group by month";
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue('room_id', $id, \PDO::PARAM_INT);
         $statement->execute();
-        try{
+        try {
             return $statement->fetchAll();
-        }catch(\PDOException $e){
+        } catch (\PDOException $e) {
             return $e;
         }
     }
 
     // returns total price per room as an array
-    public function pricesPerRoom() {
+    public function pricesPerRoom()
+    {
         $sql = "SELECT SUM(total_price) as price, room_id FROM $this->table GROUP BY room_id";
-        try{
+        try {
             return $this->pdo->query($sql)->fetchAll();
-        }catch(\PDOException $e){
+        } catch (\PDOException $e) {
             return $e;
         }
-
     }
 
     //get all booked date for a specific room
-    public function getLockedBookedDates($roomId) {
+    public function getLockedBookedDates($roomId)
+    {
         $sql = "SELECT begin_date, end_date FROM $this->table WHERE room_id=:room_id";
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue('room_id', $roomId, \PDO::PARAM_INT);
         $statement->execute();
-        try{
+        try {
             return $statement->fetchAll();
-        }catch(\PDOException $e ) { 
+        } catch (\PDOException $e) {
             return $e;
         }
     }
     
     //get user id then select his booking for later deletion.
-    public function getUserBooking($userId) {
+    public function getUserBooking($userId)
+    {
         $sql = "SELECT * FROM booking WHERE user_id=:user_id";
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
         $statement->execute();
-        try{
+        try {
             return $statement->fetchAll();
-        }catch(\PDOException $e){
+        } catch (\PDOException $e) {
             return $e;
         }
     }
 }
-
-

@@ -19,8 +19,8 @@ class AdminController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
     public function index()
-    {   
-        if( empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+    {
+        if (empty($_SESSION) || ($_SESSION['status'] != 'Administrator')) {
             return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
         } else {
             return $this->twig->render('Admin/index.html.twig');
@@ -31,10 +31,10 @@ class AdminController extends AbstractController
     {
         $roomManager = new RoomManager;
         $rooms = $roomManager->selectAll();
-        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+        if (empty($_SESSION) || ($_SESSION['status'] != 'Administrator')) {
             return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
-        }else{
-            return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);             
+        } else {
+            return $this->twig->render('Admin/chambres.html.twig', ["rooms" => $rooms]);
         }
     }
 
@@ -69,6 +69,7 @@ class AdminController extends AbstractController
                 $value = $_POST;
                 $value['id'] = $id;
                 $adminManager->updateRoomSql($value);
+                header('Location: /admin/chambres');
             }
         }
         $roomManager = new RoomManager;
@@ -91,12 +92,11 @@ class AdminController extends AbstractController
         } catch (\Exception $e) {
             $month = new Calendar;
         }
-        if(empty($_SESSION) || ($_SESSION['status'] != 'Administrator')){
+        if (empty($_SESSION) || ($_SESSION['status'] != 'Administrator')) {
             return $this->twig->render('Home/index.html.twig', ["error" => 'The page you are looking for does not exist [404 - Not Found]']);
-        }else{
+        } else {
             return $this->twig->render('Admin/planning.html.twig', ['planning' => $month]);
         }
-        
     }
   
     /**
@@ -127,33 +127,33 @@ class AdminController extends AbstractController
         $bm = new bookingManager;
         $bookings = $bm->selectByDay($date);
         return json_encode($bookings);
-        
     }
 
     //function to populate the booking per month chart on admin page
-    public function bookingChart() {
+    public function bookingChart()
+    {
         $bm = new bookingManager;
         $rooms = ['usa', 'japon', 'thailand', 'france', 'africa'];
-        try{
-            foreach($rooms as $key => $room){
+        try {
+            foreach ($rooms as $key => $room) {
                 $results[$room] = $bm->bookingPerRoom(intval($key) + 1);
             }
             $results['total'] = $bm->bookingPerMonth();
             return json_encode($results);
-        }catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             return $e;
         }
     }
 
     // function to populate the price per room chart on admin page.
-    public function priceChart() {
+    public function priceChart()
+    {
         $bm = new bookingManager;
-        try{
+        try {
             $results = $bm->pricesPerRoom();
             return json_encode($results);
-        }catch(\PDOException $e) {
+        } catch (\PDOException $e) {
             return $e;
         }
     }
-
 }
