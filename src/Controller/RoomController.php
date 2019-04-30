@@ -18,7 +18,6 @@ class RoomController extends AbstractController
 
     {
         $errors = [];
-        $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
 
         //check for unauthorized data in the booking form's submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,9 +25,7 @@ class RoomController extends AbstractController
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "problème lors de la saisie du nombre de personne";
             }
-            if (isset($_POST['options']) && !in_array($_POST['options'], $availableOptions)) {
-                $errors['options'] = "problème lors de la saisie des options";
-            }
+
 
             //if they are no unauthorized data in the form, it's prepared for the database insertion
             else {
@@ -49,6 +46,7 @@ class RoomController extends AbstractController
                 //calling the function that set the booked date in the database
                 $bookingController->insert($dataToInsert);
             }
+
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));

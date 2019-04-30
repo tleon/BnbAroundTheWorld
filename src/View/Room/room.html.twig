@@ -46,7 +46,8 @@
         <label class="index_form_select_labet">
           <span>Options possibles</span>
         </label>
-        <select name="options" multiple>
+        <input type="hidden" id="hidden" value="" name="options">
+        <select id="select-opt" multiple>
           <option value="Petit déjeuner">Petit déjeuner</option>
           <option value="Table d'hôte">Table d'hôte</option>
           <option value="baby1">1 Lit bébé</option>
@@ -57,7 +58,7 @@
       </div>
 
       <div class="room_form_submit">
-        <button type="submit" value="submit" class="custom_btn">Je reserve</button>
+        <button type="submit" id="submit-btn" value="submit" class="custom_btn">Je reserve</button>
       </div>
     </form>
     <div class="description">
@@ -124,6 +125,8 @@
 <script src="/assets/js/datePicker.js"></script>
 
 <script>
+ 
+
   function imageGallery() {
     const highlight = document.querySelector(".img-hightlight");
     const previews = document.querySelectorAll(".room-preview img");
@@ -145,6 +148,14 @@
   // Tabs 
   $(document).ready(function () {
     $('.tabs').tabs();
+    $('#select-opt').on('change', function() {
+      let a = $('#select-opt').formSelect()[0].selectedOptions;
+      let options = ""
+      for (let item of a) {
+        options += " " + item.value
+      }
+      $('#hidden')[0].value = options;
+    });
   });
 </script>
 {% endblock %}
