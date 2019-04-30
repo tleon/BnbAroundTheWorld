@@ -25,7 +25,6 @@ class RoomController extends AbstractController
         //check for unauthorized data in the booking form's submit
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "Problème lors de la saisie du nombre de personne";
             }
@@ -61,16 +60,16 @@ class RoomController extends AbstractController
         $feedback = $feedbackManager->selectAllFeedbackByRoomId($id);
 
         $caras = explode('_', $room['caracs']);
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
 
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
 
-    public function mail()
+    public function confirmMail()
     {
         // Create the Transport
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-        ->setUsername('helyamdu38550@gmail.com')
-        ->setPassword('Ninouche38');
+        ->setUsername('BnBAroundWorld@gmail.com')
+        ->setPassword(Password);
 
 
         // Create the Mailer using your created Transport
@@ -117,7 +116,7 @@ class RoomController extends AbstractController
      * get all booking for room id in flatpickr format.
      * ex : [{"from":"01.12.2018","to":"04.12.2018"},{"from":"26.04.2019","to":"27.04.2019"}]
      * and return default date picked on index page
-     * 
+     *
      * @param integer $id
      * @return json
      */
@@ -126,14 +125,14 @@ class RoomController extends AbstractController
         $bm = new BookingManager();
         $booking = $bm->selectBookingByRoom($id);
 
-        $booking = array_map(function($booking) {
+        $booking = array_map(function ($booking) {
             return array(
                 'from' => date('d.m.Y', strtotime($booking['begin_date'])),
                 'to' => date('d.m.Y', strtotime($booking['end_date']))
             );
         }, $booking);
 
-        if(!isset($_SESSION['booking']["beginDate"]) || !isset($_SESSION['booking']["beginDate"])){
+        if (!isset($_SESSION['booking']["beginDate"]) || !isset($_SESSION['booking']["beginDate"])) {
             $defaultD = [];
         } else {
             $defaultD = ["{$_SESSION['booking']["beginDate"]}", "{$_SESSION['booking']["endDate"]}"];
@@ -141,6 +140,5 @@ class RoomController extends AbstractController
 
         $booking['dDate']=$defaultD;
         return json_encode($booking);
-
     }
 }
