@@ -189,8 +189,23 @@ html, body {
   display: none;
 }
 
+
+#herve {
+  height: calc(100vh - 8.8rem);
+}
+
+.flex tr {
+  width: 100%;
+}
+.flex td, .flex th {
+  width: 33%;
+}
+
+
 #USA.is-displayed, #Japon.is-displayed, #Tailande.is-displayed, #France.is-displayed, #Africa.is-displayed {
-  display: block;
+  display: flex;
+  width:100%;
+  flex-direction: row;
 }
 
 #prevDay, #nextDay, .showBooking_icon {
@@ -254,10 +269,7 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
 }
-.fetch_data {
-  padding: 3rem;
-  min-width: 30px;;
-}
+
 
 .w-full {
   height: 98vh;
