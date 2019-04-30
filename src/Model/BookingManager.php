@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-/**
- *
- */
+
+
+
 class BookingManager extends AbstractManager
 {
     /**
@@ -34,9 +34,12 @@ class BookingManager extends AbstractManager
         $statement->bindValue('nbPerson', $data['nbPerson'], \PDO::PARAM_STR);
         $statement->bindValue('options', $data['option'], \PDO::PARAM_STR);
         $statement->bindValue('roomId', $data['roomId'], \PDO::PARAM_STR);
-        $statement->bindValue('totalPrice', 120, \PDO::PARAM_STR);
+        $tmp = strtotime($data['endDate']) - strtotime($data['beginDate']);
+        $days = round( $tmp / (60 * 60 * 24) + 1);
+        $totalPrice = $this->getTotalPrice($data['roomId'], $data['nbPerson'], $days);
+        $statement->bindValue('totalPrice', $totalPrice, \PDO::PARAM_STR);
         $statement->bindvalue('userId', $data['userId'], \PDO::PARAM_STR);
-        $statement->execute();
+        //$statement->execute();
     }
     
 
@@ -79,6 +82,13 @@ class BookingManager extends AbstractManager
         $statement->execute();
         $bookings = $statement->fetchall();
         return $bookings;
+    }
+
+    //calculate total price of room 
+    public function getTotalPrice($room_id, $nb_poeple, $nb_days) {
+        $pm = new PriceManager();
+        $results = $pm->selectOneById($room_id);
+        return  $results['price'] * $nb_poeple * $nb_days;
     }
 
     /**

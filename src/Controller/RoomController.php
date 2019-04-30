@@ -20,16 +20,12 @@ class RoomController extends AbstractController
     public function show($id) //id is not given on form submit
     {
         $errors = [];
-        $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
 
         //check for unauthorized data in the booking form's submit
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "Problème lors de la saisie du nombre de personne";
-            }
-            if (isset($_POST['options']) && !in_array($_POST['options'], $availableOptions)) {
-                $errors['options'] = "Problème lors de la saisie des options";
             }
 
             //if they are no unauthorized data in the form, it's prepared for the database insertion
@@ -47,11 +43,18 @@ class RoomController extends AbstractController
                 $dataToInsert['date'] = $_POST['date'];
                 $dataToInsert['userId'] = $_SESSION['id'];
                 $bookingController = new BookingController();
-
                 //calling the function that set the booked date in the database
+                $dates = explode(' ', $_POST['date']);
+                $d1 = new \DateTime($dates[0]);
+                $d2 = new \DateTime($dates[2]);
+                $bm = new BookingManager();
+                $interval = $d2->diff($d1);
+                $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
+                $_SESSION['price'] =  $total;
                 $bookingController->insert($dataToInsert);
-                $this->mail();
+                //$this->mail();
             }
+
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
@@ -59,9 +62,15 @@ class RoomController extends AbstractController
         $feedbackManager = new FeedbackManager();
         $feedback = $feedbackManager->selectAllFeedbackByRoomId($id);
 
+
         $caras = explode('_', $room['caracs']);
 
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
+    }
+
+
+    public function checkout(){
+        
     }
 
     public function confirmMail()

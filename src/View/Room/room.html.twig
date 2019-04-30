@@ -1,35 +1,37 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Chambre{% endblock %}
+{% block title %}Chambre
+{% endblock %}
 {% block stylesheet %}
-<link href="/assets/css/room.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <link href="/assets/css/room.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block content %}
-<div class="container">
+  <div class="container">
     <h1>{{ room.name }}</h1>
     <div class="row">
-        <div class="col s12 m7">
-            <div class="card">
-                <div class="card-image">
-                    <img src="/assets/images/{{ room.pic_path }}">
-                </div>
-            </div>
+      <div class="col s12 m7">
+        <div class="card">
+          <div class="card-image">
+            <img src="/assets/images/{{ room.pic_path }}">
+          </div>
         </div>
+      </div>
 
-        <div class="col s12 m3 offset-m1">
-            <div class="card-image">
-                <div class="card-title">
-                    <span>Thème de la chambre</span>
-                </div>
-                <div class="card-image">
-                    <img src="/assets/flags/logo-{{ room.pic_path }}">
-                </div>
-            </div>
+      <div class="col s12 m3 offset-m1">
+        <div class="card-image">
+          <div class="card-title">
+            <span>Thème de la chambre</span>
+          </div>
+          <div class="card-image">
+            <img src="/assets/flags/logo-{{ room.pic_path }}">
+          </div>
         </div>
+      </div>
 
     </div>
+
 
     <form method="post" class="formulaire">
       <input name="room_id" class="room_id" value="{{room.id}}" hidden>
@@ -56,19 +58,22 @@
       </div>
 
 
-      <div class="room_form_select2">
-        <label class="index_form_select_labet">
-          <span>Options possibles</span>
-        </label>
-        <select name="options" multiple>
-          <option value="Petit déjeuner">Petit déjeuner</option>
-          <option value="Table d'hôte">Table d'hôte</option>
-          <option value="baby1">1 Lit bébé</option>
-          <option value="baby2">2 Lit bébé</option>
-          <option value="none">Aucune option</option>
-        </select>
-        {{ errors.options }}
-      </div>
+
+    <div class="room_form_select2">
+      <label class="index_form_select_labet">
+        <span>Options possibles</span>
+      </label>
+      <input id="hidden" name="options" type="hidden" value="">
+      <select id="select-opt" multiple>
+        <option value="Petit déjeuner">Petit déjeuner</option>
+        <option value="Table d'hôte">Table d'hôte</option>
+        <option value="baby1">1 Lit bébé</option>
+        <option value="baby2">2 Lit bébé</option>
+        <option value="none">Aucune option</option>
+      </select>
+      {{ errors.options }}
+    </div>
+
 
       <div class="room_form_submit">
         <button type="submit" value="submit" class="custom_btn">Je réserve</button>
@@ -89,86 +94,199 @@
         <p>{{ room.caracs }}</p>
         <ul>
           {% for carac in caracs %}
+
           {% if carac == 'dej' %}
-          <li>Petit Déjeuné</li>
+            <li>Petit Déjeuné</li>
           {% endif %}
           {% if carac == 'separateBed' %}
-          <li>Lits séparés</li>
+            <li>Lits séparés</li>
           {% endif %}
           {% if carac == 'repas' %}
-          <li>Table d'hôte</li>
+            <li>Table d'hôte</li>
           {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-      <div id="tab3" class="col s12">
-        <span>Options</span>
-      </div>
+        {% endfor %}
+      </ul>
     </div>
+    <div class="col s12" id="tab3">
+      <span>Options</span>
+    </div>
+  </div>
 
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col s12 m12">
-            <div class="card opinion">
-                <div class="card-content">
-                    {% set randFeedback = random(0, feedback|length-1) %}
-                    <div class="stars">
-                        {% for i in 1..feedback[randFeedback].grade %}
-                        <img src="/assets/images/star.png">
-                        {% endfor %}
 
-                    </div>
-                    <div class="opinion-text">
-                        <p>{{ feedback[randFeedback].comment }}</p>
-                    </div>
-                    <div class="author">
-                        <span class="author-opinion">{{ feedback[randFeedback].username }}</span>
-                    </div>
-                </div>
-            </div>
+  {% if session.price is defined %}
+  
+  <div class="row">
+    <h6>Montant à régler : {{ session.price }} €</h6>
+  </div>
 
+  <div class="row">
+    <form action="" id="payment-form" method="post">
+      <div class="form-row">
+        <label for="card-element">
+          Credit or debit card
+        </label>
+        <div
+          id="card-element"><!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+      <br>
+      <div class="row payment-btn">
+        <a class="custom_btn" href="#">Régler votre chambre.</a>
+      </div>
+    </form>
+  </div>
+  {% endif %}
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m12">
+      <div class="card opinion">
+        <div class="card-content">
+          {% set randFeedback = random(0, feedback|length-1) %}
+          <div class="stars">
+            {% for i in 1..feedback[randFeedback].grade %}
+              <img src="/assets/images/star.png">
+            {% endfor %}
+
+          </div>
+          <div class="opinion-text">
+            <p>{{ feedback[randFeedback].comment }}</p>
+          </div>
+          <div class="author">
+            <span class="author-opinion">{{ feedback[randFeedback].username }}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+</div></div></div>
 {% endblock %}
-
-
 {% block javascript %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-<script> $('#date').daterangepicker({
-    startDate: "{{session.booking.beginDate}}" || "01/01/2019",
-    endDate: "{{session.booking.endDate}}" || "01/01/2019"
-}); </script>
-<script src="/assets/js/datePicker.js"></script>
-
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
 <script>
-  function imageGallery() {
-    const highlight = document.querySelector(".img-hightlight");
-    const previews = document.querySelectorAll(".room-preview img");
+  $('#date').daterangepicker({
+  startDate: "{{session.booking.beginDate}}" || "01/01/2019",
+  endDate: "{{session.booking.endDate}}" || "01/01/2019"
+});</script><script src="/assets/js/datePicker.js"></script><script src="https://js.stripe.com/v3/"></script><script>var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-    previews.forEach(preview => {
-      preview.addEventListener("click", function () {
-        let smallSrc = this.src;
-        let bigSrc = highlight.src;
-        highlight.src = smallSrc;
-        previews.forEach(preview => preview.classList.remove("room-active"));
-        preview.classList.add("room-active");
-      });
-    });
+var elements = stripe.elements();
+
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
   }
-  imageGallery();
-</script>
+};
 
-<script>
-  // Tabs 
-  $(document).ready(function () {
-    $('.tabs').tabs();
+// Create a Stripe client.
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function (event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function (result) {
+    if (result.error) { // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else { // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
   });
-</script>
+});
+
+// Submit the form with the token ID.
+function stripeTokenHandler(token) { // Insert the token ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+
+function imageGallery() {
+  const highlight = document.querySelector(".img-hightlight");
+  const previews = document.querySelectorAll(".room-preview img");
+
+  previews.forEach(preview => {
+    preview.addEventListener("click", function () {
+      let smallSrc = this.src;
+      let bigSrc = highlight.src;
+      highlight.src = smallSrc;
+      previews.forEach(preview => preview.classList.remove("room-active"));
+      preview.classList.add("room-active");
+    });
+  });
+}
+imageGallery();</script><script>// Tabs
+$(document).ready(function () {
+  $('.tabs').tabs();
+  // this is code is most likly very bad. As D.trump would say, "Horrible, awefull, totally not good". And of as zfg would say "Anyway ....."
+  $('#select-opt').on('change', function () {
+    let a = $('#select-opt').formSelect()[0].selectedOptions;
+    let options = ""
+    for (let item of a) {
+      options += " " + item.value
+    }
+    $('#hidden')[0].value = options;
+  });
+});</script>
 {% endblock %}
