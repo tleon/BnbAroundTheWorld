@@ -84,7 +84,7 @@ class RoomController extends AbstractController
 
         // Create a message
         $message = (new \Swift_Message('Confirmation de réservation'))
-        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
+        ->setFrom(['BnBAroundWorld@gmail.com' => 'BnB Around The World'])
         ->setTo($_SESSION["email"])
         ->setBody($mail);
 

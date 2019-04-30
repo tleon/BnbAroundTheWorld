@@ -141,7 +141,7 @@ class BookingController extends AbstractController
         $BookingManager = new BookingManager();
         $BookingManager->deletBookingById($id);
         header('location: /myAccount/show');
-
+        
         $roomController = new RoomController;
         $roomController->confirmMail('annulation');
     }
