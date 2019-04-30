@@ -19,7 +19,9 @@
                             <p>Nombre de personnes : {{ bookings[0].nb_person }}</p>
                             <p>Options : {{ bookings[0].options }}</p>
                             <p>Facturation : {{ bookings[0].total_price }}€</p>
-                            <a href="#" class="waves-effect waves-light btn">annuler</a>
+                            <form action="/booking/delete/{{ bookings[0].id }}">
+                                <input type="submit"  class="waves-effect waves-light btn">
+                            </form>
                     </div>
                 </div>
             </div>
@@ -39,7 +41,7 @@
             <p>Nombre de personnes : {{ booking.nb_person }}</p>
             <p>Options : {{ booking.options }}</p>
             <p>Facturation : {{ booking.total_price }}€</p>
-            <a href="#" class="waves-effect waves-light btn">annuler</a>
+            <a href="/Booking/delete/{{ booking.id }}" class="waves-effect waves-light btn">annuler</a>
             <br/>
             <br/>
 {% endfor %}

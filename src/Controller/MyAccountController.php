@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Controller;
+
 use App\Model\BookingManager;
 
 class MyAccountController extends AbstractController
 {
-
     public function show()
     {
-        if (!empty($_SESSION))
-        {
+        if (!empty($_SESSION)) {
             $bookingManager = new BookingManager();
             $bookings = $bookingManager->selectBookingByUserId(intval($_SESSION['id']));
+
             if (empty($bookings))
             {
                 $noBooking = True;
