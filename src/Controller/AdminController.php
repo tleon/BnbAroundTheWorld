@@ -73,7 +73,7 @@ class AdminController extends AbstractController
         }
         $roomManager = new RoomManager;
         $rooms = $roomManager-> selectOneById($id);
-        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms, "error" => $error]);
+        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms, "error" => $error ?? ""]);
     }
 
     /**
