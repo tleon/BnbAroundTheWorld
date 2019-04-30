@@ -182,7 +182,6 @@ class BookingController extends AbstractController
                 'user_id' => 4,
                 'total_price' => 0
             ];
-
             $errors = $this->checkData($data);
             if (empty($errors)) {
                 $BookingManager = new BookingManager();
@@ -192,4 +191,5 @@ class BookingController extends AbstractController
 
         return $this->twig->render('Room/room.html.twig', ['dump'=>$end_date]);
     }
+
 }
