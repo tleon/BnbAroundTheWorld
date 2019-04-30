@@ -231,12 +231,13 @@ nav {
 }
 nav ul a {
   font-size: 0.9rem !important;
+  color: #484848;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  width: 30px;
+  width: auto;
   height: 100%;
   padding-right: 16px;
   justify-content: flex-end;

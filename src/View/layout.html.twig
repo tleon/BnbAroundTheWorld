@@ -32,10 +32,11 @@
     <ul class="nav-links" id="navUl">
       <li><a class="modal-trigger" href="/AboutUs/show" id="connect">About</a></li>
       {% if connected %}
+      <li><a class="modal-trigger" href="/myAccount/show" id="connect">Mon compte</a></li>
       <li><a class="modal-trigger" href="/Home/logout" id="connect">Déconnexion</a></li>
       {% else %}
       <li>
-        <a class="modal-trigger nav_a_link_white" href="#modal1" id="connect">Connexion</a>
+        <a class="modal-trigger" href="#modal1" id="connect">Connexion</a>
       </li>
       {% endif %}
     </ul>

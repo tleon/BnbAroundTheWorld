@@ -2,8 +2,8 @@
 
 {% block title %}Chambre{% endblock %}
 {% block stylesheet %}
-    <link href="/assets/css/room.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link href="/assets/css/room.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 {% endblock %}
 
 {% block content %}
@@ -28,75 +28,88 @@
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+
+    <form method="post" class="formulaire">
+      <input name="room_id" class="room_id" value="{{room.id}}" hidden></input>
+      <div class="room_form_date_picker">
+        <label class="room_form_select_label">
+          <span>dates de sejour</span>
+        </label>
+        <input type="text" class="flatpickr-calendar" name="date">
+      </div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col s12 m7">
-            <div class="container-fluid">
-                <div class="row">
-                    <h4>Description</h4>
-                        <p>{{ room.description }}</p>
-                </div>
+      <div class="room_form_select1">
+        <label class="index_form_select_labet">
+          <span>nombre de personnes</span>
+        </label>
+        <select name="nb_person">
+          <option value="" disabled>Choisir le nombre de personnes</option>
+          <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+          <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+          <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+          <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
+        </select>
+        {{ errors.nb_person }}
+      </div>
 
-                <div class="row">
-                        <h4>Caractéristiques</h4>
-                        <ul>
-                            {% for carac in caracs %}
-                                {% if carac == 'dej' %}
-                                    <li>Petit Déjeuné</li>
-                                {% endif %}
-                                {% if carac == 'separateBed' %}
-                                    <li>Lits séparés</li>
-                                {% endif %}
-                                {% if carac == 'repas' %}
-                                    <li>Table d'hôte</li>
-                                {% endif %}                                
-                            {% endfor %}
-                        </ul>
-                </div>
-            </div>
-        </div>
 
-        <div class="col s12 m5">
-            <div class="container">
-                <form method="post">
+      <div class="room_form_select2">
+        <label class="index_form_select_labet">
+          <span>Options possibles</span>
+        </label>
+        <select name="options" multiple>
+          <option value="Petit déjeuner">Petit déjeuner</option>
+          <option value="Table d'hôte">Table d'hôte</option>
+          <option value="baby1">1 Lit bébé</option>
+          <option value="baby2">2 Lit bébé</option>
+          <option value="none">Aucune option</option>
+        </select>
+        {{ errors.options }}
+      </div>
 
-                    <div name="room_id" class="room_id" hidden></div>
-                    <div class="input-field col s12">
-                        <select name="nb_person">
-                            <option value="" disabled>Choisir le nombre de personnes</option>
-                            <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
-                            <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
-                            <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
-                            <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
-                        </select>
-                    {{ errors.nb_person }}
-                    </div>
+      <div class="room_form_submit">
+        <button type="submit" value="submit" class="custom_btn">Je reserve</button>
+      </div>
+    </form>
+    <div class="description">
+      <h1>Chambre {{ room.name }}</h1>
+      <!-- Tabs -->
 
-                    <div class="input-field col s12">
-                        <select name="options" multiple>
-                            <option value=" " disabled selected>Options possibles</option>
-                            <option  value="Petit déjeuner">Petit déjeuner</option>
-                            <option value="Table d'hôte">Table d'hôte</option>
-                            <optgroup label="Lit bébé">
-                                <option value="baby1">1</option>
-                                <option value="baby2">2</option>
-                            </optgroup>
-                        </select>
-                        {{ errors.options }}
-                    </div>
 
-                    <input type="text" id="date" name="date" />
-                    <div class="center-align">
-                        <button type="submit" class="waves-effect waves-light btn-large bg-dark-blue" href="#">Réserver</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+      <div class="tab_parent">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#tab1">Description</a></li>
+          <li class="tab col s3"><a href="#tab2">Caractéristiques</a></li>
+          <li class="tab col s3"><a href="#tab3">Options</a></li>
+        </ul>
+      </div>
+      <div id="tab1" class="col s12">
+        <p>{{ room.description }}</p>
+      </div>
+      <div id="tab2" class="col s12">
+        <p>{{ room.caracs }}</p>
+        <ul>
+          {% for carac in caracs %}
+          {% if carac == 'dej' %}
+          <li>Petit Déjeuné</li>
+          {% endif %}
+          {% if carac == 'separateBed' %}
+          <li>Lits séparés</li>
+          {% endif %}
+          {% if carac == 'repas' %}
+          <li>Table d'hôte</li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div id="tab3" class="col s12">
+        <span>Options</span>
+      </div>
     </div>
+
 </div>
 <div class="container">
     <div class="row">
@@ -118,9 +131,13 @@
                     </div>
                 </div>
             </div>
+
         </div>
+      </div>
     </div>
+  </div>
 </div>
+
 {% endblock %}
 
 
@@ -132,4 +149,30 @@
     startDate: "{{session.booking.beginDate}}" || "01/01/2019",
     endDate: "{{session.booking.endDate}}" || "01/01/2019"
 }); </script>
+<script src="/assets/js/datePicker.js"></script>
+
+<script>
+  function imageGallery() {
+    const highlight = document.querySelector(".img-hightlight");
+    const previews = document.querySelectorAll(".room-preview img");
+
+    previews.forEach(preview => {
+      preview.addEventListener("click", function () {
+        let smallSrc = this.src;
+        let bigSrc = highlight.src;
+        highlight.src = smallSrc;
+        previews.forEach(preview => preview.classList.remove("room-active"));
+        preview.classList.add("room-active");
+      });
+    });
+  }
+  imageGallery();
+</script>
+
+<script>
+  // Tabs 
+  $(document).ready(function () {
+    $('.tabs').tabs();
+  });
+</script>
 {% endblock %}

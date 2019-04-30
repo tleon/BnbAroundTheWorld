@@ -1,12 +1,12 @@
+let url = document.URL;
 fetchUrl = url.replace('show', 'getUnavailableDate');
-
-let test;
+let getDataInGlobalScope;
 
 const getBooking = () => {
   fetch(fetchUrl).then(function(response) {
     return response.json();
   }).then(function(bookings) {
-    test = bookings;
+    getDataInGlobalScope = bookings;
     getData(bookings);
   }).catch(function(err) {
     console.log('Fetch problem: ' + err.message);
