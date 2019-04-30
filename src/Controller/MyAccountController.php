@@ -12,7 +12,15 @@ class MyAccountController extends AbstractController
         {
             $bookingManager = new BookingManager();
             $bookings = $bookingManager->selectBookingByUserId(intval($_SESSION['id']));
-            return $this->twig->render('User/myAccount.html.twig',['session' => $_SESSION, 'bookings' => $bookings]);
+            if (empty($bookings))
+            {
+                $noBooking = True;
+            }
+            else
+            {
+                $noBooking = False;
+            }
+            return $this->twig->render('User/myAccount.html.twig',['session' => $_SESSION, 'bookings' => $bookings, 'noBooking' => $noBooking]);
         }
         else
         {
