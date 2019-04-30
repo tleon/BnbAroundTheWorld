@@ -52,7 +52,6 @@ class RoomController extends AbstractController
                 $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
                 $_SESSION['price'] =  $total;
                 $bookingController->insert($dataToInsert);
-                //$this->mail();
             }
 
         }
@@ -67,14 +66,20 @@ class RoomController extends AbstractController
 
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
-
-
     public function checkout(){
         
     }
 
-    public function confirmMail()
+    public function confirmMail($target)
     {
+        if ($target == 'reservation') {
+            $mail = "Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
+        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
+    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
+    *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.";
+        } else {
+            $mail = "Votre annulation a bien ete prise en compte. Nous vous remercions de votre confiance.";
+        }
         // Create the Transport
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
         ->setUsername('BnBAroundWorld@gmail.com')
@@ -86,12 +91,9 @@ class RoomController extends AbstractController
 
         // Create a message
         $message = (new \Swift_Message('Confirmation de réservation'))
-        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
+        ->setFrom(['BnBAroundWorld@gmail.com' => 'BnB Around The World'])
         ->setTo($_SESSION["email"])
-        ->setBody("Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
-        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
-    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
-    *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.");
+        ->setBody($mail);
 
         // Send the message
         return $mailer->send($message);
