@@ -35,6 +35,7 @@ class AboutUsController extends AbstractController
         }
 
         return $this->twig->render('AboutUs/aboutUs.html.twig', ['session' => $_SESSION, 'isconnected'=>$isconnected]);
+
     }
     
 }

@@ -6,6 +6,7 @@ use App\Controller\BookingController;
 
 use App\Model\RoomManager;
 use App\Model\BookingManager;
+use App\Model\FeedbackManager;
 
 class RoomController extends AbstractController
 {
@@ -55,8 +56,11 @@ class RoomController extends AbstractController
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
 
+        $feedbackManager = new FeedbackManager();
+        $feedback = $feedbackManager->selectAllFeedbackByRoomId($id);
+
         $caras = explode('_', $room['caracs']);
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras]);
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
 
     }
 
