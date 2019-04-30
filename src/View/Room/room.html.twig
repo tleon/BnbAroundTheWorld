@@ -124,7 +124,9 @@
 
   {% if session.price is defined %}
   
-  
+  <div class="row">
+    <h6>Montant à régler : {{ session.price }} €</h6>
+  </div>
 
   <div class="row">
     <form action="" id="payment-form" method="post">

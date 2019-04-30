@@ -52,7 +52,7 @@ class RoomController extends AbstractController
                 $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
                 $_SESSION['price'] =  $total;
                 $bookingController->insert($dataToInsert);
-                $this->mail();
+                //$this->mail();
             }
 
         }
