@@ -105,7 +105,8 @@ body {
 }
 
 .side-img {
-  margin-top: 0px;
+  margin: 5px;
+  padding: 0px;
 }
 
 .blockImage-1,
