@@ -130,6 +130,9 @@ class BookingController extends AbstractController
         //sending data to insert function
         $BookingManager = new BookingManager();
         $BookingManager->insertDate($data);
+
+        $roomController = new RoomController;
+        $roomController->confirmMail();
     }
 
     public function delete($id)

@@ -49,7 +49,6 @@ class RoomController extends AbstractController
 
                 //calling the function that set the booked date in the database
                 $bookingController->insert($dataToInsert);
-                $this->mail();
             }
         }
         $roomManager = new RoomManager();
