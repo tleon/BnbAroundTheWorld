@@ -132,20 +132,21 @@
             <div class="col s12">
                 <div class="row">
                     {% if isconnected %}
-                    <div class="input-field col s6">
-                        <input id="username" type="text" class="validate" value="{{ session.username }}">
-                        <label for="username">Prénom</label>
+                    <div class="signin-row">
+                        <p>Vous êtes connecté en tant que {{ session.username }}</p>
                     </div>
-                    <div class="input-field col s4">
-                        <select name="roomId">
-                            <option value="" disabled selected>Votre chambre</option>
-                            <option value="5">Afrique</option>
-                            <option value="4">France</option>
-                            <option value="2">Japon</option>
-                            <option value="3">Thaïlande</option>
-                            <option value="1">USA</option>
-                        </select>
-                        <label>Chambre</label>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select name="roomId">
+                                <option value="" disabled selected>Votre chambre</option>
+                                <option value="5">Afrique</option>
+                                <option value="4">France</option>
+                                <option value="2">Japon</option>
+                                <option value="3">Thaïlande</option>
+                                <option value="1">USA</option>
+                            </select>
+                            <label>Chambre</label>
+                        </div>
                     </div>
                 </div>
 
