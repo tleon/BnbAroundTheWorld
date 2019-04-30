@@ -132,7 +132,7 @@ class BookingController extends AbstractController
         $BookingManager->insertDate($data);
 
         $roomController = new RoomController;
-        $roomController->confirmMail();
+        $roomController->confirmMail('reservation');
     }
 
     public function delete($id)
@@ -141,6 +141,9 @@ class BookingController extends AbstractController
         $BookingManager = new BookingManager();
         $BookingManager->deletBookingById($id);
         header('location: /myAccount/show');
+
+        $roomController = new RoomController;
+        $roomController->confirmMail('annulation');
     }
 
 
