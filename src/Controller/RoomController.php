@@ -16,8 +16,8 @@ class RoomController extends AbstractController
      *
      **/
 
-    public function show($id) //id is not given on form submit
 
+    public function show($id) //id is not given on form submit
     {
         $errors = [];
         $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
@@ -51,6 +51,7 @@ class RoomController extends AbstractController
 
                 //calling the function that set the booked date in the database
                 $bookingController->insert($dataToInsert);
+                $this->mail();
             }
         }
         $roomManager = new RoomManager();
@@ -64,10 +65,33 @@ class RoomController extends AbstractController
 
     }
 
+    public function mail()
+    {
+        // Create the Transport
+        $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+        ->setUsername('helyamdu38550@gmail.com')
+        ->setPassword('Ninouche38');
+
+
+        // Create the Mailer using your created Transport
+        $mailer = new \Swift_Mailer($transport);
+
+        // Create a message
+        $message = (new \Swift_Message('Confirmation de reservation'))
+        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
+        ->setTo($_SESSION["email"])
+        ->setBody("Votre reservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agreable sejours. \
+    Pour annuler votre reservation veuillez suivre ce lien : www.blabla.com* \
+    *Attention : l'annulation d'une reservation doit se fair dans les 48h avant le debut du sejour.");
+
+        // Send the message
+        return $mailer->send($message);
+    }
+  
     private function checkData($data)
     {
         if (!isset($data['date']) || empty($data['date'])) {
-            $errors['date'] = "Dates obligatoires";
+            $errors['date']="Dates obligatoires";
         }
         return $errors;
     }
@@ -87,7 +111,7 @@ class RoomController extends AbstractController
         }
         return $this->twig->render('Room/room.html.twig');
     }
-    
+
     /**
      * get all booking for room id in flatpickr format.
      * ex : [{"from":"01.12.2018","to":"04.12.2018"},{"from":"26.04.2019","to":"27.04.2019"}]
