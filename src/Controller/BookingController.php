@@ -80,8 +80,6 @@ class BookingController extends AbstractController
         } else {
             $data=$this->convert($_POST, "roomPage");
 
-
-
             if ($_POST['nbPerson']=="1") {
                 $nbGuestSelected[1]="selected";
             } elseif ($_POST['nbPerson']!="1") {

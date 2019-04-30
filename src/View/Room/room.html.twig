@@ -8,14 +8,27 @@
 
 {% block content %}
 <div class="container">
-  <div class="room">
-    <div class="images">
-      <img class="img-hightlight" src="/assets/images/{{ room.pic_path }}" alt="room1" />
-      <div class="room-preview">
-        <img src="/assets/images/{{ room.pic_path }}" class="room-active border_radius_left" alt="" />
-        <img src="/assets/images/france.png" alt="" />
-        <img src="/assets/images/paralax-photo.jpeg" alt="" class="border_radius_right" />
-      </div>
+    <h1>{{ room.name }}</h1>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img src="/assets/images/{{ room.pic_path }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m3 offset-m1">
+            <div class="card-image">
+                <div class="card-title">
+                    <span>Thème de la chambre</span>
+                </div>
+                <div class="card-image">
+                    <img src="/assets/flags/logo-{{ room.pic_path }}">
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <form method="post" class="formulaire">
@@ -26,6 +39,7 @@
         </label>
         <input type="text" class="flatpickr-calendar" name="date">
       </div>
+
 
       <div class="room_form_select1">
         <label class="index_form_select_labet">
@@ -95,22 +109,29 @@
         <span>Options</span>
       </div>
     </div>
-    <div class="commentaire">
-      <div class="card opinion">
-        <div class="card-content">
-          <div class="stars">
-            <img src="/assets/images/star.png">
-            <img src="/assets/images/star.png">
-            <img src="/assets/images/star.png">
-          </div>
-          <div class="opinion-text">
-            <p>Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et
-              éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-            </p>
-          </div>
-          <div class="author">
-            <span class="author-opinion">Toto</span>
-          </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card opinion">
+                <div class="card-content">
+                    {% set randFeedback = random(0, feedback|length-1) %}
+                    <div class="stars">
+                        {% for i in 1..feedback[randFeedback].grade %}
+                        <img src="/assets/images/star.png">
+                        {% endfor %}
+
+                    </div>
+                    <div class="opinion-text">
+                        <p>{{ feedback[randFeedback].comment }}</p>
+                    </div>
+                    <div class="author">
+                        <span class="author-opinion">{{ feedback[randFeedback].username }}</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
       </div>
     </div>
@@ -121,6 +142,13 @@
 
 
 {% block javascript %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script> $('#date').daterangepicker({
+    startDate: "{{session.booking.beginDate}}" || "01/01/2019",
+    endDate: "{{session.booking.endDate}}" || "01/01/2019"
+}); </script>
 <script src="/assets/js/datePicker.js"></script>
 
 <script>

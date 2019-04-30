@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\BookingController;
+
 use App\Model\RoomManager;
 use App\Model\BookingManager;
 
@@ -21,6 +22,7 @@ class RoomController extends AbstractController
         $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
 
         //check for unauthorized data in the booking form's submit
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {

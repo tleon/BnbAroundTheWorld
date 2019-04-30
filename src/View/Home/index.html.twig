@@ -1,9 +1,5 @@
 {% extends 'layout.html.twig' %}
 
-{% block stylesheet %}
-
-{% endblock %}
-
 
 {% block video %}
 <div class="container" id="video">
@@ -14,6 +10,7 @@
     <form action="/booking/transfert" method="POST">
       <div class="index_form_title">
         <p>Réserver dès maintenant.</p>
+
       </div>
       <div class="index_form_select">
         <label class="index_form_select_labet">
@@ -57,7 +54,11 @@
     
   </div>
 </div>
-</div>{% endblock %}{% block description %}
+</div>{% endblock %}
+
+
+
+{% block description %}
 <div class="container">
   <h2 id='notreGite'>Notre Gîte</h2>
   <div class="divider"></div>
@@ -67,11 +68,21 @@
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum id voluptates laboriosam vitae, accusamus fugiat
   cumque distinctio recusandae rem eveniet! Fuga nemo veritatis perspiciatis ipsam facilis quidem ea! Beatae, harum.
   <br><br><br>
-</div>{% endblock %}{% block parallax %}
+</div>
+{% endblock %}
+
+
+
+{% block parallax %}
 
 <div class="parallax-container">
   <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
-</div>{% endblock %}{% block content %}
+</div>
+{% endblock %}
+
+
+
+{% block content %}
 <div class="container" id="main-body">
   <br><br>
   <div class="index-chambres">
@@ -153,7 +164,11 @@
   </div>
 </div>
 
-{% endblock %}{% block javascript %}
+{% endblock %}
+
+
+
+{% block javascript %}
 <script src="/assets/js/indexScrollEffect.js"></script>
 <script src="/assets/js/index.datePicker.js"></script>
 <script>
