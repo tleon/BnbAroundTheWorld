@@ -216,7 +216,7 @@ body {
 
 nav {
   padding: 0 5.5rem;
-  height: 50px;
+  height: 55px;
   position: fixed;
   z-index: 1;
   margin-top:-1px;
@@ -704,3 +704,9 @@ footer {
   color: rgba(64,72,72,0.1)!important;
 }
 
+.pt-4 {
+  padding-top:4rem;
+}
+.images {
+  height: 32rem;
+}
