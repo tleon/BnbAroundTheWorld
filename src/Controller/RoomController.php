@@ -7,6 +7,7 @@ use App\Controller\BookingController;
 use App\Model\RoomManager;
 use App\Model\BookingManager;
 use App\Model\FeedbackManager;
+use App\Services\UploadFiles;
 
 class RoomController extends AbstractController
 {
@@ -73,7 +74,10 @@ class RoomController extends AbstractController
 
         $caras = explode('_', $room['caracs']);
 
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
+        $up = new UploadFiles($id);
+        $images = $up->getAllImg($id);
+
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback, 'images'=>$images]);
     }
     public function checkout(){
         //test
