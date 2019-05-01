@@ -17,7 +17,7 @@ class RoomController extends AbstractController
      **/
 
 
-    public function show($id) //id is not given on form submit
+    public function show($id) 
     {
         $errors = [];
 
@@ -26,9 +26,12 @@ class RoomController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "Problème lors de la saisie du nombre de personne";
+            }elseif(!isset($_SESSION['id'])){
+                return $this->twig->render('Home/signIn.html.twig', ['error' => "Veuillez vous inscrire pour réserver", "success" => ""]);
             }
-
-            //if they are no unauthorized data in the form, it's prepared for the database insertion
+            elseif(!isset($_SESSION['booking'])){
+                $_SESSION['booking']['roomId'] = $id;
+            } //if there are no unauthorized data in the form, it's prepared for the database insertion
             else {
                 //readying the array that will be sent to the database
                 $dataToInsert['nbPerson'] = $_POST['nb_person'];
@@ -51,7 +54,13 @@ class RoomController extends AbstractController
                 $interval = $d2->diff($d1);
                 $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
                 $_SESSION['price'] =  $total;
-                $bookingController->insert($dataToInsert);
+                try{
+                    $bookingController->insert($dataToInsert);
+                }catch(\PDOException $e){
+                    return $this->twig->render("/Home/index", ["error" => "Une erreur est survenue lors de la réservation."]);
+                }
+                return $this->checkout();
+
             }
 
         }
@@ -67,6 +76,8 @@ class RoomController extends AbstractController
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
     public function checkout(){
+        //test
+        return $this->twig->render("/Room/payement.html.twig", ['session' => $_SESSION]);
         
     }
 

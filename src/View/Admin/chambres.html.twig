@@ -7,22 +7,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            {% for room in rooms %}
-                <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-action">
-                            <a class="btn waves-effect waves-light btn-small" href="/admin/edit/{{ room.id }}" style="margin-left:73%;">Modifier</a>
-                        </div>
-                        <div class="card-image ">
-                            <img class="image-card" src="/assets/images/{{ room.pic_path }}">
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+<div class="container container_admin_room">
+    <div class="grid_admin_room">
+        {% for room in rooms %}
+        <div class="admin_room">
+            <img class="image-card" src="/assets/images/{{ room.pic_path }}">
+                <a href="/admin/edit/{{ room.id }}">Modifier</a>
         </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
 
 {% block javascript %}{% endblock %}

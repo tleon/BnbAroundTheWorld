@@ -7,6 +7,7 @@ use App\Model\AdminManager;
 use App\Services\Calendar;
 use App\Model\BookingManager;
 use App\Model\UsersManager;
+use App\Services\UploadFiles;
 
 class AdminController extends AbstractController
 {
@@ -74,7 +75,7 @@ class AdminController extends AbstractController
         }
         $roomManager = new RoomManager;
         $rooms = $roomManager-> selectOneById($id);
-        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms, "error" => $error]);
+        return $this->twig->render('Admin/edit.html.twig', ["rooms" => $rooms, "error" => $error ?? ""]);
     }
 
     /**
@@ -125,8 +126,12 @@ class AdminController extends AbstractController
     {
         $date = new \DateTime($date);
         $bm = new bookingManager;
-        $bookings = $bm->selectByDay($date);
-        return json_encode($bookings);
+        try{
+            $bookings = $bm->selectByDay($date);
+            return json_encode($bookings);
+        }catch(\PDOException $e){
+            return $e;
+        }
     }
 
     //function to populate the booking per month chart on admin page
@@ -157,6 +162,27 @@ class AdminController extends AbstractController
         }
     }
 
+    public function upload($id) {
+        if (($_SERVER['REQUEST_METHOD'] === 'POST') && (!empty($_FILES)) && (!array_key_exists('deleat', $_POST))) {
+            $upld = new UploadFiles($id);
+            $upld->uploadNewImages($_FILES, $id);
+        }
+        
+        // Deleat post request
+        if (($_SERVER['REQUEST_METHOD']==='POST') && (array_key_exists('deleat', $_POST))){
+            // On verifie que le fichier existe
+            if(file_exists('assets/images/' . $_POST['img_path'])){
+                // On supprime le fichier
+                unlink('assets/images/' . $_POST['img_path']);
+            }
+            
+        }
+
+        $up = new UploadFiles($id);
+        $nbFilesInDir =$up->nbFilesInDir();
+        $images = $up->getAllImg($id);
+        return $this->twig->render('Admin/upload.html.twig', ['nbFiles' => $nbFilesInDir, 'images'=>$images, 'id'=>$id]);
+        
+    }
 
 }
-

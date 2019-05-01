@@ -20,6 +20,7 @@ class MyAccountController extends AbstractController
             {
                 $noBooking = False;
             }
+
             return $this->twig->render('User/myAccount.html.twig',['session' => $_SESSION, 'bookings' => $bookings, 'noBooking' => $noBooking]);
         }
         else
