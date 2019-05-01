@@ -248,20 +248,20 @@ nav {
   transition: opacity 1s;
 }
 
-.flex {
+/* .flex {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 .fetch_data {
   padding: 3rem;
   min-width: 30px;;
 }
 
-.w-full {
+/* .w-full {
   height: 98vh;
-}
+} */
 
 .showBooking {
   display: grid;
@@ -347,7 +347,7 @@ nav {
   
 }
 
-.admin_room a {
+.admin_room a, .admin_room button{
   position: absolute;
   /* margin-top:-15rem; */
   z-index: 1;
@@ -417,15 +417,19 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 .flex_edit_room {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   flex-wrap: nowrap;
-  width: 100%;
-  
+  width: 80%;
+  padding-top:2rem;
 }
 
 .editroom_icon {
   display: flex;
-  justify-content: left;
-  width:100%;
+  flex-direction: column;
+  align-items: flex-start;
+  width:10%;
+  height: 100vh;
 }
 
 .editroom_titre {
@@ -436,14 +440,22 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
 }
 
 #editroom {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width:100%;
   margin-top:0;
   padding:0;
   height: 100%;
+}
+
+#editroom form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width:100%;
+}
+
+.mt-1 {
+  margin-top:1rem;
+  cursor: pointer;
 }
 
 .editroom_left div {
@@ -453,41 +465,6 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   height:20%;
 }
 
-.edit_room_button {
-  width: 100%;
-  padding-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex_btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
-
-.edit_room_button button {
-  color: #fff;
-  font-weight: 200;
-  border-radius: var(--border-button-border-radius, 4px) !important;
-  padding-top: var(--spacing-button-vertical, 10px) !important;
-  padding-bottom: var(--spacing-button-vertical, 10px) !important;
-  border-width: var(--border-button-border-width, 2px) !important;
-  padding-left: var(--spacing-button-horizontal, 10px) !important;
-  padding-right: var(--spacing-button-horizontal, 10px) !important;
-  box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
-  background: var(--color-buttons-primary-color, #00d1b2) !important;
-  border-color: var(--color-buttons-primary-border, transparent) !important;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.edit_room_button button:hover {
-  cursor: pointer;
-}
 
 .error_msg_edit_room {
   font-size: 0.75rem;
@@ -552,3 +529,52 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
   width: 100%;
 }
 
+/* UPLOAD FILES */
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;  
+}
+
+[type="file"] + label {
+  
+  /* background-color: #000;
+  border-radius: 4rem; */
+  color: #fff;
+  cursor: pointer;
+  /* display: inline-block; */
+  /* font-family: 'Poppins', sans-serif; */
+  font-size: 1rem;
+  font-weight: 700;
+  /* height: 4rem; */
+  line-height: 4rem;
+  /* padding-left: 2rem;
+  padding-right: 2rem; */
+  transition: color 0.3s;
+}
+
+[type="file"]:focus + label,
+[type="file"] + label:hover {
+  color: #e9eaeb;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.grid_admin_upload {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45%, 45%));
+  grid-column-gap: 10%;
+  /* grid-row-gap: 20px; */
+  justify-content: end;
+}
