@@ -9,94 +9,70 @@
     <div class="col s12">
       <div class="card white w-full">
         <div class="card-content">
-          <form action='' method="post" enctype="multipart/form-data">
 
-            <div class="flex flex-row w-full flex-no-wrap">
-                <div class="flex flex-col pt-2 w-1/5">
-                  <div>
-                    <a href="/admin/edit/{{id}}"><svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" aria-labelledby="exitIconTitle exitIconDesc" stroke="#00d1b2" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2"> <title id="exitIconTitle">Exit</title> <desc id="exitIconDesc">Icon of doors with an arrow pointing outside of them</desc> <path d="M18 15l3-3-3-3"/> <path d="M11.5 12H20"/> <path stroke-linecap="round" d="M21 12h-1"/> <path d="M15 4v16H4V4z"/> </svg></a>
+          <div class="flex flex-row w-full flex-no-wrap">
+
+            <div class="flex flex-col pt-2 w-1/5">
+              <form method="post" enctype="multipart/form-data">
+                <div>
+                  <a href="/admin/edit/{{id}}"><svg role="img" xmlns="http://www.w3.org/2000/svg" width="32px"
+                      height="32px" viewBox="0 0 24 24" aria-labelledby="exitIconTitle exitIconDesc" stroke="#00d1b2"
+                      stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                      <title id="exitIconTitle">Exit</title>
+                      <desc id="exitIconDesc">Icon of doors with an arrow pointing outside of them</desc>
+                      <path d="M18 15l3-3-3-3" />
+                      <path d="M11.5 12H20" />
+                      <path stroke-linecap="round" d="M21 12h-1" />
+                      <path d="M15 4v16H4V4z" />
+                    </svg></a>
                 </div>
                 <div class="flex flex-col items-center h-full">
-                    <div class="mt-10 mb-10 text-xs text-grey-dark text-center">
-                        <p> * 1Mo max, jusqu'a 3 photos par chambres. Actuellement {{ nbFiles }}. </p>
-                    </div>
-                    
-                      <div class="w-48 mb-10 bg-teal py-1 px-5 border rounded flex flex-row flex-no-wrap content-center items-center">
-                        <svg class="h-5 w-5 fill-current text-white inline-block mr-4" xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 512 512">
-                          <path
-                            d="M403.002 217.001C388.998 148.002 328.998 96 256 96c-57.998 0-107.998 32.998-132.998 81.001C63.002 183.002 16 233.998 16 296c0 65.996 53.999 120 120 120h260c55 0 100-45 100-100 0-52.998-40.996-96.001-92.998-98.999zM288 276v76h-64v-76h-68l100-100 100 100h-68z" />
-                        </svg>
-                        <input type="file" name="image-upload[]" multiple="multiple" id="inputfile">
-                        <label for="inputfile">Choose file(s)</label>
-                      </div>
-  
-                      <button type="submit" class="w-48 border border-teal hover:bg-teal hover:text-white text-teal font-bold py-4 px-5 rounded">
-                        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
-                        <span>Upload</span>
-                      </button>
-                    </div>
-                </div>
-                    
-
-            <div class="flex flex-col w-4/5 ml-24 h-screen">
-              <div class="grid_admin_upload">
-                  {% for image in images %}
-                  <input type="hidden" name="img_path" value="{{ image }}">
-                  <div class="admin_room">
-                      <img class="image-card" src="/assets/images/{{ image }}">
-                          <button type="submit" class="rounded shadow-md flex items-center shadow px-4 py-2 bg-teal hover:bg-grey text-white" name="deleat">Supprimer</button>
+                  <div class="mt-10 mb-10 text-xs text-grey-dark text-center">
+                    <p> * 1Mo max, jusqu'a 3 photos par chambres. Actuellement {{ nbFiles }}. </p>
                   </div>
-                  {% endfor %}
-              </div>
-            </div>
-
-          </div>
-
-
-{# 
-            <div class="flex flex-row items-center bg-red w-full">
-
-              <div class="w-full flex flex-col bg-blue">
-                
-
-                <div class="bg-teal h-auto p-2 border rounded px-5">
-                  <svg class="h-8 w-8 fill-current text-white inline-block mr-4" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512">
-                    <path
-                      d="M403.002 217.001C388.998 148.002 328.998 96 256 96c-57.998 0-107.998 32.998-132.998 81.001C63.002 183.002 16 233.998 16 296c0 65.996 53.999 120 120 120h260c55 0 100-45 100-100 0-52.998-40.996-96.001-92.998-98.999zM288 276v76h-64v-76h-68l100-100 100 100h-68z" />
-                  </svg>
-                  <input type="file" name="image-upload[]" multiple="multiple" id="inputfile">
-                  <label for="inputfile">Choose file(s)</label>
-                </div>
-
-                <div>
-                  <button type="submit" class="bg-teal hover:bg-grey text-white font-bold py-2 px-4 rounded">
+                  <div
+                    class="w-48 mb-10 bg-teal py-1 px-5 border rounded flex flex-row flex-no-wrap content-center items-center">
+                    <svg class="h-5 w-5 fill-current text-white inline-block mr-4" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512">
+                      <path
+                        d="M403.002 217.001C388.998 148.002 328.998 96 256 96c-57.998 0-107.998 32.998-132.998 81.001C63.002 183.002 16 233.998 16 296c0 65.996 53.999 120 120 120h260c55 0 100-45 100-100 0-52.998-40.996-96.001-92.998-98.999zM288 276v76h-64v-76h-68l100-100 100 100h-68z" />
+                    </svg>
+                    <input type="file" name="image-upload[]" multiple="multiple" id="inputfile">
+                    <label for="inputfile">Choose file(s)</label>
+                  </div>
+                  <button type="submit"
+                    class="w-48 border border-teal hover:bg-teal hover:text-white text-teal font-bold py-4 px-5 rounded">
                     <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                     <span>Upload</span>
                   </button>
                 </div>
+              </form>
+            </div>
 
-              </div>
-            </div> #}
-          </form>
-
-
-
-
-
+            <div class="grid_admin_upload pl-32 h-screen">
+              {% for image in images %}
+              <form method="post">
+                <input type="hidden" name="img_path" value="{{ image }}">
+                <div class="admin_room">
+                  <img class="image-card" src="/assets/images/{{ image }}">
+                  <button type="submit"
+                    class="rounded shadow-md flex items-center shadow px-4 py-2 bg-teal hover:bg-grey text-white"
+                    name="deleat">Supprimer</button>
+                </div>
+              </form>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
 
 
-{% endblock %}
-{% block javascript %}
-{% endblock %}
+  {% endblock %}
+  {% block javascript %}
+  {% endblock %}
