@@ -96,6 +96,8 @@ nav ul a {
     }
     .room_form_submit {
         grid-area: room_form_submit;
+        justify-items: center;
+        align-items: center;
     }
 }
 
