@@ -3,109 +3,118 @@
 {% block title %}Chambre
 {% endblock %}
 {% block stylesheet %}
-  <link href="/assets/css/room.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/css/room.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>{{ room.name }}</h1>
-    <div class="row center-align">
-      <div class="col s6 m7">
-        <div class="card">
-          <div class="card-image">
-            <img src="/assets/images/{{ room.pic_path }}">
-          </div>
-        </div>
-      </div>
-    <div class="col s6 m5">
-
-      <form class="formulaire" method="post">
-        <input name="room_id" class="room_id" value="{{room.id}}" hidden>
-        <div class="room_form_date_picker">
-          <label class="room_form_select_label">
-            <span>Dates de séjour</span>
-          </label>
-          <input class="flatpickr-calendar" name="date" type="text">
-        </div>
-
-
-        <div class="room_form_select1">
-          <label class="index_form_select_labet">
-            <span>Nombre de personnes</span>
-          </label>
-          <select name="nb_person">
-            <option disabled value="">Choisir le nombre de personnes</option>
-            <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
-            <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
-            <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
-            <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
-          </select>
-          {{ errors.nb_person }}
-        </div>
-
-
-        <div class="room_form_select2">
-          <label class="index_form_select_labet">
-            <span>Options possibles</span>
-          </label>
-          <input id="hidden" name="options" type="hidden" value="">
-          <select id="select-opt" multiple>
-            <option value="Petit déjeuner">Petit déjeuner</option>
-            <option value="Table d'hôte">Table d'hôte</option>
-            <option value="baby1">1 Lit bébé</option>
-            <option value="baby2">2 Lits bébé</option>
-            <option value="none">Aucune option</option>
-          </select>
-          {{ errors.options }}
-        </div>
-
-
-        <div class="room_form_submit">
-          <button class="custom_btn" type="submit" value="submit">Je réserve</button>
-        </div>
-      </form>
+<div class="container pt-4">
+  <div class="row">
+    <div class="col s12">
+        <h1>{{ room.name }}</h1>
     </div>
   </div>
+  <div class="row center-align">
+    <div class="col s12 m7">
+      <div class="images">
+        <img class="img-hightlight" src="/assets/images/{{ room.pic_path }}" alt="room1" />
+        <div class="room-preview">
+          <img src="/assets/images/{{ room.pic_path }}" class="room-active border_radius_left" alt="" />
+          <img src="/assets/images/france.png" alt="" />
+          <img src="/assets/images/paralax-photo.jpeg" alt="" class="border_radius_right" />
+        </div>
+      </div>
+      <div class="description">
+        <div class="tab_parent">
+          <ul class="tabs">
+            <li class="tab col s4">
+              <a class="active" href="#tab1">Description</a>
+            </li>
+            <li class="tab col s4">
+              <a href="#tab2">Caractéristiques</a>
+            </li>
+            <li class="tab col s4">
+              <a href="#tab3">Options</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col s12" id="tab1">
+          <p>{{ room.description }}</p>
+        </div>
+        <div class="col s12" id="tab2">
+          <p>{{ room.caracs }}</p>
+          <ul>
+            {% for carac in caracs %}
 
-
-  <div class="description">
-    <div class="tab_parent">
-      <ul class="tabs">
-        <li class="tab col s3">
-          <a class="active" href="#tab1">Description</a>
-        </li>
-        <li class="tab col s3">
-          <a href="#tab2">Caractéristiques</a>
-        </li>
-        <li class="tab col s3">
-          <a href="#tab3">Options</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col s12" id="tab1">
-      <p>{{ room.description }}</p>
-    </div>
-    <div class="col s12" id="tab2">
-      <p>{{ room.caracs }}</p>
-      <ul>
-        {% for carac in caracs %}
-
-          {% if carac == 'dej' %}
+            {% if carac == 'dej' %}
             <li>Petit Déjeuné</li>
-          {% endif %}
-          {% if carac == 'separateBed' %}
+            {% endif %}
+            {% if carac == 'separateBed' %}
             <li>Lits séparés</li>
-          {% endif %}
-          {% if carac == 'repas' %}
+            {% endif %}
+            {% if carac == 'repas' %}
             <li>Table d'hôte</li>
-          {% endif %}
-        {% endfor %}
-      </ul>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col s12" id="tab3">
+          <span>Options</span>
+        </div>
+      </div>
     </div>
-    <div class="col s12" id="tab3">
-      <span>Options</span>
-    </div>
+      <div class="col s12 m5">
+
+        <form class="formulaire" method="post">
+          <input name="room_id" class="room_id" value="{{room.id}}" hidden>
+          <div class="room_form_date_picker">
+            <label class="room_form_select_label">
+              <span>Dates de séjour</span>
+            </label>
+            <input class="flatpickr-calendar" name="date" type="text">
+          </div>
+
+
+          <div class="room_form_select1">
+            <label class="index_form_select_labet">
+              <span>Nombre de personnes</span>
+            </label>
+            <select name="nb_person">
+              <option disabled value="">Choisir le nombre de personnes</option>
+              <option value="1" {{session.booking.nbGuestSelected.1}}>1</option>
+              <option value="2" {{session.booking.nbGuestSelected.2}}>2</option>
+              <option value="3" {{session.booking.nbGuestSelected.3}}>3</option>
+              <option value="4" {{session.booking.nbGuestSelected.4}}>4</option>
+            </select>
+            {{ errors.nb_person }}
+          </div>
+
+
+          <div class="room_form_select2">
+            <label class="index_form_select_labet">
+              <span>Options possibles</span>
+            </label>
+            <input id="hidden" name="options" type="hidden" value="">
+            <select id="select-opt" multiple>
+              <option value="Petit déjeuner">Petit déjeuner</option>
+              <option value="Table d'hôte">Table d'hôte</option>
+              <option value="baby1">1 Lit bébé</option>
+              <option value="baby2">2 Lits bébé</option>
+              <option value="none">Aucune option</option>
+            </select>
+            {{ errors.options }}
+          </div>
+
+
+          <div class="room_form_submit">
+            <button class="custom_btn" type="submit" value="submit">Je réserve</button>
+          </div>
+        </form>
+      </div>
+    
+
+
+
   </div>
 
 </div>
@@ -118,7 +127,7 @@
           {% set randFeedback = random(0, feedback|length-1) %}
           <div class="stars">
             {% for i in 1..feedback[randFeedback].grade %}
-              <img src="/assets/images/star.png">
+            <img src="/assets/images/star.png">
             {% endfor %}
 
           </div>
@@ -132,38 +141,46 @@
       </div>
     </div>
   </div>
-</div></div></div>{% endblock %}{% block javascript %}<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script><script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script><script>$('#date').daterangepicker({
-  startDate: "{{session.booking.beginDate}}" || "01/01/2019",
-  endDate: "{{session.booking.endDate}}" || "01/01/2019"
-});</script><script src="/assets/js/datePicker.js"></script></script><script>
+</div>
+</div>
+</div>{% endblock %}{% block javascript %}
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+<script>$('#date').daterangepicker({
+    startDate: "{{session.booking.beginDate}}" || "01/01/2019",
+    endDate: "{{session.booking.endDate}}" || "01/01/2019"
+  });</script>
+<script src="/assets/js/datePicker.js"></script>
+</script>
+<script>
 
 
 
-function imageGallery() {
-  const highlight = document.querySelector(".img-hightlight");
-  const previews = document.querySelectorAll(".room-preview img");
+  function imageGallery() {
+    const highlight = document.querySelector(".img-hightlight");
+    const previews = document.querySelectorAll(".room-preview img");
 
-  previews.forEach(preview => {
-    preview.addEventListener("click", function () {
-      let smallSrc = this.src;
-      let bigSrc = highlight.src;
-      highlight.src = smallSrc;
-      previews.forEach(preview => preview.classList.remove("room-active"));
-      preview.classList.add("room-active");
+    previews.forEach(preview => {
+      preview.addEventListener("click", function () {
+        let smallSrc = this.src;
+        let bigSrc = highlight.src;
+        highlight.src = smallSrc;
+        previews.forEach(preview => preview.classList.remove("room-active"));
+        preview.classList.add("room-active");
+      });
     });
-  });
-}
-imageGallery();</script><script>// Tabs
-$(document).ready(function () {
-  $('.tabs').tabs();
-  // this is code is most likly very bad. As D.trump would say, "Horrible, awefull, totally not good". And of as zfg would say "Anyway ....."
-  $('#select-opt').on('change', function () {
-    let a = $('#select-opt').formSelect()[0].selectedOptions;
-    let options = ""
-    for (let item of a) {
-      options += " " + item.value
-    }
-    $('#hidden')[0].value = options;
-  });
-});</script>{% endblock %}
-
+  }
+  imageGallery();</script>
+<script>// Tabs
+  $(document).ready(function () {
+    $('.tabs').tabs();
+    // this is code is most likly very bad. As D.trump would say, "Horrible, awefull, totally not good". And of as zfg would say "Anyway ....."
+    $('#select-opt').on('change', function () {
+      let a = $('#select-opt').formSelect()[0].selectedOptions;
+      let options = ""
+      for (let item of a) {
+        options += " " + item.value
+      }
+      $('#hidden')[0].value = options;
+    });
+  });</script>{% endblock %}
