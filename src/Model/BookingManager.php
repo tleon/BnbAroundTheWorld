@@ -27,6 +27,10 @@ class BookingManager extends AbstractManager
      */
     public function insertDate(array $data)
     {
+        //check if booking is for one day
+        if (preg_match('#\d{2}\.\d{2}\.\d{4}#', $data['date'])){
+            $data['beginDate'] = $data['endDate'] = $data['date'];
+        }
         // self explanatory nothing special
         $statement = $this->pdo->prepare("INSERT INTO $this->table (`begin_date`,`end_date`,`nb_person`,`options`,`room_id`,`user_id`,`total_price`) VALUES (:beginDate,:endDate,:nbPerson,:options,:roomId,:userId,:totalPrice)");
         $statement->bindValue('beginDate', $data['beginDate'], \PDO::PARAM_STR);
