@@ -63,25 +63,32 @@ class UploadFiles
             $nbPlace = $this->maxFilesAuthorized - $this->nbFiles;
             for ($i = 0; $i < $countfiles; $i++) {
                 if($nbPlace > 0){
-                        // on verifie leur mime
-                    if (!in_array(mime_content_type($files['image-upload']['tmp_name'][$i]), self::MIME_TYPE_ALLOWED)) {
-                        $filesUploaded['errors'] = [$files['image-upload']['tmp_name'][$i] => 'Not an Image'];
+                    // Check if img is not too big compare to .ini file config
+                    if ((empty($files['image-upload']['tmp_name'][$i])) && (!empty($files['image-upload']['name'][$i]))) {
+                        $filesUploaded['errors']['file'] = $files['image-upload']['name'][$i];
+                        $filesUploaded['errors']['error'] = 'Too big';
+                        // Check mime
+                    } elseif (!in_array(mime_content_type($files['image-upload']['tmp_name'][$i]), self::MIME_TYPE_ALLOWED)) {
+                        $filesUploaded['errors']['file'] = $files['image-upload']['name'][$i];
+                        $filesUploaded['errors']['error'] = 'Not an image';
                         // On verifie leur tailles (1000000 bytes = 1MB)
                     } elseif ($files['image-upload']['size'][$i] >= 1000000) {
-                        $filesUploaded['errors'] = [$files['image-upload']['tmp_name'][$i] => 'Too big'];
+                        $filesUploaded['errors']['file'] = $files['image-upload']['name'][$i];
+                        $filesUploaded['errors']['error'] = 'Too big';
                     } else {
                         // On renomme les images par "image" + identifiant unique +  extension
                         $filename = "image" . uniqid() . '.' . strtolower(pathinfo($files["image-upload"]["name"][$i], \PATHINFO_EXTENSION));
                         // On deplace les images
                         if (move_uploaded_file($files['image-upload']['tmp_name'][$i], $this->dir . $filename)) {
-                            $filesUploaded['success'] = $files['image-upload']['tmp_name'][$i];
                             $nbPlace -= 1;
                         } else {
-                            $filesUploaded['errors'] = [$files['image-upload']['tmp_name'][$i] => 'upload failed'];
+                            $filesUploaded['errors']['file'] = $files['image-upload']['name'][$i];
+                            $filesUploaded['errors']['error'] = 'upload failed';
                         };
                     }
                 } else {
-                    $filesUploaded['errors'] = [$files['image-upload']['tmp_name'][$i] => 'Empty directory'];
+                    $filesUploaded['errors']['file'] = $files['image-upload']['name'][$i];
+                    $filesUploaded['errors']['error'] = 'Empty directory';
                 }
                 
             }
