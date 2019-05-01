@@ -43,7 +43,11 @@ class BookingManager extends AbstractManager
         $totalPrice = $this->getTotalPrice($data['roomId'], $data['nbPerson'], $days);
         $statement->bindValue('totalPrice', $totalPrice, \PDO::PARAM_STR);
         $statement->bindvalue('userId', $data['userId'], \PDO::PARAM_STR);
-        $statement->execute();
+        try{
+            $statement->execute();
+        }catch(\PDOException $e){
+            return $e;
+        }
     }
     
 

@@ -292,3 +292,17 @@ h1 {
       display: flex;
       justify-content: center;
   }
+
+
+  .payment-tom-card{
+      width: 500px;
+      margin-top: 10%;
+  }
+
+  #card-element{
+      margin: 10px;
+  }
+
+  .p-row{
+      margin-top: 50px;
+  }

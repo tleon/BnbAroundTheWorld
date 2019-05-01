@@ -54,7 +54,13 @@ class RoomController extends AbstractController
                 $interval = $d2->diff($d1);
                 $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
                 $_SESSION['price'] =  $total;
-                $bookingController->insert($dataToInsert);
+                try{
+                    $bookingController->insert($dataToInsert);
+                }catch(\PDOException $e){
+                    return $this->twig->render("/Home/index", ["error" => "Une erreur est survenue lors de la réservation."]);
+                }
+                return $this->checkout();
+
             }
 
         }
@@ -70,6 +76,8 @@ class RoomController extends AbstractController
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
     public function checkout(){
+        //test
+        return $this->twig->render("/Room/payement.html.twig", ['session' => $_SESSION]);
         
     }
 
