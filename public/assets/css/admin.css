@@ -259,9 +259,9 @@ nav {
   min-width: 30px;;
 }
 
-/* .w-full {
+.full {
   height: 98vh;
-} */
+}
 
 .showBooking {
   display: grid;
