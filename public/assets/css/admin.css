@@ -250,13 +250,13 @@ nav {
 /* On définit la durée de la transition entrante. */
 
 #USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
 
 /* On définit la durée de la transition sortante. */
 
 #USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
 
 /* .flex {
