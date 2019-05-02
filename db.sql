@@ -36,7 +36,7 @@ CREATE TABLE `booking` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`),
   CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `feedback` (
 
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
-INSERT INTO `feedback` VALUES (1,2,'4.5/5','We had an excellent time in france in this bed and breakfast. Would recommend',1),(2,3,'4/5','Très bon moment !! La chambre Japon est superbe.',2),(3,6,'3/5','On se croit en asie. L\'ambiance est impressionante.',3),(4,4,'4.5/5','Décoration bien francaise. On retrouve pleins de détails qui nous laisse réver de Paris',4),(5,5,'4/5','Les hôtes sont super accueillant, le cadre est très beau. Ça fait du bien un bon bol d\'air ferait.',5);
+INSERT INTO `feedback` VALUES (1,2,'3','We had an excellent time in france in this bed and breakfast. Would recommend',1),(2,3,'4','Très bon moment !! La chambre Japon est superbe',2),(3,6,'3','On se croit en Asie. L\'ambiance est impressionante.',3),(4,4,'4','Les hôtes sont super accueillants, le cadre est très beau. Ça fait du bien un bon bol d\'air frais',4),(5,5,'5','Les hôtes sont super accueillant, le cadre est très beau. Ça fait du bien un bon bol d\'air frais.',5);
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,'USA','Un véritable petit appartement composé d\'une chambre à deux lits jumeaux, d\'une petite chambre à lits superposés, d\'un salon avec ses fauteuils en cuir et d\'une luxueuse salle de bains en marbre vous permettant de vous ressourcer dans le luxe et le calme.','usa.png','USA','dej_repas_separateBed',120),(2,'Japon','La Japan Suite est une chambre spacieuse avec un coin salon et une grande tv. La terrasse privée a vue sur nos jardins ou vers la montagne.','japan.png','Japan','dej_separateBed',120),(3,'Tailande','La Suite Thai est la plus grande chambre du gîte. Elle est prévue d\'un salon apart et une terrasse privée côté soleil','thailand.png','Thailand','dej_repas',120),(4,'France','Les chambres \'Luxe francais\' vous donneront espace et confort dans un cadre chaleureux. ','france.png','France','dej',120),(5,'Africa','Petites suites lumineuses situées en façade avec vue sur le golf. ','africa.png','Africa','dej_repas',120);
+INSERT INTO `room` VALUES (1,'New York','Un véritable petit appartement composé d\'une chambre à deux lits jumeaux, d\'une petite chambre à lits superposés, d\'un salon avec ses fauteuils en cuir et d\'une luxueuse salle de bains en marbre vous permettant de vous ressourcer dans le luxe et le calme.','usa.png','USA','dej_repas_separateBed',120),(2,'Japon','La Japan Suite est une chambre spacieuse avec un coin salon et une grande TV. La terrasse privée a une belle vue sur nos jardins ou vers la montagne.','japan.png','Japan','dej_separateBed',120),(3,'Thaïlande','La Thai Suite est la plus grande chambre du gîte. Elle est pourvue d\'un salon à part et une terrasse privée exposée soleil','thailand.png','Thailand','dej_repas',120),(4,'France','La chambre \'Luxe francais\' vous donnera espace et confort dans un cadre chaleureux.','france.png','France','dej',120),(5,'Afrique','Petite suite lumineuse située en façade avec vue sur le safari.','africa.png','Africa','dej_repas',120);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 17:09:16
+-- Dump completed on 2019-05-02  9:52:14
