@@ -96,6 +96,8 @@ nav ul a {
     }
     .room_form_submit {
         grid-area: room_form_submit;
+        justify-items: center;
+        align-items: center;
     }
 }
 
@@ -259,3 +261,55 @@ h1 {
 .tabs .indicator {
     background-color:#4f99ff;
 }
+
+.StripeElement {
+    box-sizing: border-box;
+  
+    height: 40px;
+  
+    padding: 10px 12px;
+  
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+  
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+  .payment-btn{
+      display: flex;
+      justify-content: center;
+  }
+
+
+  .payment-tom-card{
+      width: 500px;
+      margin-top: 10%;
+  }
+
+  #card-element{
+      margin: 10px;
+  }
+
+  .p-row{
+      margin-top: 50px;
+  }
+  @media only screen and (min-width: 993px){
+    .container {
+        width: 80% !important;
+    }
+  }

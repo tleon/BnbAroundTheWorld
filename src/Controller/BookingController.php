@@ -130,6 +130,9 @@ class BookingController extends AbstractController
         //sending data to insert function
         $BookingManager = new BookingManager();
         $BookingManager->insertDate($data);
+
+        $roomController = new RoomController;
+        $roomController->confirmMail('reservation');
     }
 
     public function delete($id)
@@ -138,6 +141,9 @@ class BookingController extends AbstractController
         $BookingManager = new BookingManager();
         $BookingManager->deletBookingById($id);
         header('location: /myAccount/show');
+        
+        $roomController = new RoomController;
+        $roomController->confirmMail('annulation');
     }
 
 
@@ -176,7 +182,6 @@ class BookingController extends AbstractController
                 'user_id' => 4,
                 'total_price' => 0
             ];
-
             $errors = $this->checkData($data);
             if (empty($errors)) {
                 $BookingManager = new BookingManager();
@@ -186,4 +191,5 @@ class BookingController extends AbstractController
 
         return $this->twig->render('Room/room.html.twig', ['dump'=>$end_date]);
     }
+
 }

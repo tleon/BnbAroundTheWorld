@@ -50,16 +50,14 @@ body {
   background-color: #ffffff;
 }
 
-#logo{
-    margin: 16px;
-    position: absolute;
-    max-width: 10%;
-    height: auto;
-}
 .logo {
   position: absolute;
-  max-width: 10%;
   height: auto;
+}
+
+.img-logo{
+  padding: 10 px;
+  max-width: 85%;
 }
 
 
@@ -218,7 +216,7 @@ body {
 
 nav {
   padding: 0 5.5rem;
-  height: 50px;
+  height: 55px;
   position: fixed;
   z-index: 1;
   margin-top:-1px;
@@ -704,4 +702,11 @@ footer {
 }
 .flatpickr-day.disabled {
   color: rgba(64,72,72,0.1)!important;
+}
+
+.pt-4 {
+  padding-top:4rem;
+}
+.images {
+  height: 32rem;
 }

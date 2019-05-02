@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-/**
- *
- */
+
+
+
 class BookingManager extends AbstractManager
 {
     /**
@@ -27,6 +27,10 @@ class BookingManager extends AbstractManager
      */
     public function insertDate(array $data)
     {
+        //check if booking is for one day
+        if (preg_match('#\d{2}\.\d{2}\.\d{4}#', $data['date'])){
+            $data['beginDate'] = $data['endDate'] = $data['date'];
+        }
         // self explanatory nothing special
         $statement = $this->pdo->prepare("INSERT INTO $this->table (`begin_date`,`end_date`,`nb_person`,`options`,`room_id`,`user_id`,`total_price`) VALUES (:beginDate,:endDate,:nbPerson,:options,:roomId,:userId,:totalPrice)");
         $statement->bindValue('beginDate', $data['beginDate'], \PDO::PARAM_STR);
@@ -34,9 +38,16 @@ class BookingManager extends AbstractManager
         $statement->bindValue('nbPerson', $data['nbPerson'], \PDO::PARAM_STR);
         $statement->bindValue('options', $data['option'], \PDO::PARAM_STR);
         $statement->bindValue('roomId', $data['roomId'], \PDO::PARAM_STR);
-        $statement->bindValue('totalPrice', 120, \PDO::PARAM_STR);
+        $tmp = strtotime($data['endDate']) - strtotime($data['beginDate']);
+        $days = round( $tmp / (60 * 60 * 24) + 1);
+        $totalPrice = $this->getTotalPrice($data['roomId'], $data['nbPerson'], $days);
+        $statement->bindValue('totalPrice', $totalPrice, \PDO::PARAM_STR);
         $statement->bindvalue('userId', $data['userId'], \PDO::PARAM_STR);
-        $statement->execute();
+        try{
+            $statement->execute();
+        }catch(\PDOException $e){
+            return $e;
+        }
     }
     
 
@@ -79,6 +90,13 @@ class BookingManager extends AbstractManager
         $statement->execute();
         $bookings = $statement->fetchall();
         return $bookings;
+    }
+
+    //calculate total price of room 
+    public function getTotalPrice($room_id, $nb_poeple, $nb_days) {
+        $pm = new PriceManager();
+        $results = $pm->selectOneById($room_id);
+        return  $results['price'] * $nb_poeple * $nb_days;
     }
 
     /**

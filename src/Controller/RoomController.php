@@ -17,22 +17,21 @@ class RoomController extends AbstractController
      **/
 
 
-    public function show($id) //id is not given on form submit
+    public function show($id) 
     {
         $errors = [];
-        $availableOptions = ["Petit déjeuner", "Table d'hôte", "Lit bébé", "baby1", "baby2"];
 
         //check for unauthorized data in the booking form's submit
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (1 > intval($_POST['nb_person']) || intval($_POST['nb_person']) > 4) {
                 $errors['nb_person'] = "Problème lors de la saisie du nombre de personne";
+            }elseif(!isset($_SESSION['id'])){
+                return $this->twig->render('Home/signIn.html.twig', ['error' => "Veuillez vous inscrire pour réserver", "success" => ""]);
             }
-            if (isset($_POST['options']) && !in_array($_POST['options'], $availableOptions)) {
-                $errors['options'] = "Problème lors de la saisie des options";
-            }
-
-            //if they are no unauthorized data in the form, it's prepared for the database insertion
+            elseif(!isset($_SESSION['booking'])){
+                $_SESSION['booking']['roomId'] = $id;
+            } //if there are no unauthorized data in the form, it's prepared for the database insertion
             else {
                 //readying the array that will be sent to the database
                 $dataToInsert['nbPerson'] = $_POST['nb_person'];
@@ -47,11 +46,23 @@ class RoomController extends AbstractController
                 $dataToInsert['date'] = $_POST['date'];
                 $dataToInsert['userId'] = $_SESSION['id'];
                 $bookingController = new BookingController();
-
                 //calling the function that set the booked date in the database
-                $bookingController->insert($dataToInsert);
-                $this->mail();
+                $dates = explode(' ', $_POST['date']);
+                $d1 = new \DateTime($dates[0]);
+                $d2 = new \DateTime($dates[2]);
+                $bm = new BookingManager();
+                $interval = $d2->diff($d1);
+                $total =  $bm->getTotalPrice($id, intval($_POST['nb_person']), (intval($interval->format('%d')) + 1));
+                $_SESSION['price'] =  $total;
+                try{
+                    $bookingController->insert($dataToInsert);
+                }catch(\PDOException $e){
+                    return $this->twig->render("/Home/index", ["error" => "Une erreur est survenue lors de la réservation."]);
+                }
+                return $this->checkout();
+
             }
+
         }
         $roomManager = new RoomManager();
         $room = $roomManager->selectOneById(intval($id));
@@ -59,13 +70,27 @@ class RoomController extends AbstractController
         $feedbackManager = new FeedbackManager();
         $feedback = $feedbackManager->selectAllFeedbackByRoomId($id);
 
+
         $caras = explode('_', $room['caracs']);
 
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
     }
+    public function checkout(){
+        //test
+        return $this->twig->render("/Room/payement.html.twig", ['session' => $_SESSION]);
+        
+    }
 
-    public function confirmMail()
+    public function confirmMail($target)
     {
+        if ($target == 'reservation') {
+            $mail = "Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
+        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
+    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
+    *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.";
+        } else {
+            $mail = "Votre annulation a bien ete prise en compte. Nous vous remercions de votre confiance.";
+        }
         // Create the Transport
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
         ->setUsername('BnBAroundWorld@gmail.com')
@@ -77,12 +102,9 @@ class RoomController extends AbstractController
 
         // Create a message
         $message = (new \Swift_Message('Confirmation de réservation'))
-        ->setFrom(['helyamdu38550@gmail.com' => 'BnB Around The World'])
+        ->setFrom(['BnBAroundWorld@gmail.com' => 'BnB Around The World'])
         ->setTo($_SESSION["email"])
-        ->setBody("Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
-        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
-    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
-    *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.");
+        ->setBody($mail);
 
         // Send the message
         return $mailer->send($message);
