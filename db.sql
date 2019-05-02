@@ -77,6 +77,7 @@ CREATE TABLE `feedback` (
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
 INSERT INTO `feedback` VALUES (1,2,'3','We had an excellent time in france in this bed and breakfast. Would recommend',1),(2,3,'4','Très bon moment !! La chambre Japon est superbe',2),(3,6,'3','On se croit en Asie. L\'ambiance est impressionante.',3),(4,4,'4','Les hôtes sont super accueillants, le cadre est très beau. Ça fait du bien un bon bol d\'air frais',4),(5,5,'5','Les hôtes sont super accueillant, le cadre est très beau. Ça fait du bien un bon bol d\'air frais.',5);
+
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 

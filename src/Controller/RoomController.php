@@ -96,6 +96,7 @@ class RoomController extends AbstractController
     *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.";
         } else {
             $objet = "Annulation de réservation";
+
             $mail = "Votre annulation a bien été prise en compte. Nous vous remercions de votre confiance.";
         }
         // Create the Transport
