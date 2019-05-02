@@ -85,10 +85,6 @@ html, body {
   color: #BF55EC !important;
 }
 
-.planning_table {
-  height: calc(100vh - 9rem);
-}
-
 .planning_table td {
   width: 14.29%;
   vertical-align: 0% !important;
@@ -179,6 +175,10 @@ html, body {
   color: #fff;
 }
 
+.planning_table{
+  height: calc(100vh - 9rem);
+}
+
 #admin_index_date {
   display: flex;
   align-items: center;
@@ -189,10 +189,6 @@ html, body {
   display: none;
 }
 
-
-#herve {
-  height: calc(100vh - 8.8rem);
-}
 
 .flex tr {
   width: 100%;
@@ -254,13 +250,13 @@ nav {
 /* On définit la durée de la transition entrante. */
 
 #USA.display-enter-active, #Japon.display-enter-active, #Tailande.display-enter-active, #France.display-enter-active, #Africa.display-enter-active {
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
 
 /* On définit la durée de la transition sortante. */
 
 #USA.display-leave-active, #Japon.display-leave-active, #Tailande.display-leave-active, #France.display-leave-active, #Africa.display-leave-active {
-  transition: opacity 1s;
+  transition: opacity 0.5s;
 }
 
 /* .flex {
@@ -280,7 +276,7 @@ nav {
 
 .showBooking {
   display: grid;
-  grid-template-columns: 1/2 1/2;
+  grid-template-columns: 50% 50%;
   grid-template-rows: 1/12 4/12 7/12;
   grid-template-areas: "box1 box1" "box2 box2" "box3 box4";
 }

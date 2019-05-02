@@ -7,6 +7,7 @@ use App\Controller\BookingController;
 use App\Model\RoomManager;
 use App\Model\BookingManager;
 use App\Model\FeedbackManager;
+use App\Services\UploadFiles;
 
 class RoomController extends AbstractController
 {
@@ -73,8 +74,12 @@ class RoomController extends AbstractController
 
         $caras = explode('_', $room['caracs']);
 
-        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback]);
+        $up = new UploadFiles($id);
+        $images = $up->getAllImg($id);
+
+        return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback, 'images'=>$images]);
     }
+    
     public function checkout(){
         //test
         return $this->twig->render("/Room/payement.html.twig", ['session' => $_SESSION]);
@@ -84,12 +89,14 @@ class RoomController extends AbstractController
     public function confirmMail($target)
     {
         if ($target == 'reservation') {
+            $objet = "Confirmation de réservation";
             $mail = "Votre réservation a bien été prise en compte. Nous vous remercions de votre confiance et vous souhaitons un agréable séjour chez nous.
-        N'hsitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'information sur votre arrivée.
-    Pour annuler votre réservation, veuillez suivre ce lien : www.blabla.com*.
+            N'hésitez pas à prendre contact pour toute question sur les lieux et pour nous donner plus d'informations sur votre arrivée.
+        Pour annuler votre réservation, allez sur votre compte*.
     *Attention : l'annulation d'une réservation doit se faire dans les 48h avant le debut du séjour.";
         } else {
-            $mail = "Votre annulation a bien ete prise en compte. Nous vous remercions de votre confiance.";
+            $objet = "Annulation de réservation";
+            $mail = "Votre annulation a bien été prise en compte. Nous vous remercions de votre confiance.";
         }
         // Create the Transport
         $transport = (new \Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))

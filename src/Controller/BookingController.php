@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\BookingManager;
 use App\Controller\RoomController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class BookingController extends AbstractController
 {
@@ -132,7 +133,11 @@ class BookingController extends AbstractController
         $BookingManager->insertDate($data);
 
         $roomController = new RoomController;
-        $roomController->confirmMail('reservation');
+        try{
+            $roomController->confirmMail('reservation');
+        }catch(Exception $e){
+            return $e;
+        }
     }
 
     public function delete($id)
