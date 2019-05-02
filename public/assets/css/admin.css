@@ -85,10 +85,6 @@ html, body {
   color: #BF55EC !important;
 }
 
-.planning_table {
-  height: calc(100vh - 9rem);
-}
-
 .planning_table td {
   width: 14.29%;
   vertical-align: 0% !important;

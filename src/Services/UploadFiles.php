@@ -19,7 +19,7 @@ class UploadFiles
 
     public function __construct($id)
     {
-        $this->dir = "assets/images/" . $id . '/';
+        $this->dir = "assets/images/{$id}/";
         $this->nbFiles = $this->nbFilesInDir();
 
     }
@@ -59,8 +59,9 @@ class UploadFiles
         } else {
             // On compte le nombre de fichiers recus
             $countfiles = count($files['image-upload']['name']);
-            // on boucle sur chacun des fichiers
+            // on calcul le nombre de places restantes
             $nbPlace = $this->maxFilesAuthorized - $this->nbFiles;
+            // on boucle sur chacun des fichiers
             for ($i = 0; $i < $countfiles; $i++) {
                 if($nbPlace > 0){
                     // Check if img is not too big compare to .ini file config

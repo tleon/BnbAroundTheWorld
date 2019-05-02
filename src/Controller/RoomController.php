@@ -79,6 +79,7 @@ class RoomController extends AbstractController
 
         return $this->twig->render('Room/room.html.twig', ['room' => $room, 'session' => $_SESSION,'errors' =>$errors, 'caracs' => $caras, 'feedback'=>$feedback, 'images'=>$images]);
     }
+    
     public function checkout(){
         //test
         return $this->twig->render("/Room/payement.html.twig", ['session' => $_SESSION]);
