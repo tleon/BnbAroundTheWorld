@@ -94,7 +94,7 @@ let leave = (element) => {
       setTimeout(function() {
         element.classList.remove("display-leave-active");
         element.classList.remove("is-displayed");
-      }, 800);
+      }, 500);
     }, 0);
   }, 0);
 };
@@ -113,7 +113,7 @@ let appear = (element) => {
           
           setTimeout(function() {
               element.classList.remove("display-enter-active");
-          }, 1000);
+          }, 500);
       }, 0);
   }, 0);
 };

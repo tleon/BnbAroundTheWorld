@@ -17,11 +17,11 @@
   <div class="row center-align">
     <div class="col s12 m7">
       <div class="images">
-        <img class="img-hightlight" src="/assets/images/{{ room.pic_path }}" alt="room1" />
+        <img class="img-hightlight" src="/assets/images/{{ images.0 }}" alt="room1" />
         <div class="room-preview">
-          <img src="/assets/images/{{ room.pic_path }}" class="room-active border_radius_left" alt="" />
-          <img src="/assets/images/france.png" alt="" />
-          <img src="/assets/images/paralax-photo.jpeg" alt="" class="border_radius_right" />
+          <img src="/assets/images/{{ images.0 }}" class="room-active border_radius_left" alt="" />
+          <img src="/assets/images/{{ images.1 }}" alt="" />
+          <img src="/assets/images/{{ images.2 }}" alt="" class="border_radius_right" />
         </div>
       </div>
       <div class="description">
@@ -42,7 +42,6 @@
           <p>{{ room.description }}</p>
         </div>
         <div class="col s12" id="tab2">
-          <p>{{ room.caracs }}</p>
           <ul>
             {% for carac in caracs %}
 

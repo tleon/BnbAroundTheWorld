@@ -57,7 +57,6 @@ class UsersManager extends AbstractManager
         }catch(PDOException $e) {
             return $e;
         }
-           
     }
 
 

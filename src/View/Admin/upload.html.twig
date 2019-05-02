@@ -46,11 +46,18 @@
                       <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" /></svg>
                     <span>Upload</span>
                   </button>
+                  {% if (errors is defined) and (errors != empty) %}
+                  <div class="mt-5 text-red-light">
+                      {% for error in errors %}
+                      {{ error.file}} : {{ error.error}}
+                    {% endfor %}
+                  </div>
+                    {% endif %}
                 </div>
               </form>
             </div>
 
-            <div class="grid_admin_upload pl-32 h-screen">
+            <div class="grid_admin_upload pl-32 h-screen -mt-5">
               {% for image in images %}
               <form method="post">
                 <input type="hidden" name="img_path" value="{{ image }}">

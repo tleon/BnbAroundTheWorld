@@ -165,7 +165,10 @@ class AdminController extends AbstractController
     public function upload($id) {
         if (($_SERVER['REQUEST_METHOD'] === 'POST') && (!empty($_FILES)) && (!array_key_exists('deleat', $_POST))) {
             $upld = new UploadFiles($id);
-            $upld->uploadNewImages($_FILES, $id);
+            $errors = $upld->uploadNewImages($_FILES, $id);
+            $nbFilesInDir =$upld->nbFilesInDir();
+            $images = $upld->getAllImg($id);
+            return $this->twig->render('Admin/upload.html.twig', ['errors'=>$errors,'nbFiles' => $nbFilesInDir, 'images'=>$images, 'id'=>$id]);
         }
         
         // Deleat post request
