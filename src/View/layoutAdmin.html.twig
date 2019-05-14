@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!--Vue Js and materialize app -->
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}Admin - BnB Around The World
+        {% endblock %}
+    </title>
+
+    {% block stylesheet %}{% endblock %}
+    <!-- Font Awesome -->
+    <link
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <!--Materialize css-->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Sidebar font -->
+    <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom css -->
+    <link href="/assets/css/admin.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- START MAIN -->
+    <div id="main">
+        <nav class="mobile-device-only bg-lg-white">
+            <a class="sidenav-trigger color-dark-blue" data-target="slide-out" href="#">
+                <iclass="material-icons">menu</i>
+            </a>
+        </nav>
+        <!-- END MOBILE NAVABAR-->
+
+        <ul id="slide-out" class="sidenav bg-lg-white">
+            <li><a href="/admin/index"><i class="material-icons color-dark-blue">home</i>Accueil</a></li>
+            <li><a href="/admin/chambres"><i class="material-icons color-dark-blue">airline_seat_individual_suite</i>Chambres</a></li>
+            <li><a href="/admin/planning"><i class="material-icons color-dark-blue">view_agenda</i>Planning</a></li>
+            <li><a href="/Home/logout"><i class="material-icons color-dark-blue">power_settings_new</i>Logout</a></li>
+        </ul>
+        <!-- END MOBILE SIDEBAR NAV-->
+
+        <div class="desktop-device-only ">
+            <ul class="sidenav sidenav-fixed bg-lg-white color-dark-blue">
+
+                <li class="logo"><a href="#" id="logo-container" class="brand-logo"></a></li>
+                <li class="bold"><a href="/admin/index" class="color-dark-blue"><i class="material-icons">home</i>Accueil</a></li>
+                <li class="bold"><a href="/admin/chambres" class="color-dark-blue"><i class="material-icons">airline_seat_individual_suite</i>Chambres</a></li>
+                <li class="bold"><a href="/admin/planning" class="color-dark-blue"><i class="material-icons">view_agenda</i>Planning</a></li>
+                <li class="bold"><a href="/Home/logout" class="color-dark-blue"><i class="material-icons">power_settings_new</i>Logout</a></li>
+
+            </ul>
+        </div>
+        <!-- END DESKTOP SIDEBAR NAV-->
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block javascript %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+margin top sur accordeon
+
+call to action a mettre en vert sur modat connexion
+
+aligner les bouttons sur modal connexion
+
+everywhere
+  padding sur logo
+
+Page chambre :
+
+  mettre hr sur page chambre avant commentaire
+
+  mettre card unique pour l'avis et enlever les autres
+
+
+  Admin
+
+  Mettre un tableau a la place des cards sur page Admin index
+
+  room edit
+    uploads images
+    definir un max image.
+
+  //TODO
+  Verifier si message erreur si insert booking sans etre identifié
+
+  Afficher un tarif.
+  
+

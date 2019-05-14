@@ -1,0 +1,161 @@
+{% extends "layoutAdmin.html.twig" %} {% block stylesheet %}
+<link href="/assets/lib/animate.css/animate.min.css" rel="stylesheet" />
+{% endblock %} {% block content %}
+<div class="cards">
+  <div class="row">
+    <!-- VUEJS element -->
+    <div id="calendrier">
+      <div class="col s12 m6">
+        <div class="card white admin_index_left">
+          <div class="card-content">
+            <div class="row sans_margin_bottom">
+              <div class="col s12 planning_header">
+                <div class="icon_left">
+                  <a id="prevDay" onclick="previousDay()">
+                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                      aria-labelledby="circleArrowLeftIconTitle circleArrowLeftIconDesc" stroke="#00d1b2"
+                      stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                      <title id="circleArrowLeftIconTitle">Arrow Left</title>
+                      <desc id="circleArrowLeftIconDesc">Icon of an arrow pointing left closed in a circle</desc>
+                      <path d="M10.5 15l-3-3 3-3" />
+                      <path d="M16.5 12H9" />
+                      <path stroke-linecap="round" d="M7.5 12H9" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </a>
+                </div>
+                <div id="admin_index_date">
+                  <div id="dateJs" class="card-title center-align"></div>
+                </div>
+                <div class="icon_right">
+                  <div id="nextDay" onclick="nextDay()">
+                    <svg role="img" xmlns="http://www.w3.org/2000/svg" width="48px" height="48px" viewBox="0 0 24 24"
+                      aria-labelledby="circleArrowRightIconTitle circleArrowRightIconDesc" stroke="#00d1b2"
+                      stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#00d1b2">
+                      <title id="circleArrowRightIconTitle">Arrow Right</title>
+                      <desc id="circleArrowRightIconDesc">Icon of an arrow pointing right closed in a circle</desc>
+                      <path d="M13.5 9l3 3-3 3" />
+                      <path d="M7.5 12H15" />
+                      <path stroke-linecap="round" d="M16.5 12H15" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- chambres1-->
+            <div class="row flex">
+            
+              <table id="herve">
+                <thead>
+                  <tr>
+                    <th>CHAMBRE</th>
+                    <th>CLIENT</th>
+                    <th>DATE DEPART</th>
+                  </tr>
+                </thead>
+              </table>
+            
+              {# 
+                          {# <div id="fetch"></div> #}
+              <div id="USA">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><span class="c-c1">USA</span></td>
+                      <td><span class="user">SOME One</span></td>
+                      <td><span class="date-departure">01/05/2019</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- chambre 2-->
+              <div id="Japon">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><span class="c-c2">Japon</span></td>
+                      <td><span class="user">SOME One</span></td>
+                      <td><span class="date-departure">01/05/2019</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- chambre 3-->
+              <div id="Tailande">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><span class="c-c3">Tailande</span></td>
+                      <td><span class="user">SOME One</span></td>
+                      <td><span class="date-departure">01/05/2019</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- chambre 4-->
+              <div id="France">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><span class="c-c4">France</span></td>
+                      <td><span class="user">SOME One</span></td>
+                      <td><span class="date-departure">01/05/2019</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- chambre 5-->
+              <div id="Africa">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td><span class="c-c5">Africa</span></td>
+                      <td><span class="user">SOME One</span></td>
+                      <td><span class="date-departure">01/05/2019</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END CARDS COL 1-->
+    <div class="col s12 m6">
+      <div class="card white admin_index_right">
+        <div class="container" style="width: 87%;">
+          <div class="row">
+            <br />
+            <h5 class="center-align">Réservations par mois</h5>
+            <canvas id="myChart"></canvas>
+          </div>
+          <div class="col s12">
+            <div class="divider"></div>
+            <h5 class="center-align">CA par chambre</h5>
+          </div>
+          <div class="row ">
+            <div class="col s12">
+              <canvas id="myChart2"></canvas>
+              <br />
+              <br />
+            </div>
+          </div>
+        </div>
+        <!-- Cards Graf 1 -->
+      </div>
+    </div>
+
+    <!-- END CARDS COL 2-->
+  </div>
+</div>
+{% endblock %} {% block javascript %}
+<script src="/assets/js/Admin/api.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.js"></script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/Admin/script.js"></script>
+{% endblock %}

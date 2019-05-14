@@ -1,0 +1,22 @@
+{% extends "layoutAdmin.html.twig" %}
+
+{% block stylesheet %}
+    <!--Vue Js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="/assets/lib/animate.css/animate.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<div class="container container_admin_room">
+    <div class="grid_admin_room">
+        {% for room in rooms %}
+        <div class="admin_room">
+            <img class="image-card" src="/assets/images/{{ room.pic_path }}">
+                <a href="/admin/edit/{{ room.id }}">Modifier</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}{% endblock %}

@@ -1,5 +1,163 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-    <h1>Hello Wilder !</h1>
+
+{% block video %}
+<div class="container" id="video">
+  <video autoplay class="responsive-video" loop>
+    <source src="/assets/video/Vegas.mp4" type="video/mp4">
+  </video>
+  <div class="card tom-invisible" id="quickB">
+    <form action="/booking/transfert" method="POST">
+      <div class="index_form_title">
+        <p>Réserver dès maintenant.</p>
+
+      </div>
+      <div class="index_form_select">
+        <label class="index_form_select_labet">
+          <span>Chambre</span>
+        </label>
+        <select name="roomId" id="roomId">
+          <option disabled selected value="0">Choisissez votre thème de chambre</option>
+          <option value="5">Afrique</option>
+          <option value="4">France</option>
+          <option value="2">Japon</option>
+          <option value="3">Thailand</option>
+          <option value="1">USA</option>
+        </select>
+      </div>
+      <div class="index_form_date_picker">
+        <div class="index_form_date_picker_left">
+          <label class="index_form_select_labet">
+            <span>Dates de séjour</span>
+          </label>
+        </div>
+        <div class="date_picker" id="tooltiptest">
+          <input type="text" class="w-full" id="dp1" name="date" placeholder="SELECTIONNEZ VOS DATES" data-input hidden>
+        </div>
+      </div>
+      <div class="index_form_select">
+        <label class="index_form_select_labet">
+          <span>Nombre de personnes</span>
+        </label>
+        <select name="nbPerson">
+          <option disabled selected value="0"></option>
+          <option value="1">1 personne</option>
+          <option value="2">2 personnes</option>
+          <option value="3">3 personnes</option>
+          <option value="4">4 personnes</option>
+        </select>
+      </div>
+      <div class="index_form_submit">
+        <button type="submit" value="submit" class="custom_btn">Réserver</button>
+      </div>
+    </form>
+    
+  </div>
+</div>
+</div>{% endblock %}
+
+
+
+{% block description %}
+<div class="container">
+  <h2 id='notreGite'>Notre Gîte</h2>
+  <div class="divider"></div>
+  <br>
+  Au coeur du Parc Naturel Régional du Vercors,
+  dans la nature et les prairies de Vassieux (D178 à 10m),
+  on vous accueille dans notre grande maison familiale avec 5 chambres.
+  Gîte confortable avec vue sur la chaîne du Grand Veymont.
+  <br><br><br>
+</div>
 {% endblock %}
+
+
+
+{% block parallax %}
+
+<div class="parallax-container">
+  <div class="parallax"><img alt="pouet" src="/assets/images/paralax-photo.jpeg"></div>
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container" id="main-body">
+  <br><br>
+  <div class="index-chambres">
+    <div class="blocktext-1 ">
+      <h3>New York</h3>
+      <p>Chambre moderne qui fait penser à un petit appartement situé dans un quartier tranquille proche de l'Hudson.
+        Comme si Times Square était à 15 minutes à pied. Elle dispose de la climatisation, TV, Wi-Fi gratuit, salle de bain privative avec baignoire,
+         coffre-fort.</p>
+    </div>
+    <div class="blockImage-1">
+      <img src="/assets/images/usa.png">
+      <div class="relative">
+        <a href="/room/show/1" class="btn_white">Accéder à la chambre</a>
+      </div>
+    </div>
+
+    <div class="blockImage-2">
+      <img src="/assets/images/thailand.png">
+      <div class="relative">
+        <a href="/room/show/3" class="btn_white">Accéder à la chambre</a>
+      </div>
+    </div>
+
+    <div class="blocktext-2">
+      <h3>Thaïlande</h3>
+      <p>La Thaïlande attire des millions de visiteurs chaque année. Vous avez du mal à comprendre cet engouement ?
+        Vous souhaitez vous aussi découvrir ce pays aux multiples merveilles ? Réservez notre suite Thaï qui vous offre un avant-goût de ce beau pays.</p>
+    </div>
+    <div class="blocktext-3">
+      <h3>France</h3>
+      <p>C'est la ville mais à la montagne. Notre chambre sur le thème de paris contient tous le comfort d'un grand hotel parisien sans l'agitation de la métropole. Profitez du calme de la montage comme si vous étiez chez vous.</p>
+    </div>
+    <div class="blockImage-3">
+      <img src="/assets/images/france.png">
+      <div class="relative">
+        <a href="/room/show/4" class="btn_white">Accéder à la chambre</a>
+      </div>
+    </div>
+    <div class="blockImage-4">
+      <img src="/assets/images/japan.png">
+      <div class="relative">
+        <a href="/room/show/2" class="btn_white">Accéder à la chambre</a>
+      </div>
+    </div>
+    <div class="blocktext-4">
+      <h3>Japon</h3>
+      <p>Eveillez vos sens en séjournant dans cette suite japonaise traditionelle. Bonzaï, bamboo et autres décorations vous font voyager.
+        Elle dispose de la climatisation, TV, Wi-Fi gratuit, salle de bain privative.
+      </p>
+    </div>
+    <div class="blocktext-5">
+      <h3>Afrique</h3>
+
+      <p>Prenez garde aux lions sur le mur. Certains racontent qu'on peut les entendre comme en pleine savane. Les détails de cette suite rappellent les magnifiques plaines africaine.</p>
+
+    </div>
+    <div class="blockImage-5">
+      <img src="/assets/images/africa.png">
+      <div class="relative">
+        <a href="/room/show/5" class="btn_white">Accéder à la chambre</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="/assets/js/indexScrollEffect.js"></script>
+<script src="/assets/js/index.datePicker.js"></script>
+<script>
+  $(document).ready(function () {
+    var e = '{{ error }}';
+    if (e != '') {
+      M.toast({ html: e, classes: 'rounded red' });
+    }
+  });
+</script>{% endblock %}
